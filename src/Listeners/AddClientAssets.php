@@ -29,14 +29,13 @@ class AddClientAssets
      */
     public function addAssets(ConfigureWebApp $app)
     {
-        // if ($app->isForum()) {
-        //     $app->addAssets([
-        //         __DIR__ . '/../../js/forum/dist/extension.js',
-        //         __DIR__ . '/../../resources/less/forum.less'
-        //     ]);
+        if ($app->isForum()) {
+            $app->addAssets([
+                __DIR__ . '/../../js/forum/dist/extension.js'
+            ]);
 
-        //     $app->addBootstrapper('reflar/polls/main');
-        // }
+            $app->addBootstrapper('reflar/nightmode/main');
+        }
 
         // if ($app->isAdmin()) {
         //     $app->addAssets([
