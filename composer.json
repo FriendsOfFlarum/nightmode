@@ -1,0 +1,43 @@
+{
+    "name": "reflar/nightmode",
+    "description": "Turn your flarum forum to dark as user",
+    "keywords": [
+        "extension",
+        "flarum",
+        "moon",
+        "mode",
+        "night",
+        "reflar"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Shahiem Seymor",
+            "email": "shahiem.seymor@reflar.email",
+            "homepage": "https://reflar.io"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/ReFlar/nightmode/issues",
+        "source": "https://github.com/ReFlar/nightmode"
+    },
+    "require": {
+        "flarum/core": "^0.1.0-beta.7"
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "ReFlar Night mode",
+            "icon": {
+                "name": "moon-o",
+                "backgroundColor": "#263238",
+                "color": "#ffff00"
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Reflar\\NightMode\\": "src/"
+        }
+    }
+}
