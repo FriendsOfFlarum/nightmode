@@ -15,10 +15,8 @@ namespace Reflar\NightMode;
 use Illuminate\Contracts\Events\Dispatcher;
 use Flarum\Event\ConfigureClientView;
 
-
 return function (Dispatcher $events) {
     $events->listen(ConfigureClientView::class, function(ConfigureClientView $event) {
-
         $css = $event->view->getCss();
         $localeCss = $event->view->getLocaleCss();
 
@@ -30,7 +28,6 @@ return function (Dispatcher $events) {
         $css->addString($lessVariables);
         $localeCss->addString($lessVariables);
     });
-
 
     $events->subscribe(Listeners\AddClientAssets::class);
     $events->subscribe(Listeners\AddRoutes::class);

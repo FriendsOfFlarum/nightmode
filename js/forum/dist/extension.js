@@ -23,16 +23,8 @@ System.register('reflar/nightmode/main', ['flarum/app', 'flarum/extend', 'flarum
         extend(SessionDropdown.prototype, 'items', function (items) {
           items.add('nightmode', LinkButton.component({
             icon: 'moon-o',
-            href: 'javascript:;',
-            children: 'Night mode',
-            onclick: function onclick() {
-              var lightMode = getCookie('reflar-nightmode');
-
-              console.log(lightMode);
-              document.cookie = 'reflar-nightmode=';
-
-              // Cookies2.set('reflar-nightmode', 1);
-            }
+            href: '',
+            children: 'Night mode'
           }), -1);
         });
       });

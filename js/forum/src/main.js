@@ -11,16 +11,8 @@ app.initializers.add('reflar-nightmode', app => {
         items.add('nightmode',
         LinkButton.component({
           icon: 'moon-o',
-          href: 'javascript:;',
-          children: 'Night mode',
-          onclick: function() {
-            let lightMode  = getCookie('reflar-nightmode');
-
-            console.log(lightMode);
-            document.cookie = 'reflar-nightmode=';
-
-            // Cookies2.set('reflar-nightmode', 1);
-          }
+          href: '',
+          children: 'Night mode'
         }),
         -1
       );
