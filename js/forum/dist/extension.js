@@ -16,8 +16,6 @@ System.register('reflar/nightmode/main', ['flarum/app', 'flarum/extend', 'flarum
       LinkButton = _flarumComponentsLinkButton.default;
     }],
     execute: function () {
-      // import Cookies from 'js-cookie';
-
 
       app.initializers.add('reflar-nightmode', function (app) {
         extend(SessionDropdown.prototype, 'items', function (items) {
