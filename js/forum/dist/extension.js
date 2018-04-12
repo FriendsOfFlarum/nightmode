@@ -23,7 +23,7 @@ System.register('reflar/nightmode/main', ['flarum/app', 'flarum/extend', 'flarum
         extend(SessionDropdown.prototype, 'items', function (items) {
           items.add('nightmode', LinkButton.component({
             icon: 'moon-o',
-            href: '',
+            href: 'reflar/light-switch',
             children: 'Night mode'
           }), -1);
         });

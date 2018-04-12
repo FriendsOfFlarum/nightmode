@@ -11,7 +11,7 @@ app.initializers.add('reflar-nightmode', app => {
         items.add('nightmode',
         LinkButton.component({
           icon: 'moon-o',
-          href: '',
+          href: 'reflar/light-switch',
           children: 'Night mode'
         }),
         -1
