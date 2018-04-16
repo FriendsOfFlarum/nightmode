@@ -11,9 +11,9 @@ app.initializers.add('reflar-nightmode', app => {
     // Add night mode link to session dropdown
     items.add('nightmode',
       LinkButton.component({
-        icon: 'moon-o',
+        icon: lightState == true ? 'moon-o' : 'sun-o',
         href: 'javascript:;',
-        children: 'Night mode',
+        children: lightState == true ? 'Night mode' : 'Day mode',
         onclick: function() {
           // Toggle night mode on or off by changing the user preference
           app.session.user.savePreferences({'reflarNightMode': lightState});
