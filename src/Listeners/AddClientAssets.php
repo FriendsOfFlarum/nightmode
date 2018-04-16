@@ -18,23 +18,28 @@ use Illuminate\Contracts\Events\Dispatcher;
 
 class AddClientAssets
 {
-
     public function subscribe(Dispatcher $events)
     {
         $events->listen(ConfigureWebApp::class, [$this, 'addAssets']);
     }
-    /**
-     * @param ConfigureWebApp $app
-     */
 
     public function addAssets(ConfigureWebApp $app)
     {
-        if ($app->isForum()) {
-            $app->addBootstrapper('reflar/nightmode/main');
+        $request = $app->request;
+        $actor = $request->getAttribute('actor');
 
+        if ($app->isForum()) {
             $app->addAssets([
                 __DIR__ . '/../../js/forum/dist/extension.js'
             ]);
+
+            if (FALSE !== $actor->getPreference('reflarNightMode')) {
+                $app->addAssets([
+                    __DIR__.'/../../resources/forum/extension.less'
+                ]);
+            }
+
+            $app->addBootstrapper('reflar/nightmode/main');
         }
     }
 }

@@ -32,5 +32,4 @@ class AddRoutes
     {
         $event->get('/reflar/light-switch', 'nightmode.toggle', NightModeController::class);
     }
-
 }

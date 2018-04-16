@@ -3,8 +3,5 @@
     "devDependencies": {
         "gulp": "^3.8.11",
         "flarum-gulp": "^0.2.0"
-    },
-    "dependencies": {
-        "js-cookie": "^2.2.0"
     }
 }
