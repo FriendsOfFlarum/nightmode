@@ -1,4 +1,3 @@
-import app from 'flarum/app';
 import { extend, override } from 'flarum/extend';
 
 import SessionDropdown from 'flarum/components/SessionDropdown';
@@ -13,7 +12,7 @@ app.initializers.add('reflar-nightmode', app => {
       LinkButton.component({
         icon: lightState == true ? 'moon-o' : 'sun-o',
         href: 'javascript:;',
-        children: lightState == true ? 'Night mode' : 'Day mode',
+        children: lightState == true ? app.translator.trans('reflar-nightmode.forum.night') : app.translator.trans('reflar-nightmode.forum.day'),
         onclick: function() {
           // Toggle night mode on or off by changing the user preference
           app.session.user.savePreferences({'reflarNightMode': lightState});

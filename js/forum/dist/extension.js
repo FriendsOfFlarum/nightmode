@@ -1,13 +1,11 @@
 'use strict';
 
-System.register('reflar/nightmode/main', ['flarum/app', 'flarum/extend', 'flarum/components/SessionDropdown', 'flarum/components/LinkButton'], function (_export, _context) {
+System.register('reflar/nightmode/main', ['flarum/extend', 'flarum/components/SessionDropdown', 'flarum/components/LinkButton'], function (_export, _context) {
   "use strict";
 
-  var app, extend, override, SessionDropdown, LinkButton;
+  var extend, override, SessionDropdown, LinkButton;
   return {
-    setters: [function (_flarumApp) {
-      app = _flarumApp.default;
-    }, function (_flarumExtend) {
+    setters: [function (_flarumExtend) {
       extend = _flarumExtend.extend;
       override = _flarumExtend.override;
     }, function (_flarumComponentsSessionDropdown) {
@@ -25,7 +23,7 @@ System.register('reflar/nightmode/main', ['flarum/app', 'flarum/extend', 'flarum
           items.add('nightmode', LinkButton.component({
             icon: lightState == true ? 'moon-o' : 'sun-o',
             href: 'javascript:;',
-            children: lightState == true ? 'Night mode' : 'Day mode',
+            children: lightState == true ? app.translator.trans('reflar-nightmode.forum.night') : app.translator.trans('reflar-nightmode.forum.day'),
             onclick: function onclick() {
               // Toggle night mode on or off by changing the user preference
               app.session.user.savePreferences({ 'reflarNightMode': lightState });
