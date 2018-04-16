@@ -19,14 +19,18 @@ System.register('reflar/nightmode/main', ['flarum/app', 'flarum/extend', 'flarum
 
       app.initializers.add('reflar-nightmode', function (app) {
         extend(SessionDropdown.prototype, 'items', function (items) {
-          console.log(app.session.user.preferences().reflarNightMode);
           var lightState = app.session.user.preferences().reflarNightMode == true ? false : true;
+
+          // Add night mode link to session dropdown
           items.add('nightmode', LinkButton.component({
             icon: 'moon-o',
             href: 'javascript:;',
             children: 'Night mode',
             onclick: function onclick() {
+              // Toggle night mode on or off by changing the user preference
               app.session.user.savePreferences({ 'reflarNightMode': lightState });
+
+              location.reload();
             }
           }), -1);
         });

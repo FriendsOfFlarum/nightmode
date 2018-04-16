@@ -6,18 +6,22 @@ import LinkButton from 'flarum/components/LinkButton';
 
 app.initializers.add('reflar-nightmode', app => {
   extend(SessionDropdown.prototype, 'items', function(items) {
-    console.log(app.session.user.preferences().reflarNightMode);
-      let lightState = app.session.user.preferences().reflarNightMode == true ? false : true;
-      items.add('nightmode',
-        LinkButton.component({
-          icon: 'moon-o',
-          href: 'javascript:;',
-          children: 'Night mode',
-          onclick: function() {
-            app.session.user.savePreferences({'reflarNightMode': lightState});
-          }
-        }),
-        -1
-      );
-    });
+    let lightState = app.session.user.preferences().reflarNightMode == true ? false : true;
+
+    // Add night mode link to session dropdown
+    items.add('nightmode',
+      LinkButton.component({
+        icon: 'moon-o',
+        href: 'javascript:;',
+        children: 'Night mode',
+        onclick: function() {
+          // Toggle night mode on or off by changing the user preference
+          app.session.user.savePreferences({'reflarNightMode': lightState});
+
+          location.reload();
+        }
+      }),
+      -1
+    );
+  });
 });
