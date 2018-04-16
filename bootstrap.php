@@ -13,7 +13,6 @@
 namespace Reflar\NightMode;
 
 use Illuminate\Contracts\Events\Dispatcher;
-use Flarum\Event\ConfigureClientView;
 
 return function (Dispatcher $events) {
     $events->subscribe(Listeners\AddClientAssets::class);

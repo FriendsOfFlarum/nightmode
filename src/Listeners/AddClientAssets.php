@@ -9,10 +9,9 @@
  * For the full copyright and license information, please view the license.md
  * file that was distributed with this source code.
  */
+
 namespace Reflar\NightMode\Listeners;
 
-use DirectoryIterator;
-use Flarum\Event\ConfigureLocales;
 use Flarum\Event\ConfigureWebApp;
 use Illuminate\Contracts\Events\Dispatcher;
 
@@ -30,12 +29,12 @@ class AddClientAssets
 
         if ($app->isForum()) {
             $app->addAssets([
-                __DIR__ . '/../../js/forum/dist/extension.js'
+                __DIR__.'/../../js/forum/dist/extension.js',
             ]);
 
-            if (FALSE !== $actor->getPreference('reflarNightMode')) {
+            if (false !== $actor->getPreference('reflarNightMode')) {
                 $app->addAssets([
-                    __DIR__.'/../../resources/forum/extension.less'
+                    __DIR__.'/../../resources/forum/extension.less',
                 ]);
             }
 
