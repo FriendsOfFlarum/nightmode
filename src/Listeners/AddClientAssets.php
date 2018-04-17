@@ -35,7 +35,7 @@ class AddClientAssets
                 __DIR__.'/../../js/forum/dist/extension.js',
             ]);
 
-            if (false !== $actor->getPreference('reflarNightMode')) {
+            if ($actor->getPreference('reflarNightMode') == TRUE) {
                 $app->addAssets([
                     __DIR__.'/../../resources/forum/extension.less',
                 ]);
