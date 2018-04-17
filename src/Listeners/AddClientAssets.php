@@ -13,8 +13,8 @@
 namespace Reflar\NightMode\Listeners;
 
 use DirectoryIterator;
-use Flarum\Event\ConfigureWebApp;
 use Flarum\Event\ConfigureLocales;
+use Flarum\Event\ConfigureWebApp;
 use Illuminate\Contracts\Events\Dispatcher;
 
 class AddClientAssets
@@ -35,7 +35,7 @@ class AddClientAssets
                 __DIR__.'/../../js/forum/dist/extension.js',
             ]);
 
-            if ($actor->getPreference('reflarNightMode') == TRUE) {
+            if ($actor->getPreference('reflarNightMode') == true) {
                 $app->addAssets([
                     __DIR__.'/../../resources/forum/extension.less',
                 ]);
