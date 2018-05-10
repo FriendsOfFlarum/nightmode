@@ -46,6 +46,22 @@
 body.dark {
   .darker();
 
+  code {
+    color: @code-color;
+    background: @code-bg;
+  }
+
+  pre {
+    background: @code-bg;
+  }
+
+  blockquote {
+    background: @control-bg;
+    color: @control-color;
+    border-top: 2px dotted @body-bg;
+    border-bottom: 2px dotted @body-bg;
+  }
+
   hr {
     border-top: 2px solid @control-bg;
   }
@@ -199,7 +215,20 @@ body.dark {
 
   }
 
+  .PostPreview {
+    color: @muted-color;
+    .username {
+      color: @text-color;
+    }
+  }
+
+  .DiscussionSearchResult-excerpt {
+    color: @muted-color;
+  }
+
   .Dropdown-header {
+    color: @heading-color;
+
     border-top: 1px solid @control-bg;
   }
 
@@ -226,6 +255,28 @@ body.dark {
     }
   }
 
+  .Button--color(@color; @background) {
+    color: @color;
+    background: @background;
+  
+    &:hover,
+    &:focus,
+    &.focus {
+      background-color: darken(fadein(@background, 5%), 5%);
+    }
+  
+    &:active,
+    &.active,
+    .open > .Dropdown-toggle& {
+      background-color: darken(fadein(@background, 10%), 10%);
+    }
+  
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+      background: @background;
+    }
+  }
   .Dropdown-separator {
     background-color: @control-bg;
   }
