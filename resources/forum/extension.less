@@ -29,7 +29,8 @@
   @header-color:                   @primary-color;
   @header-control-bg:              @control-bg;
   @header-control-color:           @control-color;
-  
+  @hero-bg:                          @control-bg;
+
   background: @body-bg;
   color: @text-color;
 }
@@ -59,6 +60,22 @@ body.dark {
 
   .NotificationGrid {
     background: @control-bg;
+    td, th {
+      border-bottom: 1px solid @body-bg;
+      color: @control-color;
+    }
+  }
+
+  .NotificationGrid-checkbox {
+    &.highlighted .Checkbox, .Checkbox:hover {
+      &:not(.disabled) {
+        background: darken(@control-bg, 4%);
+      }
+    }
+  }
+
+  .Header-secondary .Button {
+    background: transparent;
   }
 
   .App-drawer {
@@ -83,6 +100,25 @@ body.dark {
       color: @text-color;
   }
   
+  .FormControl {
+    color: @control-color;
+  
+    &:focus,
+    &.focus {
+      background-color: @body-bg;
+      color: @text-color;
+      border-color: @primary-color;
+    }
+  }
+
+  .Search .FormControl {
+    background-color: @control-bg;
+  }
+  
+  .helpText {
+    color: @muted-color;
+  }
+
   .Search-input {
     color: @muted-color;
   }
@@ -95,9 +131,6 @@ body.dark {
     .Button--color(@body-bg, @primary-color);
   }
 
-  // .Button--danger {
-  //   .Button--color(@control-danger-color, @control-danger-bg);
-  // }
 
   .Composer {
     background: @body-bg;
@@ -108,6 +141,10 @@ body.dark {
     &.active:not(.fullScreen) {
       .box-shadow(~"0 0 0 2px @{primary-color}, 0 2px 6px @{shadow-color}");
     }
+  }
+
+  .ComposerBody-loading {
+    background: fade(@body-bg, 90%);
   }
 
   .composer-backdrop {
@@ -127,6 +164,14 @@ body.dark {
     color: @muted-color;
   }
 
+  .Post-header {
+    color: @muted-color;
+    
+    &, a {
+      color: @muted-color;
+    }
+  }
+    
   .PostStream-item {
     &:not(:last-child) {
       border-bottom: 1px solid @control-bg;
@@ -137,6 +182,13 @@ body.dark {
     > li {
       border-bottom: 1px solid @control-bg;
     }
+  }
+
+  .PostUser {
+    h3, h3 a {
+      color: @heading-color;
+    }
+
   }
 
   .Dropdown-header {
@@ -186,6 +238,35 @@ body.dark {
     color: @heading-color !important;
   }
 
+  .Notification.unread {
+    background: @control-bg;
+  }
+
+  .Notification {
+    color: @muted-color !important; // required to override .light-contents applied to header
+  
+    &:hover {
+      background: @control-bg;
+    }
+  }
+
+  .PostMeta .Dropdown-menu {
+    color: @muted-color;
+  }
+
+  .PostMeta-number {
+    color: @text-color;
+  }
+
+  .PostStreamScrubber .Dropdown-menu {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .NotificationsDropdown-unread {
+    background: @header-control-color;
+  }
+
   .Scrubber-before, .Scrubber-after {
     border-left: 1px solid @control-bg;
   }
@@ -216,12 +297,91 @@ body.dark {
     color: @muted-color;
   }
 
+  .Scrubber-scrollbar {
+    margin: 0;
+  }
+
   .Scrubber {
     & a {
       color: @muted-color;
       
       &:hover, &:focus {
         color: @link-color;
+      }
+    }
+  }
+
+  .Hero {
+    background: @hero-bg;
+  }
+  
+  .DiscussionPage-list {
+    border-top: 1px solid @control-bg;
+    background: @body-bg;
+  }
+
+  .DiscussionListItem {
+    &:hover {
+      background: mix(@control-bg, @body-bg, 50%);
+    }
+    &.active {
+      background: @control-bg;
+    }
+  }
+
+  .modal-backdrop {
+    background-color: @overlay-bg;
+  }
+
+  .Modal-content {
+    background-color: @body-bg;
+  }
+  
+  .Modal-body {
+    background-color: @control-bg;
+    color: @control-color;
+  
+    .FormControl {
+      background-color: @body-bg;
+      color: @text-color;
+    }
+  }
+
+  .Modal-footer {
+    color: @muted-color;
+  }
+
+  .Modal-loading {
+    background: fade(@body-bg, 90%);
+  }
+
+  .Modal-header {
+    background: @control-bg;
+  }
+
+  .SelectTagList {
+    > li {
+      &.pinned + li:not(.pinned) {
+        border-top: 2px solid @control-bg;
+      }
+      &.active {
+        background: @control-bg;
+      }
+    }
+  }
+
+  .TagLabel {
+    background: @control-bg;
+    color: @control-color;
+
+    &.untagged {
+      border: 1px dotted @muted-color;
+      color: @muted-color;
+    }
+
+    &.colored {
+      .TagLabel-text {
+        color: @body-bg !important;
       }
     }
   }
