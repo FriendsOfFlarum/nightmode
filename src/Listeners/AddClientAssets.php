@@ -32,14 +32,9 @@ class AddClientAssets
 
         if ($app->isForum()) {
             $app->addAssets([
+                __DIR__.'/../../resources/forum/extension.less',
                 __DIR__.'/../../js/forum/dist/extension.js',
             ]);
-
-            if ($actor->getPreference('reflarNightMode') == true) {
-                $app->addAssets([
-                    __DIR__.'/../../resources/forum/extension.less',
-                ]);
-            }
 
             $app->addBootstrapper('reflar/nightmode/main');
         }

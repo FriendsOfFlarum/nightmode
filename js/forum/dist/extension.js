@@ -1,9 +1,9 @@
 'use strict';
 
-System.register('reflar/nightmode/main', ['flarum/extend', 'flarum/components/SessionDropdown', 'flarum/components/LinkButton'], function (_export, _context) {
+System.register('reflar/nightmode/main', ['flarum/extend', 'flarum/components/SessionDropdown', 'flarum/components/LinkButton', 'flarum/components/Page'], function (_export, _context) {
   "use strict";
 
-  var extend, override, SessionDropdown, LinkButton;
+  var extend, override, SessionDropdown, LinkButton, Page;
   return {
     setters: [function (_flarumExtend) {
       extend = _flarumExtend.extend;
@@ -12,10 +12,20 @@ System.register('reflar/nightmode/main', ['flarum/extend', 'flarum/components/Se
       SessionDropdown = _flarumComponentsSessionDropdown.default;
     }, function (_flarumComponentsLinkButton) {
       LinkButton = _flarumComponentsLinkButton.default;
+    }, function (_flarumComponentsPage) {
+      Page = _flarumComponentsPage.default;
     }],
     execute: function () {
 
       app.initializers.add('reflar-nightmode', function (app) {
+
+        extend(Page.prototype, 'config', function (vdom) {
+          if (app.session.user && app.session.user.preferences().reflarNightMode) {
+            $('body').addClass('dark');
+          } else {
+            $('body').removeClass('dark');
+          }
+        });
         extend(SessionDropdown.prototype, 'items', function (items) {
           var lightState = app.session.user.preferences().reflarNightMode == true ? false : true;
 
@@ -28,7 +38,7 @@ System.register('reflar/nightmode/main', ['flarum/extend', 'flarum/components/Se
               // Toggle night mode on or off by changing the user preference
               app.session.user.savePreferences({ 'reflarNightMode': lightState });
 
-              location.reload();
+              window.location.reload(true);
             }
           }), -1);
         });

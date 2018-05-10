@@ -2,8 +2,17 @@ import { extend, override } from 'flarum/extend';
 
 import SessionDropdown from 'flarum/components/SessionDropdown';
 import LinkButton from 'flarum/components/LinkButton';
+import Page from 'flarum/components/Page';
 
 app.initializers.add('reflar-nightmode', app => {
+
+  extend(Page.prototype, 'config', function (vdom) {
+    if (app.session.user && app.session.user.preferences().reflarNightMode) {
+        $('body').addClass('dark');
+    } else {
+        $('body').removeClass('dark');
+    }
+  });
   extend(SessionDropdown.prototype, 'items', function(items) {
     let lightState = app.session.user.preferences().reflarNightMode == true ? false : true;
 
@@ -17,7 +26,7 @@ app.initializers.add('reflar-nightmode', app => {
           // Toggle night mode on or off by changing the user preference
           app.session.user.savePreferences({'reflarNightMode': lightState});
 
-          location.reload();
+          window.location.reload(true);
         }
       }),
       -1
