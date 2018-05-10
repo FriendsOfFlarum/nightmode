@@ -18,7 +18,6 @@ System.register('reflar/nightmode/main', ['flarum/extend', 'flarum/components/Se
     execute: function () {
 
       app.initializers.add('reflar-nightmode', function (app) {
-
         extend(Page.prototype, 'config', function (vdom) {
           if (app.session.user && app.session.user.preferences().reflarNightMode) {
             $('body').addClass('dark');
@@ -26,6 +25,7 @@ System.register('reflar/nightmode/main', ['flarum/extend', 'flarum/components/Se
             $('body').removeClass('dark');
           }
         });
+
         extend(SessionDropdown.prototype, 'items', function (items) {
           var lightState = app.session.user.preferences().reflarNightMode == true ? false : true;
 
@@ -38,7 +38,11 @@ System.register('reflar/nightmode/main', ['flarum/extend', 'flarum/components/Se
               // Toggle night mode on or off by changing the user preference
               app.session.user.savePreferences({ 'reflarNightMode': lightState });
 
-              window.location.reload(true);
+              if (app.session.user && app.session.user.preferences().reflarNightMode) {
+                $('body').addClass('dark');
+              } else {
+                $('body').removeClass('dark');
+              }
             }
           }), -1);
         });
