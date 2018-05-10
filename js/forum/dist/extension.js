@@ -30,7 +30,7 @@ System.register('reflar/nightmode/main', ['flarum/extend', 'flarum/components/Se
           var lightState = app.session.user.preferences().reflarNightMode == true ? false : true;
 
           // Add night mode link to session dropdown
-          items.add('nightmode', LinkButton.component({
+          items.add(app.session.user && app.session.user.preferences().reflarNightMode ? 'nightmode' : 'daymode', LinkButton.component({
             icon: lightState == true ? 'moon-o' : 'sun-o',
             href: 'javascript:;',
             children: lightState == true ? app.translator.trans('reflar-nightmode.forum.night') : app.translator.trans('reflar-nightmode.forum.day'),
