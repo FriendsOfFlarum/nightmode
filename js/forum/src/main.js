@@ -26,11 +26,7 @@ app.initializers.add('reflar-nightmode', app => {
           // Toggle night mode on or off by changing the user preference
           app.session.user.savePreferences({'reflarNightMode': lightState});
 
-          if (app.session.user && app.session.user.preferences().reflarNightMode) {
-            $('body').addClass('dark');
-          } else {
-            $('body').removeClass('dark');
-          }
+          $('body').toggleClass('dark');
         }
       }),
       -1
