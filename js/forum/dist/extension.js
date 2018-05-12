@@ -1,17 +1,17 @@
 'use strict';
 
-System.register('reflar/nightmode/main', ['flarum/extend', 'flarum/components/SessionDropdown', 'flarum/components/LinkButton', 'flarum/components/Page'], function (_export, _context) {
+System.register('reflar/nightmode/main', ['flarum/extend', 'flarum/components/SessionDropdown', 'flarum/components/Button', 'flarum/components/Page'], function (_export, _context) {
   "use strict";
 
-  var extend, override, SessionDropdown, LinkButton, Page;
+  var extend, override, SessionDropdown, Button, Page;
   return {
     setters: [function (_flarumExtend) {
       extend = _flarumExtend.extend;
       override = _flarumExtend.override;
     }, function (_flarumComponentsSessionDropdown) {
       SessionDropdown = _flarumComponentsSessionDropdown.default;
-    }, function (_flarumComponentsLinkButton) {
-      LinkButton = _flarumComponentsLinkButton.default;
+    }, function (_flarumComponentsButton) {
+      Button = _flarumComponentsButton.default;
     }, function (_flarumComponentsPage) {
       Page = _flarumComponentsPage.default;
     }],
@@ -30,7 +30,7 @@ System.register('reflar/nightmode/main', ['flarum/extend', 'flarum/components/Se
           var lightState = app.session.user.preferences().reflarNightMode == true ? false : true;
 
           // Add night mode link to session dropdown
-          items.add(app.session.user && app.session.user.preferences().reflarNightMode ? 'nightmode' : 'daymode', LinkButton.component({
+          items.add(app.session.user && app.session.user.preferences().reflarNightMode ? 'nightmode' : 'daymode', Button.component({
             icon: lightState == true ? 'moon-o' : 'sun-o',
             href: 'javascript:;',
             children: lightState == true ? app.translator.trans('reflar-nightmode.forum.night') : app.translator.trans('reflar-nightmode.forum.day'),

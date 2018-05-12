@@ -1,7 +1,7 @@
 import { extend, override } from 'flarum/extend';
 
 import SessionDropdown from 'flarum/components/SessionDropdown';
-import LinkButton from 'flarum/components/LinkButton';
+import Button from 'flarum/components/Button';
 import Page from 'flarum/components/Page';
 
 app.initializers.add('reflar-nightmode', app => {
@@ -18,7 +18,7 @@ app.initializers.add('reflar-nightmode', app => {
 
     // Add night mode link to session dropdown
     items.add(app.session.user && app.session.user.preferences().reflarNightMode ? 'nightmode' : 'daymode',
-      LinkButton.component({
+      Button.component({
         icon: lightState == true ? 'moon-o' : 'sun-o',
         href: 'javascript:;',
         children: lightState == true ? app.translator.trans('reflar-nightmode.forum.night') : app.translator.trans('reflar-nightmode.forum.day'),
