@@ -28,7 +28,6 @@ class AddClientAssets
     public function addAssets(ConfigureWebApp $app)
     {
         $request = $app->request;
-        $actor = $request->getAttribute('actor');
 
         if ($app->isForum()) {
             $app->addAssets([
