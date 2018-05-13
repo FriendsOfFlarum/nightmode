@@ -1,7 +1,7 @@
 
 # Night Mode by ReFlar
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ReFlar/polls/blob/master/LICENSE) [![Latest Stable Version](https://img.shields.io/packagist/v/reflar/polls.svg)](https://github.com/ReFlar/nightmode)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ReFlar/nightmode/blob/master/LICENSE) [![Latest Stable Version](https://img.shields.io/packagist/v/reflar/nightmode.svg)](https://github.com/ReFlar/nightmode)
 
 Turn your flarum forum to dark as user
 
