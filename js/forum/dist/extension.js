@@ -1,9 +1,9 @@
 'use strict';
 
-System.register('reflar/nightmode/main', ['flarum/extend', 'flarum/components/SessionDropdown', 'flarum/components/Button', 'flarum/components/Page'], function (_export, _context) {
+System.register('reflar/nightmode/main', ['flarum/extend', 'flarum/components/SessionDropdown', 'flarum/components/Button', 'flarum/components/Page', 'flarum/tags/components/TagsPage', 'flarum/app'], function (_export, _context) {
   "use strict";
 
-  var extend, override, SessionDropdown, Button, Page;
+  var extend, override, SessionDropdown, Button, Page, TagsPage, app;
   return {
     setters: [function (_flarumExtend) {
       extend = _flarumExtend.extend;
@@ -14,11 +14,23 @@ System.register('reflar/nightmode/main', ['flarum/extend', 'flarum/components/Se
       Button = _flarumComponentsButton.default;
     }, function (_flarumComponentsPage) {
       Page = _flarumComponentsPage.default;
+    }, function (_flarumTagsComponentsTagsPage) {
+      TagsPage = _flarumTagsComponentsTagsPage.default;
+    }, function (_flarumApp) {
+      app = _flarumApp.default;
     }],
     execute: function () {
 
       app.initializers.add('reflar-nightmode', function (app) {
-        extend(Page.prototype, 'config', function (vdom) {
+        extend(Page.prototype, 'init', function (vdom) {
+          if (app.session.user && app.session.user.preferences().reflarNightMode) {
+            $('body').addClass('dark');
+          } else {
+            $('body').removeClass('dark');
+          }
+        });
+
+        extend(TagsPage.prototype, 'config', function (vdom) {
           if (app.session.user && app.session.user.preferences().reflarNightMode) {
             $('body').addClass('dark');
           } else {

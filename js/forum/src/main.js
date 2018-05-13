@@ -3,9 +3,19 @@ import { extend, override } from 'flarum/extend';
 import SessionDropdown from 'flarum/components/SessionDropdown';
 import Button from 'flarum/components/Button';
 import Page from 'flarum/components/Page';
+import TagsPage from 'flarum/tags/components/TagsPage';
+import app from 'flarum/app';
 
 app.initializers.add('reflar-nightmode', app => {
-  extend(Page.prototype, 'config', function (vdom) {
+  extend(Page.prototype, 'init', function (vdom) {
+    if (app.session.user && app.session.user.preferences().reflarNightMode) {
+      $('body').addClass('dark');
+    } else {
+      $('body').removeClass('dark');
+    }
+  });
+
+  extend(TagsPage.prototype, 'config', function (vdom) {
     if (app.session.user && app.session.user.preferences().reflarNightMode) {
       $('body').addClass('dark');
     } else {
