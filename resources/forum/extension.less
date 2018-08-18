@@ -196,6 +196,7 @@ body.dark {
             >button,
             >span {
                 color: @text-color;
+                background: #1a1a1a;
             }
             >a,
             >button {
@@ -322,6 +323,10 @@ body.dark {
     /*
     * — Discussion —
     */
+    .DiscussionListItem-count {
+        background: @control-bg;
+        color: @control-color;
+    }
     .DiscussionPage-list {
         border-top: 1px solid @control-bg;
         background: @body-bg;
@@ -335,7 +340,7 @@ body.dark {
         }
     }
     .DiscussionPage-nav {
-        border-bottom: 1px solid #212121;
+        border-bottom: 1px solid @control-bg;
     }
     /*
     * — Modal —
@@ -362,6 +367,22 @@ body.dark {
     }
     .Modal-header {
         background: @control-bg;
+    }
+    /*
+    * — Slidable —
+    */
+    .Slidable .Slidable-underneath {
+        background: @control-bg!important;
+    }
+    .Slidable.sliding .DiscussionListItem-content {
+        background: @control-bg;
+    }
+    /*
+    * — Composer —
+    */
+    .Composer:not(.minimized):before {
+        background: @control-bg;
+        border: 0;
     }
     /*
     * — Tag —
