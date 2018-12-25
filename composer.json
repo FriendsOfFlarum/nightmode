@@ -16,22 +16,27 @@
             "name": "Shahiem Seymor",
             "email": "shahiem.seymor@reflar.email",
             "homepage": "https://reflar.io"
-        }
+        },
+      {
+        "name": "Christian Lopez",
+        "email": "Christian.L@redevs.org",
+        "homepage": "https://reflar.redevs.org"
+      }
     ],
     "support": {
         "issues": "https://github.com/ReFlar/nightmode/issues",
         "source": "https://github.com/ReFlar/nightmode"
     },
     "require": {
-        "flarum/core": "^0.1.0-beta.7"
+        "flarum/core": "^0.1.0-beta.8"
     },
     "extra": {
         "flarum-extension": {
-            "title": "ReFlar Night mode",
+            "title": "ReFlar Night Mode",
             "icon": {
-                "name": "moon-o",
+                "name": "far fa-moon",
                 "backgroundColor": "#263238",
-                "color": "#ffff00"
+                "color": "#fff"
             }
         }
     },

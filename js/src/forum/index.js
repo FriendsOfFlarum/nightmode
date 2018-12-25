@@ -29,7 +29,7 @@ app.initializers.add('reflar-nightmode', app => {
     // Add night mode link to session dropdown
     items.add(app.session.user && app.session.user.preferences().reflarNightMode ? 'nightmode' : 'daymode',
       Button.component({
-        icon: lightState == true ? 'moon-o' : 'sun-o',
+        icon: lightState == true ? 'far fa-moon' : 'far fa-sun',
         href: 'javascript:;',
         children: lightState == true ? app.translator.trans('reflar-nightmode.forum.night') : app.translator.trans('reflar-nightmode.forum.day'),
         onclick: function() {
