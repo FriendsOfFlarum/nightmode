@@ -1,11 +1,17 @@
 
 # Night Mode by ReFlar
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ReFlar/nightmode/blob/master/LICENSE) [![Latest Stable Version](https://img.shields.io/packagist/v/reflar/nightmode.svg)](https://github.com/ReFlar/nightmode)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ReFlar/nightmode/blob/master/LICENSE)
+[![Latest Stable Version](https://img.shields.io/packagist/v/reflar/nightmode.svg)](https://github.com/ReFlar/nightmode)
+[![Total Downloads](https://img.shields.io/packagist/dt/reflar/nightmode.svg)](https://packagist.org/packages/reflar/nightmode)
 
-Turn your flarum forum to dark as user
+A Flarum extension that adds a night mode 🌙 option to your Flarum Community! (THE LIGHT 🌞, IT BUUUURNSSS!!!)
 
-### Installation :balloon:
+### Usage
+- A new "Night Mode" menu option will appear in your user options when you click on your avatar next to the notifications icon.
+- A "Day Mode" option has been added as well to make the light appear again! (BEGONE, DANKESS!)
+
+### Installation
 
 Install it with composer:
 
@@ -13,14 +19,14 @@ Install it with composer:
 composer require reflar/nightmode
 ```
 
-### Issues 🐛
+### To Do
+- [Suggestions anyone?](https://github.com/ReFlar/nightmode/issues/new)
 
-[Open an issue on Github](https://github.com/ReFlar/nightmode/issues)
+### Issues
 
-Suggestions? Please feel free to give me some suggestions
+- [Open an issue on Github](https://github.com/ReFlar/nightmode/issues)
 
-### Links 🔗
+### Links
 
-- [Github](https://github.com/ReFlar/nightmode)
-- [Packagist](https://packagist.org/packages/reflar/nightmode)
-- [Buy me a house with $1 💰](https://paypal.me/shahiemseymor)
+- [on github](https://github.com/ReFlar/nightmode)
+- [on packagist](https://packagist.org/packages/reflar/nightmode)
