@@ -38,42 +38,53 @@
 
 body.dark {
     .darker();
+
     code {
         color: @code-color;
         background: @code-bg;
     }
+
     pre {
         background: @code-bg;
     }
+
     blockquote {
         background: @control-bg;
         color: @control-color;
         border-top: 2px dotted @body-bg;
         border-bottom: 2px dotted @body-bg;
     }
+
     hr {
         border-top: 2px solid @control-bg;
     }
+
     legend {
         color: @text-color;
     }
+
     .darkenBackground {
         background: @shadow-color;
     }
+
     a {
         color: @link-color;
     }
+
     .App-content {
         background: @body-bg;
     }
+
     .NotificationGrid {
         background: @control-bg;
+
         td,
         th {
             border-bottom: 1px solid @body-bg;
             color: @control-color;
         }
     }
+
     .NotificationGrid-checkbox {
         &.highlighted .Checkbox,
         .Checkbox:hover {
@@ -82,28 +93,36 @@ body.dark {
             }
         }
     }
+
     .Header-secondary .Button {
         background: transparent;
     }
+
     .App-drawer {
         background: @header-bg;
     }
+
     .App-header {
         & when (@config-colored-header =true) {
             .light-contents(@header-color, @header-control-bg, @header-control-color);
         }
     }
+
     .App-content {
         border-top: 1px solid @control-bg;
     }
+
     .App:before {
         background: fade(@header-bg, 98%);
     }
-    .Form-group>label {
+
+    .Form-group > label {
         color: @text-color;
     }
+
     .FormControl {
         color: @control-color;
+
         &:focus,
         &.focus {
             background-color: @body-bg;
@@ -111,106 +130,133 @@ body.dark {
             border-color: @primary-color;
         }
     }
+
     .Search .FormControl {
         background-color: @control-bg;
     }
+
     .helpText {
         color: @muted-color;
     }
+
     .Search-input {
         color: @muted-color;
     }
+
     .Button {
         .Button--color(@control-color, @control-bg);
     }
+
     .Button--primary {
         .Button--color(@body-bg, @primary-color);
     }
+
     .Composer {
         background: @body-bg;
+
         &.active,
         &.fullScreen {
             background: @body-bg;
         }
+
         &.active:not(.fullScreen) {
             .box-shadow(~"0 0 0 2px @{primary-color}, 0 2px 6px @{shadow-color}");
         }
     }
+
     .ComposerBody-loading {
         background: fade(@body-bg, 90%);
     }
+
     .composer-backdrop {
         background-color: @overlay-bg;
     }
+
     .TextEditor textarea {
         color: @text-color;
     }
+
     .TextEditor-controls {
         border-top: 1px solid @control-bg;
     }
+
     .ReplyPlaceholder {
         border: 2px dashed @control-bg;
         color: @muted-color;
     }
+
     .Post-header {
         color: @muted-color;
+
         &,
         a {
             color: @muted-color;
         }
     }
+
     .PostStream-item {
         &:not(:last-child) {
             border-bottom: 1px solid @control-bg;
         }
     }
+
     .PostsUserPage-list {
-        >li {
+        > li {
             border-bottom: 1px solid @control-bg;
         }
     }
+
     .PostUser {
         h3,
         h3 a {
             color: @heading-color;
         }
     }
+
     .PostPreview {
         color: @muted-color;
+
         .username {
             color: @text-color;
         }
     }
+
     .DiscussionSearchResult-excerpt {
         color: @muted-color;
     }
+
     .Dropdown-header {
         color: @heading-color;
         border-top: 1px solid @control-bg;
     }
+
     .Dropdown-menu {
         background: @body-bg;
         .box-shadow(0 2px 6px @shadow-color);
-        >li {
-            >a,
-            >button,
-            >span {
+
+        > li {
+            > a,
+            > button,
+            > span {
                 color: @text-color;
             }
-            >a,
-            >button {
+
+            > a,
+            > button {
                 &:hover {
                     background: @control-bg;
                 }
             }
+
             &.active {
-                >a,
-                >button {
+                > a,
+                > button {
                     background: @control-bg;
                 }
             }
         }
     }
+
     .Button--color(@color;
     @background) {
         color: @color;
@@ -222,7 +268,7 @@ body.dark {
         }
         &:active,
         &.active,
-        .open>.Dropdown-toggle& {
+        .open > .Dropdown-toggle& {
             background-color: darken(fadein(@background, 10%), 10%);
         }
         &.disabled,
@@ -231,180 +277,255 @@ body.dark {
             background: @background;
         }
     }
+
     .Dropdown-separator {
         background-color: @control-bg;
     }
+
     /*
     * — Notifications —
     */
+
     .NotificationList-header {
         border-bottom: 1px solid @control-bg;
     }
+
     .NotificationList-empty {
         color: @muted-color;
     }
+
     .NotificationGroup {
         border-top: 1px solid @control-bg;
     }
+
     .NotificationGroup-header {
-        color: @heading-color  !important;
+        color: @heading-color !important;
     }
+
     .Notification.unread {
         background: @control-bg;
     }
+
     .Notification {
-        color: @muted-color  !important; // required to override .light-contents applied to header
+        color: @muted-color !important; // required to override .light-contents applied to header
         &:hover {
             background: @control-bg;
         }
     }
+
     .NotificationsDropdown-unread {
         background: @header-control-color;
     }
+
     /*
     * — Posts —
     */
+
     .PostMeta .Dropdown-menu {
         color: @muted-color;
     }
+
     .PostMeta-number {
         color: @text-color;
     }
+
     .PostStreamScrubber .Dropdown-menu {
         -webkit-box-shadow: none;
         box-shadow: none;
     }
+
     /*
     * — Scrubber —
     */
+
     .Scrubber-before,
     .Scrubber-after {
         border-left: 1px solid @control-bg;
     }
+
     .Scrubber-handle {
         background: @body-bg;
     }
+
     .Scrubber-bar {
         background: @primary-color;
+
         .disabled & {
             background: @control-bg;
         }
     }
+
     .Scrubber-info {
         color: @muted-color;
     }
+
     .Scrubber-description {
         color: @muted-color;
     }
+
     .Scrubber-unread {
         border-left: 1px solid lighten(@muted-color, 10%);
         background-image: linear-gradient(to right, @control-bg, fade(@control-bg, 0) 10px, fade(@control-bg, 0));
         color: @muted-color;
     }
+
     .Scrubber-scrollbar {
         margin: 0;
     }
+
     .Scrubber {
         & a {
             color: @muted-color;
+
             &:hover,
             &:focus {
                 color: @link-color;
             }
         }
     }
+
     /*
     * — Hero —
     */
+
     .Hero {
         background: @hero-bg;
     }
+
     /*
     * — Discussion —
     */
+
     .DiscussionListItem-count {
         color: @control-color;
     }
+
     .DiscussionPage-list {
         border-top: 1px solid @control-bg;
         background: @body-bg;
     }
+
     .DiscussionListItem {
         &:hover {
             background: mix(@control-bg, @body-bg, 50%);
         }
+
         &.active {
             background: @control-bg;
         }
     }
+
     .DiscussionPage-nav {
         border-bottom: 1px solid @control-bg;
     }
+
+    .DiscussionListItem-title {
+        margin: 0 0 3px;
+        line-height: 1.3;
+        color: #aaa;
+        font-weight: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .DiscussionList:not(.DiscussionList--searchResults) .read & {
+        color: #aaa;
+    }
+
+    .DiscussionList:not(.DiscussionList--searchResults) .unread & {
+        font-weight: 600;
+    }
+
+    mark {
+        background: none;
+        box-shadow: none;
+        font-weight: bold;
+        color: #aaa;
+    }
+
     /*
     * — Modal —
     */
+
     .modal-backdrop {
         background-color: @overlay-bg;
     }
+
     .Modal-content {
         background-color: @body-bg;
     }
+
     .Modal-body {
         background-color: @control-bg;
         color: @control-color;
+
         .FormControl {
             background-color: @body-bg;
             color: @text-color;
         }
     }
+
     .Modal-footer {
         color: @muted-color;
     }
+
     .Modal-loading {
         background: fade(@body-bg, 90%);
     }
+
     .Modal-header {
         background: @control-bg;
     }
+
     /*
     * — Slidable —
     */
+
     .Slidable .Slidable-underneath {
-        background: @control-bg!important;
+        background: @control-bg !important;
     }
+
     .Slidable.sliding .DiscussionListItem-content {
         background: @control-bg;
     }
+
     /*
     * — Composer —
     */
+
     .Composer:not(.minimized):before {
         background: @control-bg;
         border: 0;
     }
+
     /*
     * — Tag —
     */
+
     .SelectTagList {
-        >li {
-            &.pinned+li:not(.pinned) {
+        > li {
+            &.pinned + li:not(.pinned) {
                 border-top: 2px solid @control-bg;
             }
+
             &.active {
                 background: @control-bg;
             }
         }
     }
+
     .TagLabel {
         background: @control-bg;
         color: @control-color;
+
         &.untagged {
             border: 1px dotted @muted-color;
             color: @muted-color;
         }
+
         &.colored {
             .TagLabel-text {
-                color: @body-bg  !important;
+                color: @body-bg !important;
             }
         }
     }
