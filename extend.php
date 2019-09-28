@@ -1,6 +1,6 @@
 <?php
 
-namespace Reflar\NightMode;
+namespace FoF\NightMode;
 
 use Flarum\Extend;
 use Illuminate\Contracts\Events\Dispatcher;

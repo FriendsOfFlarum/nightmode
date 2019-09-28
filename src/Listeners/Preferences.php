@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Reflar\NightMode\Listeners;
+namespace FoF\NightMode\Listeners;
 
 use Flarum\Event\ConfigureUserPreferences;
 use Illuminate\Contracts\Events\Dispatcher;
@@ -24,6 +24,6 @@ class Preferences
 
     public function addUserPreference(ConfigureUserPreferences $event)
     {
-        $event->add('reflarNightMode', 'boolval', false);
+        $event->add('fofNightMode', 'boolval', false);
     }
 }

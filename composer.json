@@ -1,48 +1,51 @@
 {
-    "name": "reflar/nightmode",
-    "description": "Turn your flarum forum to dark as user",
+    "name": "fof/nightmode",
+    "description": "Add a Night Mode option for your users to use on your Flarum forum",
     "keywords": [
-        "extension",
         "flarum",
-        "moon",
-        "mode",
+        "extension",
+        "friendsoflarum",
+        "nightmode",
         "night",
-        "reflar"
+        "mode",
+        "option"
     ],
     "type": "flarum-extension",
     "license": "MIT",
     "authors": [
         {
             "name": "Shahiem Seymor",
-            "email": "shahiem.seymor@reflar.email",
-            "homepage": "https://reflar.io"
+            "email": "shahiem.seymor@reflar.email"
         },
-      {
-        "name": "Christian Lopez",
-        "email": "Christian.L@redevs.org",
-        "homepage": "https://reflar.redevs.org"
-      }
+        {
+            "name": "Christian Lopez",
+            "email": "Lopez.T.Christian@gmail.com",
+            "homepage": "https://github.com/Ralkage"
+        }
     ],
     "support": {
-        "issues": "https://github.com/ReFlar/nightmode/issues",
-        "source": "https://github.com/ReFlar/nightmode"
+        "issues": "https://github.com/FriendsOfFlarum/nightmode/issues",
+        "source": "https://github.com/FriendsOfFlarum/nightmode"
     },
     "require": {
         "flarum/core": "^0.1.0-beta.8"
     },
     "extra": {
         "flarum-extension": {
-            "title": "ReFlar Night Mode",
+            "title": "FoF Night Mode",
             "icon": {
                 "name": "far fa-moon",
-                "backgroundColor": "#263238",
+                "backgroundColor": "#e74c3c",
                 "color": "#fff"
             }
+        },
+        "flagrow": {
+            "discuss": "https://discuss.flarum.org/d/11134"
         }
     },
     "autoload": {
         "psr-4": {
-            "Reflar\\NightMode\\": "src/"
+            "FoF\\NightMode\\": "src/"
         }
     }
 }

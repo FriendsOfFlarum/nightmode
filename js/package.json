@@ -1,10 +1,10 @@
 {
     "private": true,
-    "name": "@reflar/nightmode",
+    "name": "@fof/nightmode",
     "dependencies": {
         "flarum-webpack-config": "0.1.0-beta.10",
-        "webpack": "^4.0.0",
-        "webpack-cli": "^3.0.7"
+        "webpack": "^4.40.2",
+        "webpack-cli": "^3.3.9"
     },
     "scripts": {
         "dev": "webpack --mode development --watch",

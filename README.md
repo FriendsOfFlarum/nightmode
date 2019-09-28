@@ -1,32 +1,34 @@
+# Night Mode by FriendsOfFlarum
 
-# Night Mode by ReFlar
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/fof/nightmode/blob/master/LICENSE)
+[![Latest Stable Version](https://img.shields.io/packagist/v/fof/nightmode.svg)](https://github.com/FriendsOfFlarum/nightmode)
+[![Total Downloads](https://img.shields.io/packagist/dt/fof/nightmode.svg)](https://packagist.org/packages/fof/nightmode)
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ReFlar/nightmode/blob/master/LICENSE)
-[![Latest Stable Version](https://img.shields.io/packagist/v/reflar/nightmode.svg)](https://github.com/ReFlar/nightmode)
-[![Total Downloads](https://img.shields.io/packagist/dt/reflar/nightmode.svg)](https://packagist.org/packages/reflar/nightmode)
-
-A Flarum extension that adds a night mode 🌙 option to your Flarum Community! (THE LIGHT 🌞, IT BUUUURNSSS!!!)
-
-### Usage
+A [Flarum](http://flarum.org) extension. Add a Night Mode 🌙 for your users to use on your Flarum forum! (THE LIGHT 🌞, IT BUUUURNSSS!!!)
 - A new "Night Mode" menu option will appear in your user options when you click on your avatar next to the notifications icon.
+![Night Mode Option](https://i.imgur.com/x3Cvhic.png)
 - A "Day Mode" option has been added as well to make the light appear again! (BEGONE, DANKESS!)
-
+![Day Mode Option](https://i.imgur.com/ZJcDGQB.png)
 ### Installation
 
-Install it with composer:
+Use [Bazaar](https://discuss.flarum.org/d/5151-flagrow-bazaar-the-extension-marketplace) or install manually with composer:
 
 ```sh
-composer require reflar/nightmode
+composer require fof/nightmode
 ```
 
-### To Do
-- [Suggestions anyone?](https://github.com/ReFlar/nightmode/issues/new)
+### Updating
 
-### Issues
-
-- [Open an issue on Github](https://github.com/ReFlar/nightmode/issues)
+```sh
+composer update fof/nightmode
+```
 
 ### Links
 
-- [on github](https://github.com/ReFlar/nightmode)
-- [on packagist](https://packagist.org/packages/reflar/nightmode)
+[<img src="https://opencollective.com/fof/donate/button@2x.png?color=blue" height="25" />](https://opencollective.com/fof/donate)
+
+- [Packagist](https://packagist.org/packages/fof/nightmode)
+- [GitHub](https://github.com/FriendsOfFlarum/nightmode)
+- [ReFlar's Night Mode](https://packagist.org/packages/reflar/nightmode)
+
+An extension by [FriendsOfFlarum](https://github.com/FriendsOfFlarum).
