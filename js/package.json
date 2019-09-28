@@ -1,6 +1,6 @@
 {
     "private": true,
-    "name": "@flagrow/subscribed",
+    "name": "@reflar/nightmode",
     "dependencies": {
         "flarum-webpack-config": "0.1.0-beta.10",
         "webpack": "^4.0.0",
