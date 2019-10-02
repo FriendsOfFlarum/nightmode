@@ -1,0 +1,660 @@
+body {
+    background: #151515;
+    color: #fff;
+  }
+  
+  a {
+    color: #ddd;
+  }
+  
+  .FormControl:focus,
+  .FormControl.focus {
+    color: #eee;
+  }
+  
+  hr {
+    border-color: #444444;
+  }
+  
+  /* #region Placeholders */
+  
+  .Placeholder p {
+    color: #eee;
+  }
+  
+  /* #endregion */
+  
+  /* #region Spoilers */
+  
+  .Spoiler--toggle,
+  .Spoiler--content {
+    background-color: #313131;
+  }
+  
+  /* #endregion */
+  
+  /* #region Tags Page */
+  
+  div.TagsPage-content .TagTiles > li.TagTile {
+    background-color: #212121 !important;
+  }
+  
+  .TagsPage-content .TagTiles > li.TagTile a {
+    color: #eee !important;
+  }
+  
+  .TagsPage-content .TagTiles > li.TagTile .TagTile-info .TagTile-description {
+    color: #bbb !important;
+  }
+  
+  /* #endregion */
+  
+  /* #region Nav Pane */
+  
+  .App.hasPane .DiscussionListItem .DiscussionListItem-content.unread {
+    background-color: #313131 !important;
+  }
+  
+  .App.hasPane .DiscussionListItem .DiscussionListItem-content.read {
+    background-color: #212121 !important;
+  }
+  
+  .App.hasPane .DiscussionListItem .DiscussionListItem-content:hover,
+  .App.hasPane .DiscussionListItem .DiscussionListItem-content:focus {
+    background-color: #444444 !important;
+  }
+  
+  .App.hasPane
+    .DiscussionListItem
+    .DiscussionListItem-content.unread:hover
+    .DiscussionListItem-info
+    .item-tags
+    .TagLabel,
+  .App.hasPane
+    .DiscussionListItem
+    .DiscussionListItem-content.unread:focus
+    .DiscussionListItem-info
+    .item-tags
+    .TagLabel {
+    background-color: #000 !important;
+    color: #fff !important;
+  }
+  
+  .App.hasPane
+    .DiscussionListItem
+    .DiscussionListItem-content.unread:hover
+    .DiscussionListItem-info
+    .item-tags
+    .TagLabel-text,
+  .App.hasPane
+    .DiscussionListItem
+    .DiscussionListItem-content.unread:focus
+    .DiscussionListItem-info
+    .item-tags
+    .TagLabel-text {
+    color: #fff !important;
+  }
+  
+  /* #endregion */
+  
+  /* #region Site Header */
+  
+  .App-header .FormControl {
+    color: #eee;
+    background-color: #212121;
+  }
+  .App-header .FormControl:focus {
+    color: #eee;
+    background-color: #313131;
+  }
+  
+  /* Search Results */
+  
+  .Search-results .Dropdown-header {
+    background-color: #212121 !important;
+    color: #aaa !important;
+  }
+  
+  .Search-results a.hasIcon {
+    background: #151515;
+  }
+  
+  .Search-results a.hasIcon:hover {
+    background: #313131;
+  }
+  
+  .Search-results .UserSearchResult,
+  .Search-results .DiscussionSearchResult,
+  .Search-results .SearchResult {
+    background-color: #212121;
+    color: #ccc;
+  }
+  
+  .Search-results .UserSearchResult:hover,
+  .Search-results .DiscussionSearchResult:hover,
+  .Search-results .SearchResult:hover {
+    background-color: #313131;
+    color: #fff;
+  }
+  
+  .Search-results .UserSearchResult .username,
+  .Search-results .DiscussionSearchResult .username,
+  .Search-results .SearchResult .username {
+    color: #ccc;
+  }
+  
+  .Search-results .UserSearchResult:hover .username,
+  .Search-results .DiscussionSearchResult:hover .username,
+  .Search-results .SearchResult:hover .username {
+    color: #ffffff;
+  }
+  
+  .Search-results .UserSearchResult.active,
+  .Search-results .DiscussionSearchResult.active,
+  .Search-results .SearchResult.active,
+  .Dropdown-menu > li.active > a,
+  .Dropdown-menu > li.active > button {
+    background-color: #313131 !important;
+  }
+  
+  /* #region Notifications */
+  
+  .NotificationList {
+    background-color: #212121;
+  }
+  
+  .NotificationList-header h4,
+  .NotificationList-header .Button {
+    color: #aaa;
+  }
+  
+  .NotificationGroup-header {
+    color: #eee !important;
+  }
+  
+  .Notification.Notification--postReacted.unread {
+    background-color: #313131;
+  }
+  
+  .NotificationGroup-content .Notification:hover {
+    background-color: #444444;
+  }
+  
+  .Notification-content {
+    color: #ddd !important;
+  }
+  
+  .Notification-excerpt {
+    color: #999 !important;
+  }
+  
+  /* #endregion */
+  
+  /* #endregion */
+  
+  /* #region Post Composer */
+  
+  .Composer,
+  .Composer.active {
+    background-color: #212121f9;
+    color: #fff;
+  }
+  
+  .Composer .Composer-controls {
+    background-color: #313131 !important;
+  }
+  
+  .Composer .ComposerBody-header h3 {
+    color: #ddd !important;
+  }
+  
+  .Composer .TextEditor textarea {
+    color: #eee !important;
+  }
+  
+  .Composer .TextEditor-controls li:not(:first-child) .Button {
+    background-color: unset !important;
+  }
+  
+  .Composer .TextEditor-controls li:nth-child(2) .Button:hover,
+  .Composer .TextEditor-controls li:nth-child(2) .Button:focus,
+  .Composer .TextEditor-controls .TextEditor-toolbar .Button:hover,
+  .Composer .TextEditor-controls .TextEditor-toolbar .Button:focus {
+    background-color: #444444 !important;
+    border-radius: 50%;
+  }
+  .Composer .TextEditor-controls li:nth-child(3) .Button:hover,
+  .Composer .TextEditor-controls li:nth-child(3) .Button:focus {
+    background-color: #444444 !important;
+  }
+  
+  /* #endregion */
+  
+  /* #region Posts */
+  
+  .PostStream-item,
+  .Post {
+    background: #212121 !important;
+  }
+  
+  .Post-body p,
+  .Post-body ul,
+  .Post-body ol,
+  .Post-body blockquote {
+    color: #fff;
+  }
+  
+  .Post-body a {
+    color: #bbb !important;
+    border-color: #bbb;
+  }
+  
+  .Post-body a:hover,
+  .Post-body a:focus,
+  .Post-body a:active {
+    color: #eee !important;
+    border-color: #fff;
+  }
+  
+  /* Quotes */
+  .Post-body blockquote {
+    color: #bbb !important;
+    background-color: #313131 !important;
+    border-color: #3a3a3a !important;
+  }
+  
+  /* Inline monospace */
+  .Post-body code {
+    font-family: "Fira Code", Consolas, monospace;
+    background-color: #313131;
+    color: #eee !important;
+  }
+  
+  /* Code blocks */
+  .Post-body pre {
+    background-color: #313131;
+  }
+  
+  /* #region Tables */
+  
+  .PostStream-item .Post-body table {
+    background-color: #262626;
+    background-clip: content-box;
+    max-width: max-content;
+  }
+  
+  .PostStream-item .Post-body table td,
+  .PostStream-item .Post-body table th {
+    border-color: #444444;
+  }
+  
+  /* #endregion */
+  
+  .MentionsDropdown .PostPreview,
+  .PostMention-preview .PostPreview,
+  .Post-mentionedBy-preview .PostPreview {
+    color: #ddd;
+  }
+  
+  .PostPreview .username {
+    color: #aaa !important;
+  }
+  
+  /* #region Post Header */
+  
+  /* Overrides default no-group avatar border to dark instead of light */
+  .Post-header .Avatar.PostUser-avatar {
+    border-color: #555 !important;
+  }
+  
+  /* Darkens letter-based avatars */
+  .Post-header span.Avatar.PostUser-avatar:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0004;
+    border-radius: 50%;
+  }
+  
+  .Post-header .UserCard .username {
+    color: #eee !important;
+  }
+  
+  .Post-header .username {
+    color: #bbb;
+  }
+  
+  /* #endregion */
+  
+  /* #region Post Footer */
+  
+  /* #region Best Answers */
+  
+  .DiscussionPage .PostStream .PostStream-item .Post .item-bestAnswerPost {
+    background-color: #313131;
+    color: #eee;
+  }
+  
+  .Post--BestAnswer a .username {
+    color: #000;
+  }
+  
+  .DiscussionPage
+    .PostStream
+    .PostStream-item
+    .Post
+    .item-bestAnswerPost
+    .Post-body
+    a:hover,
+  .DiscussionPage
+    .PostStream
+    .PostStream-item
+    .Post
+    .item-bestAnswerPost
+    .Post-body
+    a:focus,
+  .DiscussionPage
+    .PostStream
+    .PostStream-item
+    .Post
+    .item-bestAnswerPost
+    .Post-body
+    a:active {
+    border-color: #06ce85;
+  }
+  
+  /* #endregion */
+  
+  /* #region Post Actions */
+  
+  .PostStream-item .Post aside.Post-actions,
+  aside.Post-actions button {
+    color: #bbb;
+  }
+  
+  .PostStream-item .Post aside.Post-actions button:hover,
+  .PostStream-item .Post aside.Post-actions button:focus {
+    color: #eee;
+  }
+  
+  /* #region Reactions */
+  
+  .Reactions .CommentPost--Reactions {
+    background-color: #313131;
+  }
+  
+  /* #region Reaction Button */
+  
+  .Reactions button.Button svg.button-react path,
+  .Reactions button.Button svg.button-react polygon {
+    fill: #eee;
+  }
+  
+  /* #endregion */
+  
+  /* #endregion */
+  
+  /* #endregion */
+  
+  /* #endregion */
+  
+  /* #endregion */
+  
+  /* #region Buttons */
+  
+  .Button {
+    background: #313131;
+    color: #eee;
+  }
+  
+  /* #region Follow Button */
+  
+  .Dropdown.SubscriptionMenu .Button.SubscriptionMenu-button--follow,
+  .Dropdown.SubscriptionMenu-button.SubscriptionMenu-button--follow {
+    background: #00538a60;
+  }
+  
+  /* #endregion */
+  
+  /* #region Primary Discussion Button */
+  
+  button.Button--primary .Button-label:before,
+  button.Button--primary .Button-label:after {
+    filter: brightness(2.25);
+  }
+  
+  .DiscussionPage
+    .DiscussionPage-nav
+    .item-controls
+    .itemCount1
+    button.Button--primary {
+    background-color: #212121;
+  }
+  
+  .DiscussionPage
+    .DiscussionPage-nav
+    .item-controls
+    .itemCount1
+    button.Button--primary
+    .Button-label {
+    border-color: #212121;
+    color: #000;
+  }
+  
+  /* #endregion */
+  
+  .Button--flat {
+    background: transparent;
+  }
+  
+  /* #endregion */
+  
+  /* #region Dropdowns */
+  
+  .Dropdown:not(.PostStreamScrubber) buttonbody {
+    background: #151515;
+    color: #fff;
+  }
+  
+  .Dropdown:not(.PostStreamScrubber) button.Dropdown-toggle {
+    color: #eee;
+  }
+  
+  .Dropdown:not(.PostStreamScrubber) button.Dropdown-toggle:hover,
+  .Dropdown:not(.PostStreamScrubber) button.Dropdown-toggle:focus,
+  .Dropdown:not(.PostStreamScrubber)
+    button.Dropdown-toggle[aria-expanded="true"] {
+    color: #fff;
+    background: #313131;
+  }
+  
+  .Dropdown-menu {
+    background-color: #212121;
+    color: #eee !important;
+  }
+  
+  .Dropdown-menu > li > a,
+  .Dropdown-menu > li > button,
+  .Dropdown-menu > li > span {
+    color: #bbb;
+  }
+  
+  .Dropdown-menu > li > a:hover,
+  .Dropdown-menu > li > a:focus,
+  .Dropdown:not(.PostStreamScrubber) .Dropdown-menu > li > button:hover,
+  .Dropdown:not(.PostStreamScrubber) .Dropdown-menu > li > button:focus {
+    background-color: #313131;
+    color: #fff;
+  }
+  
+  /* #endregion */
+  
+  /* #region Post Scrubber */
+  
+  .Scrubber a:hover,
+  .Scrubber a:focus {
+    color: #aaa;
+  }
+  
+  .PostStreamScrubber .Scrubber .Scrubber-before,
+  .PostStreamScrubber .Scrubber .Scrubber-after,
+  .PostStreamScrubber .Scrubber .Scrubber-handle {
+    border-color: #aaa;
+  }
+  
+  .PostStreamScrubber .Scrubber .Scrubber-handle .Scrubber-bar {
+    background-color: #aaa;
+  }
+  
+  .PostStreamScrubber .Scrubber .Scrubber-handle {
+    background-color: #313131;
+    color: #eee;
+  }
+  
+  .PostStreamScrubber .Scrubber .Scrubber-handle .Scrubber-description {
+    color: #999;
+  }
+  
+  /* #endregion */
+  
+  /* #region Emoji */
+  
+  img.emoji {
+    /* Dim emojis by 15% */
+    filter: brightness(0.85);
+  }
+  
+  /* #endregion */
+  
+  /* #region Modals */
+  
+  #modal .Modal,
+  .modal-open .Modal-header,
+  .modal-open .Modal-body {
+    color: #bbb;
+    background-color: #151515 !important;
+  }
+  
+  .FlagPostModal .checkbox strong {
+    color: #fff;
+  }
+  
+  .Modal-body .FormControl {
+    background-color: #212121;
+    color: #eee;
+  }
+  
+  .Modal-body .FormControl:focus {
+    background-color: #313131;
+  }
+  
+  /* #endregion */
+  
+  /* #region Discussion Feed */
+  
+  .DiscussionListItem {
+    background: #212121 !important;
+  }
+  
+  .DiscussionListItem:hover,
+  .DiscussionListItem:focus {
+    background: #313131 !important;
+  }
+  
+  .DiscussionListItem .DiscussionListItem-content * {
+    color: #eee !important;
+  }
+  
+  .DiscussionListItem .DiscussionListItem-content.read * {
+    color: #999 !important;
+  }
+  
+  .DiscussionListItem .DiscussionListItem-content .item-excerpt {
+    color: #ccc !important;
+  }
+  
+  /* #endregion */
+  
+  /* #region Feed Navbar */
+  
+  .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li * {
+    color: #aaa !important;
+  }
+  
+  .TagsPage .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li * {
+    color: #aaa !important;
+    padding-left: 6px;
+    padding-right: 4px;
+  }
+  
+  .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li.active * {
+    color: #ddd !important;
+  }
+  
+  .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li:hover *,
+  .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li:focus * {
+    background: #444444 !important;
+  }
+  
+  .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li:focus * {
+    background: #444444 !important;
+  }
+  
+  /* #endregion */
+  
+  /* #region User Page */
+  
+  .UserPage .PostsUserPage .PostsUserPage-list > li {
+    background-color: #212121;
+  }
+  
+  .sideNav .Dropdown--select .Dropdown-menu > li > a {
+    color: #bbb;
+  }
+  
+  .sideNav .Dropdown--select .Dropdown-menu > li.active > a,
+  .sideNav .Dropdown--select .Dropdown-menu > li:hover > a,
+  .sideNav .Dropdown--select .Dropdown-menu > li:focus > a {
+    color: #fff;
+  }
+  
+  /* #endregion */
+  
+  /* #region Mobile-specific CSS */
+  
+  @media (max-width: 767px) {
+    .App-content {
+      background: #151515;
+    }
+  
+    .DiscussionListItem .DiscussionListItem-content.unread {
+      background-color: #313131 !important;
+    }
+  
+    .DiscussionListItem .DiscussionListItem-content.read {
+      background-color: #212121 !important;
+    }
+  
+    .Dropdown .Dropdown-menu > li > a,
+    .Dropdown .Dropdown-menu > li > button {
+      background: #313131 !important;
+      color: #eee !important;
+    }
+  
+    .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li * {
+      color: #eee !important;
+    }
+  
+    .Post-header span.Avatar.PostUser-avatar:after {
+      top: -6px;
+      left: 3px;
+      width: 32px;
+      height: 32px;
+    }
+  }
+  
+  /* #endregion */

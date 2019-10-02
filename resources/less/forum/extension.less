@@ -5,9 +5,9 @@
     @secondary-sat: saturation(@secondary-color);
     @primary-color: @config-primary-color;
     @secondary-color: @config-secondary-color;
-    @body-bg: hsl(@secondary-hue, min(20%, @secondary-sat), 10%);
-    @text-color: #ddd;
-    @link-color: saturate(@primary-color, 10%);
+    @body-bg: #151515;
+    @text-color: #fff;
+    @link-color: #ddd;
     @heading-color: @text-color;
     @muted-color: hsl(@secondary-hue, min(15%, @secondary-sat), 50%);
     @muted-more-color: hsl(@secondary-hue, min(10%, @secondary-sat), 40%);
@@ -56,7 +56,7 @@ body.dark {
     }
 
     hr {
-        border-top: 2px solid @control-bg;
+        border-color: #444444;
     }
 
     legend {
@@ -529,4 +529,9 @@ body.dark {
             }
         }
     }
+
+    .Spoiler--toggle,
+    .Spoiler--content {
+        background-color: #313131;
+  }
 }
