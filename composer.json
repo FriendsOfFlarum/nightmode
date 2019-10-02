@@ -1,6 +1,6 @@
 {
     "name": "imorland/nightmode",
-    "description": "Add a Night Mode option for your users to use on your Flarum forum",
+    "description": "A fork of fof/nightmode, tailored to the giffgaff community",
     "keywords": [
         "flarum",
         "extension",
@@ -19,6 +19,10 @@
         {
             "name": "Christian Lopez",
             "email": "Lopez.T.Christian@gmail.com"
+        },
+        {
+            "name": "Ian Morland",
+            "email": "ianm@giffgaff.co.uk"
         }
     ],
     "support": {
@@ -28,20 +32,14 @@
     "require": {
         "flarum/core": "^0.1.0-beta.8"
     },
-    "replace": {
-        "reflar/nightmode": "*"
-    },
     "extra": {
         "flarum-extension": {
-            "title": "FoF Night Mode",
+            "title": "giffgaff dark mode",
             "icon": {
                 "name": "far fa-moon",
                 "backgroundColor": "#e74c3c",
                 "color": "#fff"
             }
-        },
-        "flagrow": {
-            "discuss": "https://discuss.flarum.org/d/11134"
         }
     },
     "autoload": {
