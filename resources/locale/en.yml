@@ -1,4 +1,4 @@
 fof-nightmode:
     forum:
-        night: Night Mode
-        day: Day Mode
+        night: Dark mode
+        day: Light mode
