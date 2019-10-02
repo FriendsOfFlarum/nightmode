@@ -104,7 +104,11 @@ body.dark {
 
     .App-header {
         & when (@config-colored-header =true) {
-            .light-contents(@header-color, @header-control-bg, @header-control-color);
+            .light-contents(
+                @header-color,
+                @header-control-bg,
+                @header-control-color
+            );
         }
     }
 
@@ -160,7 +164,9 @@ body.dark {
         }
 
         &.active:not(.fullScreen) {
-            .box-shadow(~"0 0 0 2px @{primary-color}, 0 2px 6px @{shadow-color}");
+            .box-shadow(
+                ~"0 0 0 2px @{primary-color}, 0 2px 6px @{shadow-color}"
+            );
         }
     }
 
@@ -365,7 +371,12 @@ body.dark {
 
     .Scrubber-unread {
         border-left: 1px solid lighten(@muted-color, 10%);
-        background-image: linear-gradient(to right, @control-bg, fade(@control-bg, 0) 10px, fade(@control-bg, 0));
+        background-image: linear-gradient(
+            to right,
+            @control-bg,
+            fade(@control-bg, 0) 10px,
+            fade(@control-bg, 0)
+        );
         color: @muted-color;
     }
 
@@ -533,5 +544,5 @@ body.dark {
     .Spoiler--toggle,
     .Spoiler--content {
         background-color: #313131;
-  }
+    }
 }
