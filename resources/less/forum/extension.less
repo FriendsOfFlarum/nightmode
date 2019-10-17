@@ -567,8 +567,10 @@ body.dark {
 
     /* #region Modals */
 
-    .Modal-content {
-        color: @medium-text-0;
+    .Modal-content,
+    .Modal-body,
+    .Modal-header {
+        color: @medium-text-0 !important;
         background-color: @dark !important;
     }
 
@@ -711,12 +713,71 @@ body.dark {
         color: @main-text;
     }
 
-    .SettingsPage .item-notifications .NotificationGrid td,
-    .SettingsPage .item-notifications .NotificationGrid th {
+    .item-notifications .NotificationGrid td,
+    .item-notifications .NotificationGrid th {
         border-color: @lighter-grey;
     }
 
     /* #endregion */
+
+    // #region Custom Checkboxes
+
+    label.checkbox > input[type="checkbox"] {
+        visibility: hidden !important;
+        margin-right: 8px !important;
+        position: relative !important;
+    }
+
+    label.checkbox > input[type="checkbox"]::before,
+    label.checkbox > input[type="checkbox"]::after {
+        position: absolute !important;
+    }
+
+    label.checkbox > input[type="checkbox"]::before {
+        content: "" !important;
+        display: inline-block !important;
+        visibility: visible !important;
+
+        height: 16px !important;
+        width: 16px !important;
+
+        border: 2px solid #000 !important;
+
+        /* centres with label text */
+        top: -3px !important;
+
+        cursor: pointer !important;
+    }
+
+    label.checkbox > input[type="checkbox"]:disabled::before {
+        background: rgba(128, 128, 128, 0.4) !important;
+    }
+
+    label.checkbox > input[type="checkbox"]:checked::after {
+        content: "" !important;
+        display: inline-block !important;
+        visibility: visible !important;
+
+        height: 4px !important;
+        width: 9px !important;
+
+        border-left: 2px solid #000 !important;
+        border-bottom: 2px solid #000 !important;
+
+        transform: rotate(-45deg) !important;
+
+        left: 5px !important;
+        bottom: 4px !important;
+
+        cursor: pointer !important;
+    }
+
+    label.checkbox > input[type="checkbox"]:disabled::before,
+    label.checkbox > input[type="checkbox"]:disabled::after {
+        cursor: not-allowed !important;
+    }
+
+    // #endregion
 
     /* #region Tables */
 
