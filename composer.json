@@ -26,8 +26,8 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/FriendsOfFlarum/nightmode/issues",
-        "source": "https://github.com/FriendsOfFlarum/nightmode"
+        "issues": "https://github.com/imorland/nightmode/issues",
+        "source": "https://github.com/imorland/nightmode"
     },
     "require": {
         "flarum/core": "^0.1.0-beta.9"
