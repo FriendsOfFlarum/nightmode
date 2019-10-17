@@ -2,12 +2,10 @@
 /* sorted dark -> light */
 
 @black: #000;
-@black--transparent: #0004;
 @dark: #151515;
 @grey: #212121;
 @grey-accent: #262626; /* used for table color only */
 @med-grey: #313131;
-@grey-transparent: #212121f9;
 @lighter-grey: #444;
 @light-grey: #555;
 
@@ -248,7 +246,7 @@ body.dark {
 
     .Composer,
     .Composer.active {
-        background-color: @grey-transparent;
+        background-color: fade(@grey, 97.5%);
         color: @main-text;
     }
 
@@ -353,7 +351,7 @@ body.dark {
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: @black--transparent;
+        background-color: fade(@black, 25%);
         border-radius: 50%;
     }
 
