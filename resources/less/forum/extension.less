@@ -734,7 +734,7 @@ body.dark {
 
     label.checkbox > input[type="checkbox"] {
         visibility: hidden !important;
-        margin-right: 8px !important;
+        margin-right: 16px !important;
         position: relative !important;
     }
 
@@ -748,10 +748,10 @@ body.dark {
         display: inline-block !important;
         visibility: visible !important;
 
-        height: 16px !important;
-        width: 16px !important;
+        height: 20px !important;
+        width: 20px !important;
 
-        border: 2px solid #000 !important;
+        border: 2px solid @light-color !important;
 
         /* centres with label text */
         top: -3px !important;
@@ -760,7 +760,7 @@ body.dark {
     }
 
     label.checkbox > input[type="checkbox"]:disabled::before {
-        background: rgba(128, 128, 128, 0.4) !important;
+        background: fade(@light-color, 20%) !important;
     }
 
     label.checkbox > input[type="checkbox"]:checked::after {
@@ -768,11 +768,11 @@ body.dark {
         display: inline-block !important;
         visibility: visible !important;
 
-        height: 4px !important;
-        width: 9px !important;
+        height: 5px !important;
+        width: 10px !important;
 
-        border-left: 2px solid #000 !important;
-        border-bottom: 2px solid #000 !important;
+        border-left: 2px solid @light-color !important;
+        border-bottom: 2px solid @light-color !important;
 
         transform: rotate(-45deg) !important;
 
