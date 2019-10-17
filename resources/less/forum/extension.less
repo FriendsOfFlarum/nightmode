@@ -1,548 +1,666 @@
-.darker() {
-    @primary-hue: hue(@primary-color);
-    @primary-sat: saturation(@primary-color);
-    @secondary-hue: hue(@secondary-color);
-    @secondary-sat: saturation(@secondary-color);
-    @primary-color: @config-primary-color;
-    @secondary-color: @config-secondary-color;
-    @body-bg: #151515;
-    @text-color: #fff;
-    @link-color: #ddd;
-    @heading-color: @text-color;
-    @muted-color: hsl(@secondary-hue, min(15%, @secondary-sat), 50%);
-    @muted-more-color: hsl(@secondary-hue, min(10%, @secondary-sat), 40%);
-    @shadow-color: rgba(0, 0, 0, 0.5);
-    @control-bg: hsl(@secondary-hue, min(20%, @secondary-sat), 13%);
-    @control-color: @muted-color;
-    @control-danger-bg: #411;
-    @control-danger-color: #a88;
-    @overlay-bg: fade(darken(@body-bg, 5%), 90%);
-    @code-bg: darken(@body-bg, 3%);
-    @code-color: #fff;
-    @header-bg: @body-bg;
-    @header-color: @primary-color;
-    @header-control-bg: @control-bg;
-    @header-control-color: @control-color;
-    @hero-bg: @control-bg;
-    background: @body-bg;
-    color: @text-color;
-}
-
-.item-nightmode a {
-    color: #ffd80f !important;
-}
-
-.item-daymode a {
-    color: #1a6aa6 !important;
+body.dark {
+    background: #151515;
+    color: #fff;
 }
 
 body.dark {
-    .darker();
-
-    code {
-        color: @code-color;
-        background: @code-bg;
+    a {
+        color: #ddd;
     }
 
-    pre {
-        background: @code-bg;
-    }
-
-    blockquote {
-        background: @control-bg;
-        color: @control-color;
-        border-top: 2px dotted @body-bg;
-        border-bottom: 2px dotted @body-bg;
+    .FormControl:focus,
+    .FormControl.focus {
+        color: #eee;
     }
 
     hr {
         border-color: #444444;
     }
 
-    legend {
-        color: @text-color;
-    }
-
-    .darkenBackground {
-        background: @shadow-color;
-    }
-
-    a {
-        color: @link-color;
-    }
-
-    .App-content {
-        background: @body-bg;
-    }
-
-    .NotificationGrid {
-        background: @control-bg;
-
-        td,
-        th {
-            border-bottom: 1px solid @body-bg;
-            color: @control-color;
-        }
-    }
-
-    .NotificationGrid-checkbox {
-        &.highlighted .Checkbox,
-        .Checkbox:hover {
-            &:not(.disabled) {
-                background: darken(@control-bg, 4%);
-            }
-        }
-    }
-
-    .Header-secondary .Button {
-        background: transparent;
-    }
-
-    .App-drawer {
-        background: @header-bg;
-    }
-
-    .App-header {
-        & when (@config-colored-header =true) {
-            .light-contents(
-                @header-color,
-                @header-control-bg,
-                @header-control-color
-            );
-        }
-    }
-
-    .App-content {
-        border-top: 1px solid @control-bg;
-    }
-
-    .App:before {
-        background: fade(@header-bg, 98%);
-    }
-
-    .Form-group > label {
-        color: @text-color;
-    }
-
-    .FormControl {
-        color: @control-color;
-
-        &:focus,
-        &.focus {
-            background-color: @body-bg;
-            color: @text-color;
-            border-color: @primary-color;
-        }
-    }
-
-    .Search .FormControl {
-        background-color: @control-bg;
-    }
-
-    .helpText {
-        color: @muted-color;
-    }
-
-    .Search-input {
-        color: @muted-color;
-    }
-
-    .Button {
-        .Button--color(@control-color, @control-bg);
-    }
-
-    .Button--primary {
-        .Button--color(@body-bg, @primary-color);
-    }
-
-    .Composer {
-        background: @body-bg;
-
-        &.active,
-        &.fullScreen {
-            background: @body-bg;
-        }
-
-        &.active:not(.fullScreen) {
-            .box-shadow(
-                ~"0 0 0 2px @{primary-color}, 0 2px 6px @{shadow-color}"
-            );
-        }
-    }
-
-    .ComposerBody-loading {
-        background: fade(@body-bg, 90%);
-    }
-
-    .composer-backdrop {
-        background-color: @overlay-bg;
-    }
-
-    .TextEditor textarea {
-        color: @text-color;
-    }
-
-    .TextEditor-controls {
-        border-top: 1px solid @control-bg;
-    }
-
-    .ReplyPlaceholder {
-        border: 2px dashed @control-bg;
-        color: @muted-color;
-    }
-
-    .Post-header {
-        color: @muted-color;
-
-        &,
-        a {
-            color: @muted-color;
-        }
-    }
-
-    .PostStream-item {
-        &:not(:last-child) {
-            border-bottom: 1px solid @control-bg;
-        }
-    }
-
-    .PostsUserPage-list {
-        > li {
-            border-bottom: 1px solid @control-bg;
-        }
-    }
-
-    .PostUser {
-        h3,
-        h3 a {
-            color: @heading-color;
-        }
-    }
-
-    .PostPreview {
-        color: @muted-color;
-
-        .username {
-            color: @text-color;
-        }
-    }
-
-    .DiscussionSearchResult-excerpt {
-        color: @muted-color;
-    }
-
-    .Dropdown-header {
-        color: @heading-color;
-        border-top: 1px solid @control-bg;
-    }
-
-    .Dropdown-menu {
-        background: @body-bg;
-        .box-shadow(0 2px 6px @shadow-color);
-
-        > li {
-            > a,
-            > button,
-            > span {
-                color: @text-color;
-            }
-
-            > a,
-            > button {
-                &:hover {
-                    background: @control-bg;
-                }
-            }
-
-            &.active {
-                > a,
-                > button {
-                    background: @control-bg;
-                }
-            }
-        }
-    }
-
-    .Button--color(@color;
-    @background) {
-        color: @color;
-        background: @background;
-        &:hover,
-        &:focus,
-        &.focus {
-            background-color: darken(fadein(@background, 5%), 5%);
-        }
-        &:active,
-        &.active,
-        .open > .Dropdown-toggle& {
-            background-color: darken(fadein(@background, 10%), 10%);
-        }
-        &.disabled,
-        &[disabled],
-        fieldset[disabled] & {
-            background: @background;
-        }
-    }
-
-    .Dropdown-separator {
-        background-color: @control-bg;
-    }
-
-    /*
-    * — Notifications —
-    */
-
-    .NotificationList-header {
-        border-bottom: 1px solid @control-bg;
-    }
-
-    .NotificationList-empty {
-        color: @muted-color;
-    }
-
-    .NotificationGroup {
-        border-top: 1px solid @control-bg;
-    }
-
-    .NotificationGroup-header {
-        color: @heading-color !important;
-    }
-
-    .Notification.unread {
-        background: @control-bg;
-    }
-
-    .Notification {
-        color: @muted-color !important; // required to override .light-contents applied to header
-        &:hover {
-            background: @control-bg;
-        }
-    }
-
-    .NotificationsDropdown-unread {
-        background: @header-control-color;
-    }
-
-    /*
-    * — Posts —
-    */
-
-    .PostMeta .Dropdown-menu {
-        color: @muted-color;
-    }
-
-    .PostMeta-number {
-        color: @text-color;
-    }
-
-    .PostStreamScrubber .Dropdown-menu {
-        -webkit-box-shadow: none;
-        box-shadow: none;
-    }
-
-    /*
-    * — Scrubber —
-    */
-
-    .Scrubber-before,
-    .Scrubber-after {
-        border-left: 1px solid @control-bg;
-    }
-
-    .Scrubber-handle {
-        background: @body-bg;
-    }
-
-    .Scrubber-bar {
-        background: @primary-color;
-
-        .disabled & {
-            background: @control-bg;
-        }
-    }
-
-    .Scrubber-info {
-        color: @muted-color;
-    }
-
-    .Scrubber-description {
-        color: @muted-color;
-    }
-
-    .Scrubber-unread {
-        border-left: 1px solid lighten(@muted-color, 10%);
-        background-image: linear-gradient(
-            to right,
-            @control-bg,
-            fade(@control-bg, 0) 10px,
-            fade(@control-bg, 0)
-        );
-        color: @muted-color;
-    }
-
-    .Scrubber-scrollbar {
-        margin: 0;
-    }
-
-    .Scrubber {
-        & a {
-            color: @muted-color;
-
-            &:hover,
-            &:focus {
-                color: @link-color;
-            }
-        }
-    }
-
-    /*
-    * — Hero —
-    */
-
-    .Hero {
-        background: @hero-bg;
-    }
-
-    /*
-    * — Discussion —
-    */
-
-    .DiscussionListItem-count {
-        color: @control-color;
-    }
+    /* #region Placeholders */
 
-    .DiscussionPage-list {
-        border-top: 1px solid @control-bg;
-        background: @body-bg;
+    .Placeholder p {
+        color: #eee;
     }
 
-    .DiscussionListItem {
-        &:hover {
-            background: mix(@control-bg, @body-bg, 50%);
-        }
+    /* #endregion */
 
-        &.active {
-            background: @control-bg;
-        }
-    }
-
-    .DiscussionPage-nav {
-        border-bottom: 1px solid @control-bg;
-    }
-
-    .DiscussionListItem-title {
-        margin: 0 0 3px;
-        line-height: 1.3;
-        color: #aaa;
-        font-weight: normal;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .DiscussionList:not(.DiscussionList--searchResults) .read & {
-        color: #aaa;
-    }
-
-    .DiscussionList:not(.DiscussionList--searchResults) .unread & {
-        font-weight: 600;
-    }
-
-    mark {
-        background: none;
-        box-shadow: none;
-        font-weight: bold;
-        color: #aaa;
-    }
-
-    /*
-    * — Modal —
-    */
-
-    .modal-backdrop {
-        background-color: @overlay-bg;
-    }
-
-    .Modal-content {
-        background-color: @body-bg;
-    }
-
-    .Modal-body {
-        background-color: @control-bg;
-        color: @control-color;
-
-        .FormControl {
-            background-color: @body-bg;
-            color: @text-color;
-        }
-    }
-
-    .Modal-footer {
-        color: @muted-color;
-    }
-
-    .Modal-loading {
-        background: fade(@body-bg, 90%);
-    }
-
-    .Modal-header {
-        background: @control-bg;
-    }
-
-    /*
-    * — Slidable —
-    */
-
-    .Slidable .Slidable-underneath {
-        background: @control-bg !important;
-    }
-
-    .Slidable.sliding .DiscussionListItem-content {
-        background: @control-bg;
-    }
-
-    /*
-    * — Composer —
-    */
-
-    .Composer:not(.minimized):before {
-        background: @control-bg;
-        border: 0;
-    }
-
-    /*
-    * — Tag —
-    */
-
-    .SelectTagList {
-        > li {
-            &.pinned + li:not(.pinned) {
-                border-top: 2px solid @control-bg;
-            }
-
-            &.active {
-                background: @control-bg;
-            }
-        }
-    }
-
-    .TagLabel {
-        background: @control-bg;
-        color: @control-color;
-
-        &.untagged {
-            border: 1px dotted @muted-color;
-            color: @muted-color;
-        }
-
-        &.colored {
-            .TagLabel-text {
-                color: @body-bg !important;
-            }
-        }
-    }
+    /* #region Spoilers */
 
     .Spoiler--toggle,
     .Spoiler--content {
         background-color: #313131;
     }
+
+    /* #endregion */
+
+    /* #region Tags Page */
+
+    div.TagsPage-content .TagTiles > li.TagTile {
+        background-color: #212121 !important;
+    }
+
+    .TagsPage-content .TagTiles > li.TagTile a {
+        color: #eee !important;
+    }
+
+    .TagsPage-content
+        .TagTiles
+        > li.TagTile
+        .TagTile-info
+        .TagTile-description {
+        color: #bbb !important;
+    }
+
+    /* #endregion */
+
+    /* #region Nav Pane */
+
+    .App.hasPane .DiscussionListItem .DiscussionListItem-content.unread {
+        background-color: #313131 !important;
+    }
+
+    .App.hasPane .DiscussionListItem .DiscussionListItem-content.read {
+        background-color: #212121 !important;
+    }
+
+    .App.hasPane .DiscussionListItem .DiscussionListItem-content:hover,
+    .App.hasPane .DiscussionListItem .DiscussionListItem-content:focus {
+        background-color: #444444 !important;
+    }
+
+    .App.hasPane
+        .DiscussionListItem
+        .DiscussionListItem-content.unread:hover
+        .DiscussionListItem-info
+        .item-tags
+        .TagLabel,
+    .App.hasPane
+        .DiscussionListItem
+        .DiscussionListItem-content.unread:focus
+        .DiscussionListItem-info
+        .item-tags
+        .TagLabel {
+        background-color: #000 !important;
+        color: #fff !important;
+    }
+
+    .App.hasPane
+        .DiscussionListItem
+        .DiscussionListItem-content.unread:hover
+        .DiscussionListItem-info
+        .item-tags
+        .TagLabel-text,
+    .App.hasPane
+        .DiscussionListItem
+        .DiscussionListItem-content.unread:focus
+        .DiscussionListItem-info
+        .item-tags
+        .TagLabel-text {
+        color: #fff !important;
+    }
+
+    /* #endregion */
+
+    /* #region Site Header */
+
+    .App-header .FormControl {
+        color: #eee;
+        background-color: #212121;
+    }
+    .App-header .FormControl:focus {
+        color: #eee;
+        background-color: #313131;
+    }
+
+    /* Search Results */
+
+    .Search-results .Dropdown-header {
+        background-color: #212121 !important;
+        color: #aaa !important;
+    }
+
+    .Search-results a.hasIcon {
+        background: #151515;
+    }
+
+    .Search-results a.hasIcon:hover {
+        background: #313131;
+    }
+
+    .Search-results .UserSearchResult,
+    .Search-results .DiscussionSearchResult,
+    .Search-results .SearchResult {
+        background-color: #212121;
+        color: #ccc;
+    }
+
+    .Search-results .UserSearchResult:hover,
+    .Search-results .DiscussionSearchResult:hover,
+    .Search-results .SearchResult:hover {
+        background-color: #313131;
+        color: #fff;
+    }
+
+    .Search-results .UserSearchResult .username,
+    .Search-results .DiscussionSearchResult .username,
+    .Search-results .SearchResult .username {
+        color: #ccc;
+    }
+
+    .Search-results .UserSearchResult:hover .username,
+    .Search-results .DiscussionSearchResult:hover .username,
+    .Search-results .SearchResult:hover .username {
+        color: #ffffff;
+    }
+
+    .Search-results .UserSearchResult.active,
+    .Search-results .DiscussionSearchResult.active,
+    .Search-results .SearchResult.active,
+    .Dropdown-menu > li.active > a,
+    .Dropdown-menu > li.active > button {
+        background-color: #313131 !important;
+    }
+
+    /* #region Notifications */
+
+    .NotificationList {
+        background-color: #212121;
+    }
+
+    .NotificationList-header h4,
+    .NotificationList-header .Button {
+        color: #aaa;
+    }
+
+    .NotificationGroup-header {
+        color: #eee !important;
+    }
+
+    .Notification.Notification--postReacted.unread {
+        background-color: #313131;
+    }
+
+    .NotificationGroup-content .Notification:hover {
+        background-color: #444444;
+    }
+
+    .Notification-content {
+        color: #ddd !important;
+    }
+
+    .Notification-excerpt {
+        color: #999 !important;
+    }
+
+    /* #endregion */
+
+    /* #endregion */
+
+    /* #region Post Composer */
+
+    .Composer,
+    .Composer.active {
+        background-color: #212121f9;
+        color: #fff;
+    }
+
+    .Composer .Composer-controls {
+        background-color: #313131 !important;
+    }
+
+    .Composer .ComposerBody-header h3 {
+        color: #ddd !important;
+    }
+
+    .Composer .TextEditor textarea {
+        color: #eee !important;
+    }
+
+    .Composer .TextEditor-controls li:not(:first-child) .Button {
+        background-color: unset !important;
+    }
+
+    .Composer .TextEditor-controls li:nth-child(2) .Button:hover,
+    .Composer .TextEditor-controls li:nth-child(2) .Button:focus,
+    .Composer .TextEditor-controls .TextEditor-toolbar .Button:hover,
+    .Composer .TextEditor-controls .TextEditor-toolbar .Button:focus {
+        background-color: #444444 !important;
+        border-radius: 50%;
+    }
+    .Composer .TextEditor-controls li:nth-child(3) .Button:hover,
+    .Composer .TextEditor-controls li:nth-child(3) .Button:focus {
+        background-color: #444444 !important;
+    }
+
+    /* #endregion */
+
+    /* #region Posts */
+
+    .PostStream-item,
+    .Post {
+        background: #212121 !important;
+    }
+
+    .Post-body p,
+    .Post-body ul,
+    .Post-body ol,
+    .Post-body blockquote {
+        color: #fff;
+    }
+
+    .Post-body a {
+        color: #bbb !important;
+        border-color: #bbb;
+    }
+
+    .Post-body a:hover,
+    .Post-body a:focus,
+    .Post-body a:active {
+        color: #eee !important;
+        border-color: #fff;
+    }
+
+    /* Quotes */
+    .Post-body blockquote {
+        color: #bbb !important;
+        background-color: #313131 !important;
+        border-color: #3a3a3a !important;
+    }
+
+    /* Inline monospace */
+    .Post-body code {
+        font-family: "Fira Code", Consolas, monospace;
+        background-color: #313131;
+        color: #eee !important;
+    }
+
+    /* Code blocks */
+    .Post-body pre {
+        background-color: #313131;
+    }
+
+    /* #region Tables */
+
+    .PostStream-item .Post-body table {
+        background-color: #262626;
+        background-clip: content-box;
+        max-width: max-content;
+    }
+
+    .PostStream-item .Post-body table td,
+    .PostStream-item .Post-body table th {
+        border-color: #444444;
+    }
+
+    /* #endregion */
+
+    .MentionsDropdown .PostPreview,
+    .PostMention-preview .PostPreview,
+    .Post-mentionedBy-preview .PostPreview {
+        color: #ddd;
+    }
+
+    .PostPreview .username {
+        color: #aaa !important;
+    }
+
+    /* #region Post Header */
+
+    /* Overrides default no-group avatar border to dark instead of light */
+    .Post-header .Avatar.PostUser-avatar {
+        border-color: #555 !important;
+    }
+
+    /* Darkens letter-based avatars */
+    .Post-header span.Avatar.PostUser-avatar:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #0004;
+        border-radius: 50%;
+    }
+
+    .Post-header .UserCard .username {
+        color: #eee !important;
+    }
+
+    .Post-header .username {
+        color: #bbb;
+    }
+
+    /* #endregion */
+
+    /* #region Post Footer */
+
+    /* #region Best Answers */
+
+    .DiscussionPage .PostStream .PostStream-item .Post .item-bestAnswerPost {
+        background-color: #313131;
+        color: #eee;
+    }
+
+    .Post--BestAnswer a .username {
+        color: #000;
+    }
+
+    .DiscussionPage
+        .PostStream
+        .PostStream-item
+        .Post
+        .item-bestAnswerPost
+        .Post-body
+        a:hover,
+    .DiscussionPage
+        .PostStream
+        .PostStream-item
+        .Post
+        .item-bestAnswerPost
+        .Post-body
+        a:focus,
+    .DiscussionPage
+        .PostStream
+        .PostStream-item
+        .Post
+        .item-bestAnswerPost
+        .Post-body
+        a:active {
+        border-color: #06ce85;
+    }
+
+    /* #endregion */
+
+    /* #region Post Actions */
+
+    .PostStream-item .Post aside.Post-actions,
+    aside.Post-actions button {
+        color: #bbb;
+    }
+
+    .PostStream-item .Post aside.Post-actions button:hover,
+    .PostStream-item .Post aside.Post-actions button:focus {
+        color: #eee;
+    }
+
+    /* #region Reactions */
+
+    .Reactions .CommentPost--Reactions {
+        background-color: #313131;
+    }
+
+    /* #region Reaction Button */
+
+    .Reactions button.Button svg.button-react path,
+    .Reactions button.Button svg.button-react polygon {
+        fill: #eee;
+    }
+
+    /* #endregion */
+
+    /* #endregion */
+
+    /* #endregion */
+
+    /* #endregion */
+
+    /* #endregion */
+
+    /* #region Buttons */
+
+    .Button {
+        background: #313131;
+        color: #eee;
+    }
+
+    /* #region Follow Button */
+
+    .Dropdown.SubscriptionMenu .Button.SubscriptionMenu-button--follow,
+    .Dropdown.SubscriptionMenu-button.SubscriptionMenu-button--follow {
+        background: #00538a60;
+    }
+
+    /* #endregion */
+
+    /* #region Primary Discussion Button */
+
+    button.Button--primary .Button-label:before,
+    button.Button--primary .Button-label:after {
+        filter: brightness(2.25);
+    }
+
+    .DiscussionPage
+        .DiscussionPage-nav
+        .item-controls
+        .itemCount1
+        button.Button--primary {
+        background-color: #212121;
+    }
+
+    .DiscussionPage
+        .DiscussionPage-nav
+        .item-controls
+        .itemCount1
+        button.Button--primary
+        .Button-label {
+        border-color: #212121;
+        color: #000;
+    }
+
+    /* #endregion */
+
+    .Button--flat {
+        background: transparent;
+    }
+
+    /* #endregion */
+
+    /* #region Dropdowns */
+
+    .Dropdown:not(.PostStreamScrubber) buttonbody {
+        background: #151515;
+        color: #fff;
+    }
+
+    .Dropdown:not(.PostStreamScrubber) button.Dropdown-toggle {
+        color: #eee;
+    }
+
+    .Dropdown:not(.PostStreamScrubber) button.Dropdown-toggle:hover,
+    .Dropdown:not(.PostStreamScrubber) button.Dropdown-toggle:focus,
+    .Dropdown:not(.PostStreamScrubber)
+        button.Dropdown-toggle[aria-expanded="true"] {
+        color: #fff;
+        background: #313131;
+    }
+
+    .Dropdown-menu {
+        background-color: #212121;
+        color: #eee !important;
+    }
+
+    .Dropdown-menu > li > a,
+    .Dropdown-menu > li > button,
+    .Dropdown-menu > li > span {
+        color: #bbb;
+    }
+
+    .Dropdown-menu > li > a:hover,
+    .Dropdown-menu > li > a:focus,
+    .Dropdown:not(.PostStreamScrubber) .Dropdown-menu > li > button:hover,
+    .Dropdown:not(.PostStreamScrubber) .Dropdown-menu > li > button:focus {
+        background-color: #313131;
+        color: #fff;
+    }
+
+    /* #endregion */
+
+    /* #region Post Scrubber */
+
+    .Scrubber a:hover,
+    .Scrubber a:focus {
+        color: #aaa;
+    }
+
+    .PostStreamScrubber .Scrubber .Scrubber-before,
+    .PostStreamScrubber .Scrubber .Scrubber-after,
+    .PostStreamScrubber .Scrubber .Scrubber-handle {
+        border-color: #aaa;
+    }
+
+    .PostStreamScrubber .Scrubber .Scrubber-handle .Scrubber-bar {
+        background-color: #aaa;
+    }
+
+    .PostStreamScrubber .Scrubber .Scrubber-handle {
+        background-color: #313131;
+        color: #eee;
+    }
+
+    .PostStreamScrubber .Scrubber .Scrubber-handle .Scrubber-description {
+        color: #999;
+    }
+
+    /* #endregion */
+
+    /* #region Emoji */
+
+    img.emoji {
+        /* Dim emojis by 15% */
+        filter: brightness(0.85);
+    }
+
+    /* #endregion */
+
+    /* #region Modals */
+
+    #modal .Modal,
+    .modal-open .Modal-header,
+    .modal-open .Modal-body {
+        color: #bbb;
+        background-color: #151515 !important;
+    }
+
+    .FlagPostModal .checkbox strong {
+        color: #fff;
+    }
+
+    .Modal-body .FormControl {
+        background-color: #212121;
+        color: #eee;
+    }
+
+    .Modal-body .FormControl:focus {
+        background-color: #313131;
+    }
+
+    /* #endregion */
+
+    /* #region Discussion Feed */
+
+    .DiscussionListItem {
+        background: #212121 !important;
+    }
+
+    .DiscussionListItem:hover,
+    .DiscussionListItem:focus {
+        background: #313131 !important;
+    }
+
+    .DiscussionListItem .DiscussionListItem-content * {
+        color: #eee !important;
+    }
+
+    .DiscussionListItem .DiscussionListItem-content.read * {
+        color: #999 !important;
+    }
+
+    .DiscussionListItem .DiscussionListItem-content .item-excerpt {
+        color: #ccc !important;
+    }
+
+    /* #endregion */
+
+    /* #region Feed Navbar */
+
+    .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li * {
+        color: #aaa !important;
+    }
+
+    .TagsPage .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li * {
+        color: #aaa !important;
+        padding-left: 6px;
+        padding-right: 4px;
+    }
+
+    .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li.active * {
+        color: #ddd !important;
+    }
+
+    .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li:hover *,
+    .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li:focus * {
+        background: #444444 !important;
+    }
+
+    .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li:focus * {
+        background: #444444 !important;
+    }
+
+    /* #endregion */
+
+    /* #region User Page */
+
+    .UserPage .PostsUserPage .PostsUserPage-list > li {
+        background-color: #212121;
+    }
+
+    .sideNav .Dropdown--select .Dropdown-menu > li > a {
+        color: #bbb;
+    }
+
+    .sideNav .Dropdown--select .Dropdown-menu > li.active > a,
+    .sideNav .Dropdown--select .Dropdown-menu > li:hover > a,
+    .sideNav .Dropdown--select .Dropdown-menu > li:focus > a {
+        color: #fff;
+    }
+
+    /* #endregion */
+
+    /* #region Mobile-specific CSS */
+
+    @media (max-width: 767px) {
+        .App-content {
+            background: #151515;
+        }
+
+        .DiscussionListItem .DiscussionListItem-content.unread {
+            background-color: #313131 !important;
+        }
+
+        .DiscussionListItem .DiscussionListItem-content.read {
+            background-color: #212121 !important;
+        }
+
+        .Dropdown .Dropdown-menu > li > a,
+        .Dropdown .Dropdown-menu > li > button {
+            background: #313131 !important;
+            color: #eee !important;
+        }
+
+        .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li * {
+            color: #eee !important;
+        }
+
+        .Post-header span.Avatar.PostUser-avatar:after {
+            top: -6px;
+            left: 3px;
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    /* #endregion */
 }
