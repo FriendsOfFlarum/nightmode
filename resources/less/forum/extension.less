@@ -247,12 +247,15 @@ body.dark {
                     background: @control-bg;
                 }
             }
-            > button {
-                background: @control-bg;
-            }
 
-            > a {
-                background: @control-bg;
+            @media (max-width: @screen-tablet-max) {
+                > button {
+                    background: @control-bg;
+                }
+
+                > a {
+                    background: @control-bg;
+                }
             }
 
             &.active {
