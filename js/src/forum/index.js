@@ -9,6 +9,8 @@ app.initializers.add('fof-nightmode', app => {
     extend(Page.prototype, 'init', function () {
         if (app.session.user && app.session.user.preferences().fofNightMode) {
             $('body').addClass('dark');
+        } else if (!app.session.user && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            $('body').addClass('dark');
         } else {
             $('body').removeClass('dark');
         }
@@ -17,6 +19,8 @@ app.initializers.add('fof-nightmode', app => {
     if (TagsPage) {
         extend(TagsPage.prototype, 'config', function () {
             if (app.session.user && app.session.user.preferences().fofNightMode) {
+                $('body').addClass('dark');
+            } else if (!app.session.user && window.matchMedia('(prefers-color-scheme: dark)').matches) {
                 $('body').addClass('dark');
             } else {
                 $('body').removeClass('dark');
