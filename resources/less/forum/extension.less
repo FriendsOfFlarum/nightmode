@@ -486,6 +486,13 @@ body.dark {
     .Modal-header {
         background: @control-bg;
     }
+	
+	@media @phone {
+		.ModalManager:before {
+			background: fade(@header-bg, 98%);
+			border-color: @control-bg;
+		}
+	}
 
     /*
     * — Slidable —
