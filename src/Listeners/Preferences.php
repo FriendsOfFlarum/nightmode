@@ -24,6 +24,12 @@ class Preferences
 
     public function addUserPreference(ConfigureUserPreferences $event)
     {
-        $event->add('fofNightMode', 'boolval', false);
+        $event->add('fofNightMode_perDevice', 'boolval', false);
+
+        //! WARN:   If you change this value, also remember
+        //!         to change the value which is set by
+        //!         default if an invalid theme is detected
+        //!         in Themes.js
+        $event->add('fofNightMode_themeType', 'intval', 0);
     }
 }

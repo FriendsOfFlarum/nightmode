@@ -1,4 +1,20 @@
 fof-nightmode:
     forum:
-        night: Night Mode
         day: Day Mode
+        night: Night Mode
+
+        user:
+            settings:
+                heading: Theme
+                description: Choose which colour theme you want to use on the forum.
+                description2: This theme will be linked to your account and applies to all your devices unless you toggle on the switch below for per device settings.
+                device_specific_setting_checkbox: Use per device settings
+                device_specific_setting_checkbox_tooltip: Your theme choice will be saved individually for each of your devices.
+                options:
+                    auto: Based on browser or device options
+                    day: Day Mode
+                    night: Night Mode
+                option_descriptions:
+                    auto: Your theme will be automatically selected based on your browser or device settings. For example, if you have dark mode enabled in iOS, the forums will be dark too.
+                    day: The classic experience which you're used to. Loved and tested.
+                    night: You're a bit of a night owl. You watch over the forum at night, while the birds are sleeping and the foxes are hunting. Or you just prefer the darker colours!
