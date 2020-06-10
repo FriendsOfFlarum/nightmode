@@ -16,10 +16,6 @@ export default function () {
     extend(SettingsPage.prototype, "settingsItems", function (items) {
         const { user } = app.session;
 
-        // const CanChangeTheme = user.canUseDarkMode();
-
-        // if (!CanChangeTheme) return;
-
         const PerDevice = user.preferences().fofNightMode_perDevice
             ? user.preferences().fofNightMode_perDevice
             : false;
