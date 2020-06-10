@@ -46,9 +46,6 @@ export function SetThemeFromID(theme) {
         case Themes.DARK: // dark
             setDark();
             break;
-        // case 3: // oled
-        //     setOLED();
-        //     break;
 
         default:
             setAuto();
@@ -79,8 +76,3 @@ function setDark() {
     $("body").addClass("dark");
     // $("body").removeClass("dark--oled");
 }
-
-// function setOLED() {
-//     setDark();
-//     $("body").addClass("dark--oled");
-// }
