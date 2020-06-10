@@ -33,27 +33,23 @@ export default function fixInvalidThemeSetting() {
     try {
         t = parseInt(localStorage.getItem("fofNightMode_deviceTheme"));
     } catch (error) {
-        console.error("Theme is not a valid integer! (1)");
+        console.warn("Theme is not a valid integer! Resetting... (1)");
         localStorage.setItem("fofNightMode_deviceTheme", Themes.DEFAULT);
         wasInvalid = true;
     }
 
     if (isNaN(t)) {
-        console.error("Theme is not a valid integer! (2)");
+        console.warn("Theme is not a valid integer! Resetting... (2)");
         localStorage.setItem("fofNightMode_deviceTheme", Themes.DEFAULT);
         wasInvalid = true;
     }
 
     if (!wasInvalid && !validValues.includes(t)) {
         // theme out of bounds
-        console.error(
-            `Theme is out of bounds (not between ${Math.min(
-                ...validValues
-            )} and ${Math.max(...validValues)})!`
+        console.warn(
+            `Theme is out of bounds! Resetting...`
         );
         localStorage.setItem("fofNightMode_deviceTheme", Themes.DEFAULT);
         wasInvalid = true;
     }
-
-    // if (wasInvalid) location.reload();
 }
