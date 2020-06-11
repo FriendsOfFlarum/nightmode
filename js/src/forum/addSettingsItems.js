@@ -12,6 +12,8 @@ import fixInvalidThemeSetting from "./fixInvalidThemeSetting";
 import GetTheme from "./getTheme";
 import Themes from "./Themes";
 
+const LocalStorageKey = `fofNightMode_deviceTheme`;
+
 export default function () {
     extend(SettingsPage.prototype, "settingsItems", function (items) {
         const { user } = app.session;
@@ -51,30 +53,28 @@ export default function () {
                         className: "Settings-theme--per_device_cb",
                         state: PerDevice,
                         onchange: (checked) => {
+                            if (checked) {
+                                // save current theme as this device's default
+                                localStorage.setItem(
+                                    LocalStorageKey,
+                                    CurrentTheme
+                                );
+                            }
+
                             user.savePreferences({
                                 fofNightMode_perDevice: checked,
                             }).then(() => {
                                 if (checked) {
-                                    // save current theme as this device's default
-                                    localStorage.setItem(
-                                        "fofNightMode_deviceTheme",
-                                        CurrentTheme
-                                    );
-
-                                    m.redraw();
-
                                     // need to force-update selected theme (as it's only set
-                                    // on a page load and redraw doesn't count as a apge load)
+                                    // on a page load and redraw doesn't count as a page load)
                                     SetTheme();
                                 } else {
                                     // set user theme to that of current device
                                     user.savePreferences({
                                         fofNightMode: CurrentTheme,
                                     }).then(() => {
-                                        m.redraw();
-
                                         // need to force-update selected theme (as it's only set
-                                        // on a page load and redraw doesn't count as a apge load)
+                                        // on a page load and redraw doesn't count as a page load)
                                         SetTheme();
                                     });
                                 }
@@ -88,10 +88,7 @@ export default function () {
                         className: "Settings-theme--input",
                         onchange: (e) => {
                             if (PerDevice) {
-                                localStorage.setItem(
-                                    "fofNightMode_deviceTheme",
-                                    e
-                                );
+                                localStorage.setItem(LocalStorageKey, e);
                                 m.redraw();
                                 SetTheme();
                                 return;

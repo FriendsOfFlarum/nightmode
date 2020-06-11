@@ -24,32 +24,31 @@
 import Themes from "./Themes";
 
 // get array of valid values without duplicate entries
-let validValues = [...new Set(Object.values(Themes))];
+let validValues = Array.from(new Set(Object.values(Themes)));
+const LocalStorageKey = `fofNightMode_deviceTheme`;
 
 export default function fixInvalidThemeSetting() {
     let wasInvalid = false;
     let t;
 
     try {
-        t = parseInt(localStorage.getItem("fofNightMode_deviceTheme"));
+        t = parseInt(localStorage.getItem(LocalStorageKey));
     } catch (error) {
         console.warn("Theme is not a valid integer! Resetting... (1)");
-        localStorage.setItem("fofNightMode_deviceTheme", Themes.DEFAULT);
+        localStorage.setItem(LocalStorageKey, Themes.DEFAULT);
         wasInvalid = true;
     }
 
     if (isNaN(t)) {
         console.warn("Theme is not a valid integer! Resetting... (2)");
-        localStorage.setItem("fofNightMode_deviceTheme", Themes.DEFAULT);
+        localStorage.setItem(LocalStorageKey, Themes.DEFAULT);
         wasInvalid = true;
     }
 
     if (!wasInvalid && !validValues.includes(t)) {
         // theme out of bounds
-        console.warn(
-            `Theme is out of bounds! Resetting...`
-        );
-        localStorage.setItem("fofNightMode_deviceTheme", Themes.DEFAULT);
+        console.warn(`Theme is out of bounds! Resetting...`);
+        localStorage.setItem(LocalStorageKey, Themes.DEFAULT);
         wasInvalid = true;
     }
 }
