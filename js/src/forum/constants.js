@@ -6,7 +6,7 @@
 
 */
 
-export default {
+const Themes = {
     AUTO: 0,
     LIGHT: 1,
     DARK: 2,
@@ -16,3 +16,11 @@ export default {
     //!         by default in Preferences.php
     DEFAULT: 0,
 };
+
+const Constants = {
+    localStorageKey: `fofNightMode_deviceTheme`,
+};
+
+export default Themes;
+
+export { Themes, Constants };

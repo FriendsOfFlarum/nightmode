@@ -21,11 +21,11 @@
     (not a giffgaff employee, though)
 */
 
-import Themes from "./Themes";
+import Themes, { Constants } from './constants';
 
 // get array of valid values without duplicate entries
 let validValues = Array.from(new Set(Object.values(Themes)));
-const LocalStorageKey = `fofNightMode_deviceTheme`;
+const LocalStorageKey = Constants.localStorageKey;
 
 export default function fixInvalidThemeSetting() {
     let wasInvalid = false;
@@ -34,13 +34,13 @@ export default function fixInvalidThemeSetting() {
     try {
         t = parseInt(localStorage.getItem(LocalStorageKey));
     } catch (error) {
-        console.warn("Theme is not a valid integer! Resetting... (1)");
+        console.warn('Theme is not a valid integer! Resetting... (1)');
         localStorage.setItem(LocalStorageKey, Themes.DEFAULT);
         wasInvalid = true;
     }
 
     if (isNaN(t)) {
-        console.warn("Theme is not a valid integer! Resetting... (2)");
+        console.warn('Theme is not a valid integer! Resetting... (2)');
         localStorage.setItem(LocalStorageKey, Themes.DEFAULT);
         wasInvalid = true;
     }

@@ -1,26 +1,24 @@
-import { extend } from "flarum/extend";
+import { extend } from 'flarum/extend';
 
-import SettingsPage from "flarum/components/SettingsPage";
+import SettingsPage from 'flarum/components/SettingsPage';
 
-import LoadingIndicator from "flarum/components/LoadingIndicator";
-import Select from "flarum/components/Select";
-import FieldSet from "flarum/components/FieldSet";
-import Switch from "flarum/components/Switch";
+import LoadingIndicator from 'flarum/components/LoadingIndicator';
+import Select from 'flarum/components/Select';
+import FieldSet from 'flarum/components/FieldSet';
+import Switch from 'flarum/components/Switch';
 
-import { SetTheme } from "./setSelectedTheme";
-import fixInvalidThemeSetting from "./fixInvalidThemeSetting";
-import GetTheme from "./getTheme";
-import Themes from "./Themes";
+import { SetTheme } from './setSelectedTheme';
+import fixInvalidThemeSetting from './fixInvalidThemeSetting';
+import GetTheme from './getTheme';
+import Themes, { Constants } from './constants';
 
-const LocalStorageKey = `fofNightMode_deviceTheme`;
+const LocalStorageKey = Constants.localStorageKey;
 
 export default function () {
-    extend(SettingsPage.prototype, "settingsItems", function (items) {
+    extend(SettingsPage.prototype, 'settingsItems', function (items) {
         const { user } = app.session;
 
-        const PerDevice = user.preferences().fofNightMode_perDevice
-            ? user.preferences().fofNightMode_perDevice
-            : false;
+        const PerDevice = user.preferences().fofNightMode_perDevice ? user.preferences().fofNightMode_perDevice : false;
 
         if (PerDevice) {
             fixInvalidThemeSetting();
@@ -29,36 +27,21 @@ export default function () {
         const CurrentTheme = GetTheme(user);
 
         items.add(
-            "fof-nightmode",
+            'fof-nightmode',
             FieldSet.component({
-                label: app.translator.trans(
-                    "fof-nightmode.forum.user.settings.heading"
-                ),
-                className: "Settings-theme",
+                label: app.translator.trans('fof-nightmode.forum.user.settings.heading'),
+                className: 'Settings-theme',
                 children: [
-                    <p className="description">
-                        {app.translator.trans(
-                            "fof-nightmode.forum.user.settings.description"
-                        )}
-                    </p>,
-                    <p className="description">
-                        {app.translator.trans(
-                            "fof-nightmode.forum.user.settings.description2"
-                        )}
-                    </p>,
+                    <p className="description">{app.translator.trans('fof-nightmode.forum.user.settings.description')}</p>,
+                    <p className="description">{app.translator.trans('fof-nightmode.forum.user.settings.description2')}</p>,
                     Switch.component({
-                        children: app.translator.trans(
-                            "fof-nightmode.forum.user.settings.device_specific_setting_checkbox"
-                        ),
-                        className: "Settings-theme--per_device_cb",
+                        children: app.translator.trans('fof-nightmode.forum.user.settings.device_specific_setting_checkbox'),
+                        className: 'Settings-theme--per_device_cb',
                         state: PerDevice,
                         onchange: (checked) => {
                             if (checked) {
                                 // save current theme as this device's default
-                                localStorage.setItem(
-                                    LocalStorageKey,
-                                    CurrentTheme
-                                );
+                                localStorage.setItem(LocalStorageKey, CurrentTheme);
                             }
 
                             user.savePreferences({
@@ -83,9 +66,9 @@ export default function () {
                     }),
                     Select.component({
                         value: CurrentTheme ? CurrentTheme : Themes.DEFAULT,
-                        label: "test",
-                        key: "selected_theme",
-                        className: "Settings-theme--input",
+                        label: 'test',
+                        key: 'selected_theme',
+                        className: 'Settings-theme--input',
                         onchange: (e) => {
                             if (PerDevice) {
                                 localStorage.setItem(LocalStorageKey, e);
@@ -105,30 +88,18 @@ export default function () {
                             });
                         },
                         options: [
-                            app.translator.trans(
-                                "fof-nightmode.forum.user.settings.options.auto"
-                            ),
-                            app.translator.trans(
-                                "fof-nightmode.forum.user.settings.options.day"
-                            ),
-                            app.translator.trans(
-                                "fof-nightmode.forum.user.settings.options.night"
-                            ),
+                            app.translator.trans('fof-nightmode.forum.user.settings.options.auto'),
+                            app.translator.trans('fof-nightmode.forum.user.settings.options.day'),
+                            app.translator.trans('fof-nightmode.forum.user.settings.options.night'),
                         ],
                     }),
                     <p className="Settings-theme--selection_description">
                         {CurrentTheme === Themes.AUTO
-                            ? app.translator.trans(
-                                  "fof-nightmode.forum.user.settings.option_descriptions.auto"
-                              )
+                            ? app.translator.trans('fof-nightmode.forum.user.settings.option_descriptions.auto')
                             : CurrentTheme === Themes.LIGHT
-                            ? app.translator.trans(
-                                  "fof-nightmode.forum.user.settings.option_descriptions.day"
-                              )
+                            ? app.translator.trans('fof-nightmode.forum.user.settings.option_descriptions.day')
                             : CurrentTheme === Themes.DARK
-                            ? app.translator.trans(
-                                  "fof-nightmode.forum.user.settings.option_descriptions.night"
-                              )
+                            ? app.translator.trans('fof-nightmode.forum.user.settings.option_descriptions.night')
                             : // prevents nasty paragraph switching
                               LoadingIndicator.component()}
                     </p>,
