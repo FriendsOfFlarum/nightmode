@@ -1,17 +1,17 @@
-import { extend } from "flarum/extend";
-import TagsPage from "flarum/tags/components/TagsPage";
+import { extend } from 'flarum/extend';
+import TagsPage from 'flarum/tags/components/TagsPage';
 
-import Page from "flarum/components/Page";
-import fixInvalidThemeSetting from "./fixInvalidThemeSetting";
+import Page from 'flarum/components/Page';
+import fixInvalidThemeSetting from './fixInvalidThemeSetting';
 
-import Themes from "../common/config";
-import GetTheme from "./getTheme";
+import Themes from '../common/config';
+import GetTheme from './getTheme';
 
 export default function () {
-    extend(Page.prototype, "init", SetTheme);
+    extend(Page.prototype, 'init', SetTheme);
 
     if (TagsPage) {
-        extend(TagsPage.prototype, "config", SetTheme);
+        extend(TagsPage.prototype, 'config', SetTheme);
     }
 }
 
@@ -60,7 +60,7 @@ export function SetThemeFromID(theme) {
 */
 
 function setAuto() {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         setDark();
     } else {
         setLight();
@@ -68,9 +68,9 @@ function setAuto() {
 }
 
 function setLight() {
-    $("body").removeClass("dark");
+    $('body').removeClass('dark');
 }
 
 function setDark() {
-    $("body").addClass("dark");
+    $('body').addClass('dark');
 }
