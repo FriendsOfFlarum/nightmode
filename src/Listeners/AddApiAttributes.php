@@ -49,6 +49,6 @@ class AddApiAttributes
 
     private function getDefaultNightmodeTheme(): int
     {
-        return (int) app('flarum.settings')->get('fof-byobu.index_link', 0);
+        return (int) app('flarum.settings')->get('fof-nightmode.default_theme', 0);
     }
 }
