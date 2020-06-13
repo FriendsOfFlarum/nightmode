@@ -1,10 +1,8 @@
 <?php
 /*
- * This file is part of reflar/nightmode.
+ * This file is part of fof/nightmode.
  *
- * Copyright (c) ReFlar.
- *
- * http://reflar.io
+ * Copyright (c) 2020 FriendsOfFlarum.
  *
  * For the full copyright and license information, please view the license.md
  * file that was distributed with this source code.
@@ -26,10 +24,10 @@ class Preferences
     {
         $event->add('fofNightMode_perDevice', 'boolval', false);
 
-        //! WARN:   If you change this value, also remember
-        //!         to change the value which is set by
-        //!         default if an invalid theme is detected
-        //!         in Themes.js
-        $event->add('fofNightMode_themeType', 'intval', 0);
+        $event->add(
+            'fofNightMode_themeType',
+            'intval',
+            (int) app('flarum.settings')->get('fof-nightmode.default_theme', 0)
+        );
     }
 }

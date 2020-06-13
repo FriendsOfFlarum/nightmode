@@ -11,10 +11,7 @@ const Themes = {
     LIGHT: 1,
     DARK: 2,
 
-    //! WARN:   If you change this value, also remember
-    //!         to change the value which is set to all users
-    //!         by default in Preferences.php
-    DEFAULT: 0,
+    DEFAULT: (app) => app.forum.data.attributes["fof-nightmode_default_theme"],
 };
 
 const Constants = {

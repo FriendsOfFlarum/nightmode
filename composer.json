@@ -26,7 +26,8 @@
         "source": "https://github.com/FriendsOfFlarum/nightmode"
     },
     "require": {
-        "flarum/core": "^0.1.0-beta.8"
+        "flarum/core": "^0.1.0-beta.8",
+        "fof/components": ">=0.1.1"
     },
     "replace": {
         "reflar/nightmode": "*"

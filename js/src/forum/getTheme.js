@@ -1,13 +1,15 @@
-import Themes, { Constants } from './constants';
+import { Themes, Constants } from "../common/config";
 
 export default function GetTheme(user) {
-    const PerDevice = user.preferences().fofNightMode_perDevice ? user.preferences().fofNightMode_perDevice : false;
+    const PerDevice = user.preferences().fofNightMode_perDevice
+        ? user.preferences().fofNightMode_perDevice
+        : false;
 
     if (PerDevice) {
         // fetch through LS is per device enabled
         return parseInt(localStorage.getItem(Constants.localStorageKey));
     } else {
-        if (typeof user.preferences().fofNightMode_themeType === 'number') {
+        if (typeof user.preferences().fofNightMode_themeType === "number") {
             // use user prefs
             return user.preferences().fofNightMode_themeType;
         } else {
@@ -38,7 +40,7 @@ export default function GetTheme(user) {
                 });
 
                 // assume the prefs will be saved correctly and just return default
-                return Themes.DEFAULT;
+                return Themes.DEFAULT(app);
             }
         }
     }
