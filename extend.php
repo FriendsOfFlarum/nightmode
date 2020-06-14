@@ -3,8 +3,8 @@
 namespace FoF\NightMode;
 
 use Flarum\Extend;
-use FoF\Extend\Extend as FoFExtend;
 use FoF\Components\Extend\AddFofComponents;
+use FoF\Extend\Extend as FoFExtend;
 use Illuminate\Contracts\Events\Dispatcher;
 
 return [
