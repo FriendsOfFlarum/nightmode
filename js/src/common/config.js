@@ -11,7 +11,8 @@ const Themes = {
     LIGHT: 1,
     DARK: 2,
 
-    DEFAULT: (app) => app.forum.data.attributes['fof-nightmode_default_theme'],
+    // adds an "ultra default" of 0 if the admins don't set a default tsk tsk tsk
+    DEFAULT: (app) => app.data["fof-nightmode_default_theme"] || 0,
 };
 
 const Constants = {

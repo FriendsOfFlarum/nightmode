@@ -27,7 +27,8 @@
     },
     "require": {
         "flarum/core": "^0.1.0-beta.8",
-        "fof/components": ">=0.1.1"
+        "fof/components": ">=0.1.1",
+        "fof/extend": ">=0.2.0"
     },
     "replace": {
         "reflar/nightmode": "*"
