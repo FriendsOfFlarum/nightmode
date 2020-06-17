@@ -27,7 +27,7 @@ export default function () {
             fixInvalidThemeSetting();
         }
 
-        const CurrentTheme = getTheme(user);
+        const CurrentTheme = getTheme(app);
 
         items.add(
             'fof-nightmode',
@@ -57,7 +57,7 @@ export default function () {
                                 } else {
                                     // set user theme to that of current device
                                     user.savePreferences({
-                                        fofNightMode: CurrentTheme,
+                                        fofNightMode_themeType: Number.parseInt(CurrentTheme),
                                     }).then(() => {
                                         // need to force-update selected theme (as it's only set
                                         // on a page load and redraw doesn't count as a page load)
@@ -68,7 +68,7 @@ export default function () {
                         },
                     }),
                     Select.component({
-                        value: CurrentTheme ? CurrentTheme : Themes.DEFAULT(app),
+                        value: CurrentTheme || Themes.DEFAULT(app),
                         label: 'test',
                         key: 'selected_theme',
                         className: 'Settings-theme--input',
@@ -81,7 +81,7 @@ export default function () {
                             }
 
                             user.savePreferences({
-                                fofNightMode_themeType: e,
+                                fofNightMode_themeType: Number.parseInt(e),
                             }).then(() => {
                                 m.redraw();
 

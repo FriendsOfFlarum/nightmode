@@ -30,7 +30,7 @@ export function setTheme() {
         fixInvalidThemeSetting();
     }
 
-    const CurrentTheme = getTheme(user);
+    const CurrentTheme = getTheme(app);
 
     setThemeFromID(CurrentTheme);
 }

@@ -1,8 +1,9 @@
 import { Themes, Constants } from '../common/config';
 
-export default function getTheme(user) {
-    const IsUsingPerDeviceSettings = user.preferences().fofNightMode_perDevice ? user.preferences().fofNightMode_perDevice : false;
+export default function getTheme(app) {
+    const { user } = app.session;
 
+    const IsUsingPerDeviceSettings = user.preferences().fofNightMode_perDevice ? user.preferences().fofNightMode_perDevice : false;
     const SelectedTheme = user.preferences().fofNightMode_themeType;
 
     //* Theme selection for previous extension users.
