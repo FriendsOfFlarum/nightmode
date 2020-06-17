@@ -1,5 +1,5 @@
 fof-nightmode:
-    common:
+    ref:
         auto: Automatic (based on browser or device options)
         light: Day Mode
         dark: Night Mode
@@ -11,12 +11,12 @@ fof-nightmode:
                 default_theme: Default forum theme
                 default_theme_helper: The default theme is automatically set for new users and guests.
                 default_theme_important: This will also affect existing users who have not manually selected a theme!
-                theme_auto: => fof-nightmode.common.auto
-                theme_light: => fof-nightmode.common.light
-                theme_dark: => fof-nightmode.common.dark
+                theme_auto: => fof-nightmode.ref.auto
+                theme_light: => fof-nightmode.ref.light
+                theme_dark: => fof-nightmode.ref.dark
     forum:
-        day: => fof-nightmode.common.light
-        night: => fof-nightmode.common.dark
+        day: => fof-nightmode.ref.light
+        night: => fof-nightmode.ref.dark
 
         user:
             settings:
@@ -26,9 +26,9 @@ fof-nightmode:
                 device_specific_setting_checkbox: Use per device settings
                 device_specific_setting_checkbox_tooltip: Your theme choice will be saved individually for each of your devices.
                 options:
-                    auto: => fof-nightmode.common.auto
-                    day: => fof-nightmode.common.light
-                    night: => fof-nightmode.common.dark
+                    auto: => fof-nightmode.ref.auto
+                    day: => fof-nightmode.ref.light
+                    night: => fof-nightmode.ref.dark
                 option_descriptions:
                     auto: Your theme will be automatically selected based on your browser or device settings. For example, if you have dark mode enabled in iOS, the forums will be dark too.
                     day: The classic experience which you're used to. Loved and tested.
