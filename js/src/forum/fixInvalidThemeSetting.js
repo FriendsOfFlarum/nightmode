@@ -29,27 +29,17 @@ export default function fixInvalidThemeSetting() {
     // get array of valid values without duplicate entries
     let validValues = Array.from(new Set(Object.values(Themes)));
 
-    let wasInvalid = false;
-    let t;
+    const Theme = parseInt(localStorage.getItem(LocalStorageKey));
 
-    try {
-        t = parseInt(localStorage.getItem(LocalStorageKey));
-    } catch (error) {
-        console.warn('Theme is not a valid integer! Resetting... (1)');
-        localStorage.setItem(LocalStorageKey, Themes.DEFAULT(app));
-        wasInvalid = true;
-    }
-
-    if (isNaN(t)) {
-        console.warn('Theme is not a valid integer! Resetting... (2)');
-        localStorage.setItem(LocalStorageKey, Themes.DEFAULT(app));
-        wasInvalid = true;
-    }
-
-    if (!wasInvalid && !validValues.includes(t)) {
+    if (isNaN(Theme) || !Theme) {
+        resetTheme('Theme is not a valid integer! Resetting...');
+    } else if (!validValues.includes(Theme)) {
         // theme out of bounds
-        console.warn(`Theme is out of bounds! Resetting...`);
-        localStorage.setItem(LocalStorageKey, Themes.DEFAULT(app));
-        wasInvalid = true;
+        resetTheme(`Theme is out of bounds! Resetting...`);
     }
+}
+
+function resetTheme(reason) {
+    console.warn(reason);
+    localStorage.setItem(LocalStorageKey, Themes.DEFAULT(app));
 }

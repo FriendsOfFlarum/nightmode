@@ -5,22 +5,22 @@ import Page from 'flarum/components/Page';
 import fixInvalidThemeSetting from './fixInvalidThemeSetting';
 
 import Themes from '../common/config';
-import GetTheme from './getTheme';
+import getTheme from './getTheme';
 
 export default function () {
-    extend(Page.prototype, 'init', SetTheme);
+    extend(Page.prototype, 'init', setTheme);
 
     if (TagsPage) {
-        extend(TagsPage.prototype, 'config', SetTheme);
+        extend(TagsPage.prototype, 'config', setTheme);
     }
 }
 
-export function SetTheme() {
+export function setTheme() {
     const { user } = app.session;
 
     if (!user) {
         // Default to automatic theme when visiting as guest
-        SetThemeFromID(Themes.DEFAULT(app));
+        setThemeFromID(Themes.DEFAULT(app));
         return;
     }
 
@@ -30,16 +30,13 @@ export function SetTheme() {
         fixInvalidThemeSetting();
     }
 
-    const CurrentTheme = GetTheme(user);
+    const CurrentTheme = getTheme(user);
 
-    SetThemeFromID(CurrentTheme);
+    setThemeFromID(CurrentTheme);
 }
 
-export function SetThemeFromID(theme) {
+export function setThemeFromID(theme) {
     switch (theme) {
-        case Themes.AUTO: // auto
-            setAuto();
-            break;
         case Themes.LIGHT: // light
             setLight();
             break;
@@ -47,6 +44,7 @@ export function SetThemeFromID(theme) {
             setDark();
             break;
 
+        // Handles auto and other unexpected cases
         default:
             setAuto();
             break;
