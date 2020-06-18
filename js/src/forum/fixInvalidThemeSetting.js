@@ -21,7 +21,7 @@
     (not a giffgaff employee, though)
 */
 
-import { Themes, Constants } from "../common/config";
+import { Themes, Constants } from '../common/config';
 
 const LocalStorageKey = Constants.localStorageKey;
 
@@ -32,7 +32,7 @@ export default function fixInvalidThemeSetting() {
     const Theme = parseInt(localStorage.getItem(LocalStorageKey));
 
     if (isNaN(Theme)) {
-        resetTheme("Theme is not a valid integer! Resetting...");
+        resetTheme('Theme is not a valid integer! Resetting...');
     } else if (!validValues.includes(Theme)) {
         // theme out of bounds
         resetTheme(`Theme is out of bounds! Resetting...`);
