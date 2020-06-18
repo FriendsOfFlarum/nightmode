@@ -42,12 +42,12 @@ export default function getTheme(app) {
 
                 user.savePreferences({
                     fofNightMode: null,
-                    fofNightMode_themeType: Themes.DEFAULT(app),
+                    fofNightMode_themeType: Themes.DEFAULT(),
                 });
 
                 // assume the prefs will be saved correctly and just return
                 // what the value should have been for better "performance"
-                return Themes.DEFAULT(app);
+                return Themes.DEFAULT();
             }
         }
     }

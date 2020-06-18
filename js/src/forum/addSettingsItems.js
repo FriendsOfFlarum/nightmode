@@ -68,7 +68,7 @@ export default function () {
                         },
                     }),
                     Select.component({
-                        value: CurrentTheme || Themes.DEFAULT(app),
+                        value: CurrentTheme || Themes.DEFAULT(),
                         label: 'test',
                         key: 'selected_theme',
                         className: 'Settings-theme--input',

@@ -20,7 +20,7 @@ export function setTheme() {
 
     if (!user) {
         // Default to automatic theme when visiting as guest
-        setThemeFromID(Themes.DEFAULT(app));
+        setThemeFromID(Themes.DEFAULT());
         return;
     }
 

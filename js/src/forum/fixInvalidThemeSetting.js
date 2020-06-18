@@ -41,5 +41,5 @@ export default function fixInvalidThemeSetting() {
 
 function resetTheme(reason) {
     console.warn(reason);
-    localStorage.setItem(LocalStorageKey, Themes.DEFAULT(app));
+    localStorage.setItem(LocalStorageKey, Themes.DEFAULT());
 }
