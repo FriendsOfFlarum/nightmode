@@ -9,20 +9,8 @@
  * file that was distributed with this source code.
  */
 
-use Illuminate\Database\Schema\Builder;
+use Flarum\Database\Migration;
 
-return [
-    'up' => function (Builder $schema) {
-        /**
-         * @var \Flarum\Settings\SettingsRepositoryInterface
-         */
-        $settings = app('flarum.settings');
-
-        $settings->set('fof-nightmode.default_theme', 0);
-    },
-    'down' => function (Builder $schema) {
-        $settings = app('flarum.settings');
-
-        $settings->delete('fof-nightmode.default_theme');
-    },
-];
+return Migration::addSettings([
+    'fof-nightmode.default_theme' => '0',
+]);
