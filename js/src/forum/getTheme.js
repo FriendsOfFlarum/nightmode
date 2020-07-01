@@ -1,10 +1,9 @@
-import { Themes, Constants } from "../common/config";
+import { Themes, Constants } from '../common/config';
 
 export default function getTheme(app) {
     const { user } = app.session;
 
-    const IsUsingPerDeviceSettings = !!user.preferences()
-        .fofNightMode_perDevice;
+    const IsUsingPerDeviceSettings = !!user.preferences().fofNightMode_perDevice;
     const SelectedTheme = user.preferences().fofNightMode_themeType;
 
     //* Theme selection for previous extension users.
@@ -16,8 +15,8 @@ export default function getTheme(app) {
         // fetch through LS is per device enabled
         return parseInt(localStorage.getItem(Constants.localStorageKey));
     } else {
-        console.log("s ", SelectedTheme);
-        console.log("o ", OldThemeSelection);
+        console.log('s ', SelectedTheme);
+        console.log('o ', OldThemeSelection);
 
         if (OldThemeSelection) {
             // migrate previous preferences
@@ -37,7 +36,7 @@ export default function getTheme(app) {
             // assume the prefs will be saved correctly and just return
             // what the value should have been for better "performance"
             return migrated;
-        } else if (typeof SelectedTheme === "number" && SelectedTheme !== -1) {
+        } else if (typeof SelectedTheme === 'number' && SelectedTheme !== -1) {
             // use user prefs
             return SelectedTheme;
         } else {
