@@ -23,8 +23,10 @@ class Preferences
 
     public function addUserPreference(ConfigureUserPreferences $event)
     {
-        $event->add('fofNightMode_perDevice', 'boolval', false);
+        // To allow for migration from older settings
+        $event->add('fofNightMode', 'boolval', false);
 
+        $event->add('fofNightMode_perDevice', 'boolval', false);
         $event->add(
             'fofNightMode_themeType',
             'intval',
