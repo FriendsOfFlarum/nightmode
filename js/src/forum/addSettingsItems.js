@@ -57,7 +57,7 @@ export default function () {
                                 } else {
                                     // set user theme to that of current device
                                     user.savePreferences({
-                                        fofNightMode_themeType: Number.parseInt(CurrentTheme),
+                                        fofNightMode: Number.parseInt(CurrentTheme),
                                     }).then(() => {
                                         // need to force-update selected theme (as it's only set
                                         // on a page load and redraw doesn't count as a page load)
@@ -81,7 +81,7 @@ export default function () {
                             }
 
                             user.savePreferences({
-                                fofNightMode_themeType: Number.parseInt(e),
+                                fofNightMode: Number.parseInt(e),
                             }).then(() => {
                                 m.redraw();
 

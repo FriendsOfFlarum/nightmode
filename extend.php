@@ -11,6 +11,7 @@
 
 namespace FoF\NightMode;
 
+use Flarum\Event\ConfigureUserPreferences;
 use Flarum\Extend;
 use FoF\Components\Extend\AddFofComponents;
 use FoF\Extend\Extend as FoFExtend;
@@ -25,9 +26,16 @@ return [
         ->js(__DIR__.'/js/dist/admin.js'),
     new Extend\Locales(__DIR__.'/resources/locale'),
     (new FoFExtend\ExtensionSettings())
-        ->setPrefix('fof-nightmode.')
-        ->addKeys(['default_theme']),
+        ->addKey('fof-nightmode.default_theme'),
     function (Dispatcher $events) {
-        $events->subscribe(Listeners\Preferences::class);
+        $events->listen(ConfigureUserPreferences::class, function (ConfigureUserPreferences $event) {
+            $event->add(
+                'fofNightMode',
+                'intval',
+                (int) app('flarum.settings')->get('fof-nightmode.default_theme', 0)
+            );
+
+            $event->add('fofNightMode_perDevice', 'boolval', false);
+        });
     },
 ];
