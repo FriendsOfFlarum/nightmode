@@ -1,3 +1,5 @@
+<?php
+
 /*
  * This file is part of fof/nightmode.
  *
@@ -7,4 +9,8 @@
  * file that was distributed with this source code.
  */
 
-export * from './src/forum';
+use Flarum\Database\Migration;
+
+return Migration::addSettings([
+    'fof-nightmode.default_theme' => '0',
+]);
