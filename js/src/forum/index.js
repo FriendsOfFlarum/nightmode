@@ -1,9 +1,9 @@
 import app from 'flarum/app';
 
 import addSettingsItems from './addSettingsItems';
-import setSelectedTheme from './setSelectedTheme';
+import setSelectedTheme from '../common/setSelectedTheme';
 
-app.initializers.add('fof-nightmode', (app) => {
+app.initializers.add('fof-nightmode', () => {
     addSettingsItems();
     setSelectedTheme();
 });

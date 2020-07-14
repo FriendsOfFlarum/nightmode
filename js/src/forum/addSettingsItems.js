@@ -7,7 +7,7 @@ import Select from 'flarum/components/Select';
 import FieldSet from 'flarum/components/FieldSet';
 import Switch from 'flarum/components/Switch';
 
-import { setTheme } from './setSelectedTheme';
+import { setTheme } from '../common/setSelectedTheme';
 import fixInvalidThemeSetting from './fixInvalidThemeSetting';
 import getTheme from './getTheme';
 import { Themes, Constants } from '../common/config';

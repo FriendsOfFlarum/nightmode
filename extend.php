@@ -13,21 +13,34 @@ namespace FoF\NightMode;
 
 use Flarum\Event\ConfigureUserPreferences;
 use Flarum\Extend;
+use Flarum\Foundation\Application;
+use Flarum\Frontend\Document;
 use FoF\Components\Extend\AddFofComponents;
 use FoF\Extend\Extend as FoFExtend;
 use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Support\Arr;
 
 return [
     new AddFofComponents(),
     (new Extend\Frontend('forum'))
-        ->css(__DIR__.'/resources/less/forum/extension.less')
-        ->js(__DIR__.'/js/dist/forum.js'),
+        ->js(__DIR__.'/js/dist/forum.js')
+        ->content(function (Document $document) {
+            $hasStyle = Arr::first($document->css, function ($url) use ($document) {
+                return $url === $document->payload['fof-nightmode.assets.day'] || $url === $document->payload['fof-nightmode.assets.night'];
+            });
+
+            if (!$hasStyle) {
+                $document->head[] = '<style>body { display: none; }</style>';
+            }
+        }),
     (new Extend\Frontend('admin'))
         ->js(__DIR__.'/js/dist/admin.js'),
     new Extend\Locales(__DIR__.'/resources/locale'),
     (new FoFExtend\ExtensionSettings())
         ->addKey('fof-nightmode.default_theme'),
-    function (Dispatcher $events) {
+    function (Application $app, Dispatcher $events) {
+        $app->register(AssetsServiceProvider::class);
+
         $events->listen(ConfigureUserPreferences::class, function (ConfigureUserPreferences $event) {
             $event->add(
                 'fofNightMode',

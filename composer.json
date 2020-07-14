@@ -48,7 +48,8 @@
     },
     "autoload": {
         "psr-4": {
-            "FoF\\NightMode\\": "src/"
+            "FoF\\NightMode\\": "src/",
+            "Flarum\\": "src/Overrides"
         }
     }
 }
