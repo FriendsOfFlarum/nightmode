@@ -27,7 +27,11 @@ export default function () {
             fixInvalidThemeSetting();
         }
 
-        const CurrentTheme = getTheme(app);
+        let CurrentTheme = getTheme(app);
+
+        if (typeof CurrentTheme !== 'number' && !CurrentTheme) {
+            CurrentTheme = Themes.DEFAULT();
+        }
 
         items.add(
             'fof-nightmode',
@@ -50,25 +54,14 @@ export default function () {
                             user.savePreferences({
                                 fofNightMode_perDevice: checked,
                             }).then(() => {
-                                if (checked) {
-                                    // need to force-update selected theme (as it's only set
-                                    // on a page load and redraw doesn't count as a page load)
-                                    setTheme();
-                                } else {
-                                    // set user theme to that of current device
-                                    user.savePreferences({
-                                        fofNightMode: Number.parseInt(CurrentTheme),
-                                    }).then(() => {
-                                        // need to force-update selected theme (as it's only set
-                                        // on a page load and redraw doesn't count as a page load)
-                                        setTheme();
-                                    });
-                                }
+                                // need to force-update selected theme (as it's only set
+                                // on a page load and redraw doesn't count as a page load)
+                                setTheme();
                             });
                         },
                     }),
                     Select.component({
-                        value: CurrentTheme || Themes.DEFAULT(),
+                        value: CurrentTheme,
                         label: 'test',
                         key: 'selected_theme',
                         className: 'Settings-theme--input',
