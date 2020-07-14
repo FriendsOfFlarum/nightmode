@@ -1,8 +1,15 @@
 <?php
 
+/*
+ * This file is part of fof/nightmode.
+ *
+ * Copyright (c) 2020 FriendsOfFlarum.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Flarum\Frontend;
-
 
 use Flarum\Frontend\Compiler\CompilerInterface;
 use Flarum\Frontend\Compiler\JsCompiler;
@@ -16,10 +23,10 @@ class Assets
      * @var array
      */
     public $sources = [
-        'js' => [],
-        'css' => [],
-        'localeJs' => [],
-        'localeCss' => []
+        'js'        => [],
+        'css'       => [],
+        'localeJs'  => [],
+        'localeCss' => [],
     ];
 
     /**

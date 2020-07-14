@@ -1,8 +1,15 @@
 <?php
 
+/*
+ * This file is part of fof/nightmode.
+ *
+ * Copyright (c) 2020 FriendsOfFlarum.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace FoF\NightMode\Content;
-
 
 use Flarum\Frontend\Compiler\CompilerInterface;
 use Flarum\Frontend\Document;
@@ -27,8 +34,8 @@ class Assets extends \Flarum\Frontend\Content\Assets
             );
 
         $compilers = [
-            'js' => [$this->assets->makeJs(), $this->assets->makeLocaleJs($locale)],
-            'css' => [$this->assets->makeLocaleCss($locale)]
+            'js'  => [$this->assets->makeJs(), $this->assets->makeLocaleJs($locale)],
+            'css' => [$this->assets->makeLocaleCss($locale)],
         ];
 
         if ($mainCss) {
@@ -55,6 +62,7 @@ class Assets extends \Flarum\Frontend\Content\Assets
 
     /**
      * @param CompilerInterface[] $compilers
+     *
      * @return string[]
      */
     private function getUrls(array $compilers)
