@@ -24,20 +24,16 @@ return [
     new AddFofComponents(),
     (new Extend\Frontend('forum'))
         ->js(__DIR__.'/js/dist/forum.js')
-        ->content(function (Document $document) {
-            $hasStyle = Arr::first($document->css, function ($url) use ($document) {
-                return $url === $document->payload['fof-nightmode.assets.day'] || $url === $document->payload['fof-nightmode.assets.night'];
-            });
-
-            if (!$hasStyle) {
-                $document->head[] = '<style>body { display: none; }</style>';
-            }
-        }),
+        ->content(Content\HideBody::class),
     (new Extend\Frontend('admin'))
-        ->js(__DIR__.'/js/dist/admin.js'),
+        ->js(__DIR__.'/js/dist/admin.js')
+        ->content(Content\HideBody::class),
+
     new Extend\Locales(__DIR__.'/resources/locale'),
+
     (new FoFExtend\ExtensionSettings())
         ->addKey('fof-nightmode.default_theme'),
+
     function (Application $app, Dispatcher $events) {
         $app->register(AssetsServiceProvider::class);
 
