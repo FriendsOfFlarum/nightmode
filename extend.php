@@ -14,11 +14,9 @@ namespace FoF\NightMode;
 use Flarum\Event\ConfigureUserPreferences;
 use Flarum\Extend;
 use Flarum\Foundation\Application;
-use Flarum\Frontend\Document;
 use FoF\Components\Extend\AddFofComponents;
 use FoF\Extend\Extend as FoFExtend;
 use Illuminate\Contracts\Events\Dispatcher;
-use Illuminate\Support\Arr;
 
 return [
     new AddFofComponents(),
