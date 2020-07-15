@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\NightMode\Overrides\Forum;
+namespace Flarum\Forum;
 
 use Flarum\Foundation\ValidationException;
 use Flarum\Frontend\Assets;
