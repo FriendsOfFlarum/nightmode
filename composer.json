@@ -43,7 +43,7 @@
             }
         },
         "flagrow": {
-            "discuss": "https://discuss.flarum.org/d/11134"
+            "discuss": "https://discuss.flarum.org/d/21492"
         }
     },
     "autoload": {
@@ -51,7 +51,9 @@
             "FoF\\NightMode\\": "src/"
         },
         "files": [
-            "src/Overrides/Assets.php"
+            "src/Overrides/Forum/ValidateCustomLess.php",
+            "src/Overrides/Frontend/Assets.php",
+            "src/Overrides/Frontend/RecompileFrontendAssets.php"
         ]
     }
 }

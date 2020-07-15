@@ -13,6 +13,7 @@ namespace FoF\NightMode;
 
 use Flarum\Foundation\AbstractServiceProvider;
 use Flarum\Frontend\Content\Assets as AssetsContent;
+use Flarum\Frontend\RecompileFrontendAssets as Recompile;
 
 class AssetsServiceProvider extends AbstractServiceProvider
 {
@@ -20,6 +21,10 @@ class AssetsServiceProvider extends AbstractServiceProvider
     {
         $this->app->extend(AssetsContent::class, function (AssetsContent $original) {
             return app(Content\Assets::class);
+        });
+
+        $this->app->extend(Recompile::class, function (Recompile $original) {
+            return app(Frontend\RecompileFrontendAssets::class);
         });
     }
 }
