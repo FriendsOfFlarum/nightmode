@@ -48,6 +48,8 @@ export default function () {
                             if (checked) {
                                 // save current theme as this device's default
                                 perDevice.set(currentTheme);
+                            } else {
+                                perDevice.remove();
                             }
 
                             user.savePreferences({

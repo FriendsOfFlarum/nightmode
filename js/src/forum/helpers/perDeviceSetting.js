@@ -18,3 +18,5 @@ export const set = (val) =>
         sameSite: 'lax',
         secure: location.protocol === 'https:',
     });
+
+export const remove = () => Cookies.remove(KEY);
