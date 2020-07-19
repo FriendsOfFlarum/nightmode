@@ -24,9 +24,9 @@ class HideBody
 
         if (!$hasStyle) {
             $document->meta['color-scheme'] = 'dark light';
-        } else if ($isDay) {
+        } elseif ($isDay) {
             $document->meta['color-scheme'] = 'light';
-        } else if ($isNight) {
+        } elseif ($isNight) {
             $document->meta['color-scheme'] = 'dark';
         }
     }

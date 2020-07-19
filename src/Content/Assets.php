@@ -34,13 +34,13 @@ class Assets extends \Flarum\Frontend\Content\Assets
 
         if ($this->app->inDebugMode()) {
             $this->commit(array_flatten($compilers));
-            $this->commit([ $dayCss, $nightCss ]);
+            $this->commit([$dayCss, $nightCss]);
         }
 
         $isAuto = $preference === 0;
 
         if ($preference === 1 || $isAuto) {
-            $document->head[] = $this->generateTag($dayCss->getUrl(),  'light', $isAuto);
+            $document->head[] = $this->generateTag($dayCss->getUrl(), 'light', $isAuto);
         }
 
         if ($preference === 2 || $isAuto) {
@@ -54,11 +54,13 @@ class Assets extends \Flarum\Frontend\Content\Assets
         $document->payload['fof-nightmode.assets.night'] = $nightCss->getUrl();
     }
 
-    protected  function generateTag(?string $url, string $type, string $auto)
+    protected function generateTag(?string $url, string $type, string $auto)
     {
         return sprintf(
             '<link rel="stylesheet" media="%s" class="nightmode-%s" href="%s" />',
-            $auto ? "(prefers-color-scheme: $type)" : '', $type, $url
+            $auto ? "(prefers-color-scheme: $type)" : '',
+            $type,
+            $url
         );
     }
 
