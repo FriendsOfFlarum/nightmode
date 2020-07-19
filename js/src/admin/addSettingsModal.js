@@ -1,5 +1,5 @@
 import { settings } from '@fof-components';
-import Themes from '../common/config';
+import Themes from '../common/Themes';
 
 const {
     SettingsModal,

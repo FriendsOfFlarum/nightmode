@@ -1,7 +1,7 @@
 import { extend } from 'flarum/extend';
 import Page from 'flarum/components/Page';
 
-import Themes from './config';
+import Themes from './Themes';
 import fixInvalidThemeSetting from '../forum/fixInvalidThemeSetting';
 import getTheme from '../forum/getTheme';
 
@@ -24,7 +24,7 @@ export function setTheme() {
         fixInvalidThemeSetting();
     }
 
-    const CurrentTheme = getTheme(app);
+    const CurrentTheme = getTheme();
 
     setThemeFromID(CurrentTheme);
 }
@@ -36,53 +36,40 @@ export function getUrls() {
     };
 }
 
-export function getCurrentStyle() {
-    const urls = getUrls();
-
-    return Array.from(document.querySelectorAll('link[rel="stylesheet"]')).find((el) => el.href === urls.day || el.href === urls.night);
-}
-
 export function setThemeFromID(theme) {
-    const urls = getUrls();
-
-    const forumStyle = getCurrentStyle();
-
     if (theme === Themes.DARK) {
-        setStyle(forumStyle, urls.night);
+        setStyle('night');
     } else if (theme === Themes.LIGHT) {
-        setStyle(forumStyle, urls.day);
+        setStyle('day');
     } else {
         const preferDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-        setStyle(forumStyle, urls[preferDark ? 'night' : 'day']);
+        setStyle(preferDark ? 'night' : 'day');
     }
 }
 
-const showBody = () => (document.body.style.display = 'block');
+export function setStyle(type) {
+    const light = document.querySelector('link.nightmode-light[rel=stylesheet]');
+    const dark = document.querySelector('link.nightmode-dark[rel=stylesheet]');
 
-export function setStyle(forumStyle, url) {
-    if (forumStyle && url === forumStyle.href) return;
+    if (light && dark) {
+        if (getTheme() === 0) return;
 
-    let el;
+        const el = type === 'day' ? dark : light;
+        const current = type === 'day' ? light : dark;
 
-    if (forumStyle) {
-        el = forumStyle.cloneNode();
+        el.remove();
+
+        current.setAttribute('media', '');
+        current.className = 'nightmode';
     } else {
-        el = document.createElement('link');
-        el.setAttribute('rel', 'stylesheet');
-    }
+        const el = light || dark || document.querySelector('link.nightmode[rel=stylesheet]');
 
-    el.setAttribute('href', url);
+        const url = getUrls()[type];
 
-    document.head.append(el);
-
-    if (forumStyle) {
-        el.onload = () => {
-            forumStyle.remove();
-            showBody();
-        };
-    } else {
-        el.onload = showBody;
-        el.onerror = showBody;
+        if (url !== el.href) {
+            el.href = url;
+            el.className = 'nightmode';
+        }
     }
 }

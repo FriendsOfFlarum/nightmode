@@ -1,5 +1,3 @@
-import app from 'flarum/app';
-
 import addSettingsItems from './addSettingsItems';
 import setSelectedTheme from '../common/setSelectedTheme';
 

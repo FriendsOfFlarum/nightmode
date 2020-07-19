@@ -18,12 +18,16 @@ class HideBody
 {
     public function __invoke(Document $document)
     {
-        $hasStyle = Arr::first($document->css, function ($url) use ($document) {
-            return $url === $document->payload['fof-nightmode.assets.day'] || $url === $document->payload['fof-nightmode.assets.night'];
-        });
+        $isDay = in_array(Arr::get($document->payload, 'fof-nightmode.assets.day'), $document->css);
+        $isNight = in_array(Arr::get($document->payload, 'fof-nightmode.assets.night'), $document->css);
+        $hasStyle = $isDay || $isNight;
 
         if (!$hasStyle) {
-            $document->head[] = '<style>body { display: none; }</style>';
+            $document->meta['color-scheme'] = 'dark light';
+        } else if ($isDay) {
+            $document->meta['color-scheme'] = 'light';
+        } else if ($isNight) {
+            $document->meta['color-scheme'] = 'dark';
         }
     }
 }

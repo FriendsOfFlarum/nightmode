@@ -2,7 +2,7 @@
     This function is designed to catch invalid theme values
     and handle them before they can break Flarum for users.
 
-    E.g. if a user manually edited their local storage to
+    E.g. if a user manually edited their cookies to
     set their theme to an invalid value, this theme would
     detect that, and reset it to 0 (auto).
 
@@ -21,15 +21,14 @@
     (not a giffgaff employee, though)
 */
 
-import { Themes, Constants } from '../common/config';
-
-const LocalStorageKey = Constants.localStorageKey;
+import Themes from '../common/Themes';
+import { get, set } from './helpers/perDeviceSetting';
 
 export default function fixInvalidThemeSetting() {
     // get array of valid values without duplicate entries
     let validValues = Array.from(new Set(Object.values(Themes)));
 
-    const Theme = parseInt(localStorage.getItem(LocalStorageKey));
+    const Theme = get();
 
     if (isNaN(Theme)) {
         resetTheme('Theme is not a valid integer! Resetting...');
@@ -41,5 +40,6 @@ export default function fixInvalidThemeSetting() {
 
 function resetTheme(reason) {
     console.warn(reason);
-    localStorage.setItem(LocalStorageKey, Themes.DEFAULT());
+
+    set(Themes.DEFAULT());
 }

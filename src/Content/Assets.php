@@ -14,6 +14,7 @@ namespace FoF\NightMode\Content;
 use Flarum\Frontend\Compiler\CompilerInterface;
 use Flarum\Frontend\Document;
 use Flarum\User\User;
+use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 class Assets extends \Flarum\Frontend\Content\Assets
@@ -25,25 +26,25 @@ class Assets extends \Flarum\Frontend\Content\Assets
         $dayCss = $this->assets->makeCss();
 
         $preference = $this->getPreference($request);
-        $mainCss = $preference === 2
-            ? $nightCss
-            : (
-                $preference === 1
-                    ? $dayCss
-                    : null
-            );
 
         $compilers = [
             'js'  => [$this->assets->makeJs(), $this->assets->makeLocaleJs($locale)],
             'css' => [$this->assets->makeLocaleCss($locale)],
         ];
 
-        if ($mainCss) {
-            $compilers['css'][] = $mainCss;
-        }
-
         if ($this->app->inDebugMode()) {
             $this->commit(array_flatten($compilers));
+            $this->commit([ $dayCss, $nightCss ]);
+        }
+
+        $isAuto = $preference === 0;
+
+        if ($preference === 1 || $isAuto) {
+            $document->head[] = $this->generateTag($dayCss->getUrl(),  'light', $isAuto);
+        }
+
+        if ($preference === 2 || $isAuto) {
+            $document->head[] = $this->generateTag($nightCss->getUrl(), 'dark', $isAuto);
         }
 
         $document->js = array_merge($document->js, $this->getUrls($compilers['js']));
@@ -52,6 +53,31 @@ class Assets extends \Flarum\Frontend\Content\Assets
         $document->payload['fof-nightmode.assets.day'] = $dayCss->getUrl();
         $document->payload['fof-nightmode.assets.night'] = $nightCss->getUrl();
     }
+
+    protected  function generateTag(?string $url, string $type, string $auto)
+    {
+        return sprintf(
+            '<link rel="stylesheet" media="%s" class="nightmode-%s" href="%s" />',
+            $auto ? "(prefers-color-scheme: $type)" : '', $type, $url
+        );
+    }
+
+    protected function getPreference(Request $request)
+    {
+        /**
+         * @var User $actor
+         */
+        $actor = $request->getAttribute('actor');
+        $default = (int) $this->app['flarum.settings']->get('fof-nightmode.default_theme');
+
+        if ($actor->getPreference('fofNightMode_perDevice')) {
+            return (int) Arr::get($request->getCookieParams(), 'flarum_nightmode', $default);
+        } else {
+            return (int) $actor->getPreference('fofNightMode', $default);
+        }
+    }
+
+    // --- original ---
 
     private function commit(array $compilers)
     {
@@ -70,21 +96,5 @@ class Assets extends \Flarum\Frontend\Content\Assets
         return array_filter(array_map(function (CompilerInterface $compiler) {
             return $compiler->getUrl();
         }, $compilers));
-    }
-
-    protected function getPreference(Request $request)
-    {
-        /**
-         * @var User $actor
-         */
-        $actor = $request->getAttribute('actor');
-        $default = (int) $this->app['flarum.settings']->get('fof-nightmode.default_theme');
-        $preference = $actor->getPreference('fofNightMode', $default);
-
-        if ($actor->getPreference('fofNightMode_perDevice')) {
-            return null;
-        }
-
-        return $preference;
     }
 }

@@ -9,10 +9,9 @@ import Switch from 'flarum/components/Switch';
 
 import { setTheme } from '../common/setSelectedTheme';
 import fixInvalidThemeSetting from './fixInvalidThemeSetting';
+import * as perDevice from './helpers/perDeviceSetting';
 import getTheme from './getTheme';
-import { Themes, Constants } from '../common/config';
-
-const LocalStorageKey = Constants.localStorageKey;
+import Themes from '../common/Themes';
 
 // custom function for translations makes it a lot cleaner
 const trans = (key) => app.translator.trans(`fof-nightmode.forum.user.settings.${key}`);
@@ -27,10 +26,10 @@ export default function () {
             fixInvalidThemeSetting();
         }
 
-        let CurrentTheme = getTheme(app);
+        let currentTheme = getTheme();
 
-        if (typeof CurrentTheme !== 'number' && !CurrentTheme) {
-            CurrentTheme = Themes.DEFAULT();
+        if (typeof currentTheme !== 'number' && !currentTheme) {
+            currentTheme = Themes.DEFAULT();
         }
 
         items.add(
@@ -48,7 +47,7 @@ export default function () {
                         onchange: (checked) => {
                             if (checked) {
                                 // save current theme as this device's default
-                                localStorage.setItem(LocalStorageKey, CurrentTheme);
+                                perDevice.set(currentTheme);
                             }
 
                             user.savePreferences({
@@ -61,14 +60,13 @@ export default function () {
                         },
                     }),
                     Select.component({
-                        value: CurrentTheme,
-                        label: 'test',
+                        value: currentTheme,
                         key: 'selected_theme',
                         className: 'Settings-theme--input',
                         onchange: (e) => {
                             if (PerDevice) {
-                                localStorage.setItem(LocalStorageKey, e);
-                                m.redraw();
+                                perDevice.set(e);
+
                                 setTheme();
                                 return;
                             }
@@ -86,11 +84,11 @@ export default function () {
                         options: [trans('options.auto'), trans('options.day'), trans('options.night')],
                     }),
                     <p className="Settings-theme--selection_description">
-                        {CurrentTheme === Themes.AUTO
+                        {currentTheme === Themes.AUTO
                             ? trans('option_descriptions.auto')
-                            : CurrentTheme === Themes.LIGHT
+                            : currentTheme === Themes.LIGHT
                             ? trans('option_descriptions.day')
-                            : CurrentTheme === Themes.DARK
+                            : currentTheme === Themes.DARK
                             ? trans('option_descriptions.night')
                             : // prevents nasty paragraph switching
                               LoadingIndicator.component()}
