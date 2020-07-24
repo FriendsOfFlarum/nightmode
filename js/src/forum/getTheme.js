@@ -7,16 +7,17 @@ export default function getTheme() {
     const IsUsingPerDeviceSettings = user && !!user.preferences().fofNightMode_perDevice;
     const SelectedTheme = user && user.preferences().fofNightMode;
 
+    let value;
+
     if (IsUsingPerDeviceSettings) {
         // fetch through LS is per device enabled
-        return get();
+        value = get();
     } else {
         if (typeof SelectedTheme === 'number' && SelectedTheme !== -1) {
             // use user prefs
-            return SelectedTheme;
-        } else {
-            // pref is not valid
-            return Themes.DEFAULT();
+            value = SelectedTheme;
         }
     }
+
+    return typeof value === 'number' ? value : Themes.DEFAULT();
 }

@@ -1,7 +1,8 @@
 import { extend } from 'flarum/extend';
 
 import SettingsPage from 'flarum/components/SettingsPage';
-
+import Button from 'flarum/components/Button';
+import SessionDropdown from 'flarum/components/SessionDropdown';
 import LoadingIndicator from 'flarum/components/LoadingIndicator';
 import Select from 'flarum/components/Select';
 import FieldSet from 'flarum/components/FieldSet';
@@ -26,11 +27,7 @@ export default function () {
             fixInvalidThemeSetting();
         }
 
-        let currentTheme = getTheme();
-
-        if (typeof currentTheme !== 'number' && !currentTheme) {
-            currentTheme = Themes.DEFAULT();
-        }
+        const currentTheme = getTheme();
 
         items.add(
             'fof-nightmode',
@@ -97,6 +94,41 @@ export default function () {
                     </p>,
                 ],
             })
+        );
+    });
+
+    extend(SessionDropdown.prototype, 'items', function (items) {
+        if (!app.session.user) return;
+
+        const user = app.session.user;
+        const theme = getTheme();
+        const isLight = theme === Themes.LIGHT || (theme === Themes.AUTO && !window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+        // Add night mode link to session dropdown
+        items.add(
+            isLight ? 'nightmode' : 'daymode',
+            Button.component({
+                icon: `far fa-${isLight ? 'moon' : 'sun'}`,
+                children: app.translator.trans(`fof-nightmode.forum.${isLight ? 'night' : 'day'}`),
+                onclick: () => {
+                    const val = isLight ? Themes.DARK : Themes.LIGHT;
+
+                    if (!!user.preferences().fofNightMode_perDevice) {
+                        perDevice.set(val);
+                        setTheme();
+                        return;
+                    }
+
+                    user.savePreferences({
+                        fofNightMode: val,
+                    }).then(() => {
+                        // need to force-update selected theme (as it's only set
+                        // on a page load and redraw doesn't count as a apge load)
+                        setTheme();
+                    });
+                },
+            }),
+            -1
         );
     });
 }
