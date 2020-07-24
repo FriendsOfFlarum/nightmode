@@ -1,18 +1,18 @@
 import { extend } from 'flarum/extend';
 
 import SettingsPage from 'flarum/components/SettingsPage';
-
+import Button from 'flarum/components/Button';
+import SessionDropdown from 'flarum/components/SessionDropdown';
 import LoadingIndicator from 'flarum/components/LoadingIndicator';
 import Select from 'flarum/components/Select';
 import FieldSet from 'flarum/components/FieldSet';
 import Switch from 'flarum/components/Switch';
 
-import { setTheme } from './setSelectedTheme';
+import { setTheme } from '../common/setSelectedTheme';
 import fixInvalidThemeSetting from './fixInvalidThemeSetting';
+import * as perDevice from './helpers/perDeviceSetting';
 import getTheme from './getTheme';
-import { Themes, Constants } from '../common/config';
-
-const LocalStorageKey = Constants.localStorageKey;
+import Themes from '../common/Themes';
 
 // custom function for translations makes it a lot cleaner
 const trans = (key) => app.translator.trans(`fof-nightmode.forum.user.settings.${key}`);
@@ -27,7 +27,7 @@ export default function () {
             fixInvalidThemeSetting();
         }
 
-        const CurrentTheme = getTheme(app);
+        const currentTheme = getTheme();
 
         items.add(
             'fof-nightmode',
@@ -44,38 +44,28 @@ export default function () {
                         onchange: (checked) => {
                             if (checked) {
                                 // save current theme as this device's default
-                                localStorage.setItem(LocalStorageKey, CurrentTheme);
+                                perDevice.set(currentTheme);
+                            } else {
+                                perDevice.remove();
                             }
 
                             user.savePreferences({
                                 fofNightMode_perDevice: checked,
                             }).then(() => {
-                                if (checked) {
-                                    // need to force-update selected theme (as it's only set
-                                    // on a page load and redraw doesn't count as a page load)
-                                    setTheme();
-                                } else {
-                                    // set user theme to that of current device
-                                    user.savePreferences({
-                                        fofNightMode: Number.parseInt(CurrentTheme),
-                                    }).then(() => {
-                                        // need to force-update selected theme (as it's only set
-                                        // on a page load and redraw doesn't count as a page load)
-                                        setTheme();
-                                    });
-                                }
+                                // need to force-update selected theme (as it's only set
+                                // on a page load and redraw doesn't count as a page load)
+                                setTheme();
                             });
                         },
                     }),
                     Select.component({
-                        value: CurrentTheme || Themes.DEFAULT(),
-                        label: 'test',
+                        value: currentTheme,
                         key: 'selected_theme',
                         className: 'Settings-theme--input',
                         onchange: (e) => {
                             if (PerDevice) {
-                                localStorage.setItem(LocalStorageKey, e);
-                                m.redraw();
+                                perDevice.set(e);
+
                                 setTheme();
                                 return;
                             }
@@ -93,17 +83,52 @@ export default function () {
                         options: [trans('options.auto'), trans('options.day'), trans('options.night')],
                     }),
                     <p className="Settings-theme--selection_description">
-                        {CurrentTheme === Themes.AUTO
+                        {currentTheme === Themes.AUTO
                             ? trans('option_descriptions.auto')
-                            : CurrentTheme === Themes.LIGHT
+                            : currentTheme === Themes.LIGHT
                             ? trans('option_descriptions.day')
-                            : CurrentTheme === Themes.DARK
+                            : currentTheme === Themes.DARK
                             ? trans('option_descriptions.night')
                             : // prevents nasty paragraph switching
                               LoadingIndicator.component()}
                     </p>,
                 ],
             })
+        );
+    });
+
+    extend(SessionDropdown.prototype, 'items', function (items) {
+        if (!app.session.user) return;
+
+        const user = app.session.user;
+        const theme = getTheme();
+        const isLight = theme === Themes.LIGHT || (theme === Themes.AUTO && !window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+        // Add night mode link to session dropdown
+        items.add(
+            isLight ? 'nightmode' : 'daymode',
+            Button.component({
+                icon: `far fa-${isLight ? 'moon' : 'sun'}`,
+                children: app.translator.trans(`fof-nightmode.forum.${isLight ? 'night' : 'day'}`),
+                onclick: () => {
+                    const val = isLight ? Themes.DARK : Themes.LIGHT;
+
+                    if (!!user.preferences().fofNightMode_perDevice) {
+                        perDevice.set(val);
+                        setTheme();
+                        return;
+                    }
+
+                    user.savePreferences({
+                        fofNightMode: val,
+                    }).then(() => {
+                        // need to force-update selected theme (as it's only set
+                        // on a page load and redraw doesn't count as a apge load)
+                        setTheme();
+                    });
+                },
+            }),
+            -1
         );
     });
 }

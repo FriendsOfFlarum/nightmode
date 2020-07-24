@@ -1,21 +1,23 @@
-import { Themes, Constants } from '../common/config';
+import Themes from '../common/Themes';
+import { get } from './helpers/perDeviceSetting';
 
-export default function getTheme(app) {
-    const { user } = app.session;
+export default function getTheme() {
+    const user = app.session.user;
 
-    const IsUsingPerDeviceSettings = !!user.preferences().fofNightMode_perDevice;
-    const SelectedTheme = user.preferences().fofNightMode;
+    const IsUsingPerDeviceSettings = user && !!user.preferences().fofNightMode_perDevice;
+    const SelectedTheme = user && user.preferences().fofNightMode;
+
+    let value;
 
     if (IsUsingPerDeviceSettings) {
         // fetch through LS is per device enabled
-        return parseInt(localStorage.getItem(Constants.localStorageKey));
+        value = get();
     } else {
         if (typeof SelectedTheme === 'number' && SelectedTheme !== -1) {
             // use user prefs
-            return SelectedTheme;
-        } else {
-            // pref is not valid
-            return Themes.DEFAULT();
+            value = SelectedTheme;
         }
     }
+
+    return typeof value === 'number' ? value : Themes.DEFAULT();
 }

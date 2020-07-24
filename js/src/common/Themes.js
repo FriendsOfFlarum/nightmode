@@ -15,10 +15,4 @@ const Themes = {
     DEFAULT: () => Number.parseInt(app.data['fof-nightmode.default_theme']) || 0,
 };
 
-const Constants = {
-    localStorageKey: `fofNightMode_deviceTheme`,
-};
-
 export default Themes;
-
-export { Themes, Constants };
