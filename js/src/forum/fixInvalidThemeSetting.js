@@ -5,20 +5,6 @@
     E.g. if a user manually edited their cookies to
     set their theme to an invalid value, this theme would
     detect that, and reset it to 0 (auto).
-
-    I'm sure there are still cases where users can break this
-    (maybe faking XHRs to Flarum and setting their user prefs
-    to use an invalid value) bt those are extremes which
-    wouldn't happen unless someone's being an idiot. If someone
-    if being an idiot, they deserve to lose Flarum .
-
-    :)
-
-    ---
-
-    David Wheatley
-    GitHub: davwheat || giffgaff: mrjeeves
-    (not a giffgaff employee, though)
 */
 
 import Themes from '../common/Themes';
