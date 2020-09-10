@@ -59,7 +59,6 @@ export default function () {
                 }, trans('device_specific_setting_checkbox')),
                 Select.component({
                     value: currentTheme,
-                    key: 'selected_theme',
                     className: 'Settings-theme--input',
                     onchange: (e) => {
                         if (PerDevice) {
