@@ -6,7 +6,7 @@ import fixInvalidThemeSetting from '../forum/fixInvalidThemeSetting';
 import getTheme from '../forum/getTheme';
 
 export default () => {
-    extend(Page.prototype, 'init', setTheme);
+    extend(Page.prototype, 'oninit', setTheme);
 };
 
 export function setTheme() {
