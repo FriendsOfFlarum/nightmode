@@ -21,7 +21,6 @@ class Assets extends \Flarum\Frontend\Content\Assets
 {
     /**
      * @param Document $document
-     *
      * @param Request  $request
      */
     public function __invoke(Document $document, Request $request)
@@ -63,6 +62,7 @@ class Assets extends \Flarum\Frontend\Content\Assets
      * @param string|null $url
      * @param string      $type
      * @param string      $auto
+     *
      * @return string
      */
     protected function generateTag(?string $url, string $type, string $auto)
