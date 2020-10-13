@@ -16,6 +16,9 @@ use Illuminate\Support\Arr;
 
 class HideBody
 {
+    /**
+     * @param Document $document
+     */
     public function __invoke(Document $document)
     {
         $isDay = in_array(Arr::get($document->payload, 'fof-nightmode.assets.day'), $document->css);
