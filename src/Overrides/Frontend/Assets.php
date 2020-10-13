@@ -51,10 +51,11 @@ class Assets
 
     /**
      * Assets constructor.
-     * @param string $name
-     * @param Filesystem $assetsDir
+     *
+     * @param string      $name
+     * @param Filesystem  $assetsDir
      * @param string|null $cacheDir
-     * @param array|null $lessImportDirs
+     * @param array|null  $lessImportDirs
      */
     public function __construct(string $name, Filesystem $assetsDir, string $cacheDir = null, array $lessImportDirs = null)
     {
@@ -123,9 +124,9 @@ class Assets
 
     /**
      * @param CompilerInterface $compiler
-     * @param string $type
-     * @param string|null $locale
-     * @param mixed ...$additionalSources
+     * @param string            $type
+     * @param string|null       $locale
+     * @param mixed             ...$additionalSource
      */
     private function populate(CompilerInterface $compiler, string $type, string $locale = null, ...$additionalSources)
     {
