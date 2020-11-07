@@ -20,6 +20,10 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 class Assets extends \Flarum\Frontend\Content\Assets
 {
+    /**
+     * @param Document $document
+     * @param Request  $request
+     */
     public function __invoke(Document $document, Request $request)
     {
         $locale = $request->getAttribute('locale');
@@ -55,6 +59,13 @@ class Assets extends \Flarum\Frontend\Content\Assets
         $document->payload['fof-nightmode.assets.night'] = $nightCss->getUrl();
     }
 
+    /**
+     * @param string|null $url
+     * @param string      $type
+     * @param string      $auto
+     *
+     * @return string
+     */
     protected function generateTag(?string $url, string $type, string $auto)
     {
         return sprintf(
@@ -65,6 +76,11 @@ class Assets extends \Flarum\Frontend\Content\Assets
         );
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return int
+     */
     protected function getPreference(Request $request)
     {
         /**
@@ -75,13 +91,16 @@ class Assets extends \Flarum\Frontend\Content\Assets
 
         if ($actor->getPreference('fofNightMode_perDevice')) {
             return (int) Arr::get($request->getCookieParams(), 'flarum_nightmode', $default);
-        } else {
-            return (int) $actor->getPreference('fofNightMode', $default);
         }
+
+        return (int) $actor->getPreference('fofNightMode', $default);
     }
 
     // --- original ---
 
+    /**
+     * @param array $compilers
+     */
     private function commit(array $compilers)
     {
         foreach ($compilers as $compiler) {
