@@ -23,18 +23,18 @@ function populateThemes() {
 
 export default () => {
     app.extensionSettings['fof-nightmode'] = () =>
-        app.modal.show(
-            new SettingsModal({
+        app.modal.show(SettingsModal, {
                 title: app.translator.trans(`${transPrefix}.title`),
                 size: 'small',
                 className: 'fof-nightmode',
-                items: [
+                items: s => [
                     <div className="Form-group">
                         <label>{app.translator.trans(`${transPrefix}.default_theme`)}</label>
 
                         {SelectItem.component({
                             options: populateThemes(),
-                            key: 'fof-nightmode.default_theme',
+                            name: 'fof-nightmode.default_theme',
+                            setting: s,
                             required: false,
                             cast: (inVar) => {
                                 return inVar === '' ? 0 : inVar;
@@ -46,6 +46,6 @@ export default () => {
 
                     <p style="color:#f00c;font-weight:bold;">{app.translator.trans(`${transPrefix}.default_theme_important`)}</p>,
                 ],
-            })
+            }
         );
 };
