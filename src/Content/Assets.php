@@ -11,6 +11,7 @@
 
 namespace FoF\NightMode\Content;
 
+use Flarum\Foundation\Application;
 use Flarum\Frontend\Compiler\CompilerInterface;
 use Flarum\Frontend\Document;
 use Flarum\User\User;
@@ -32,7 +33,7 @@ class Assets extends \Flarum\Frontend\Content\Assets
             'css' => [$this->assets->makeLocaleCss($locale)],
         ];
 
-        if ($this->app->inDebugMode()) {
+        if (app(Application::class)->inDebugMode()) {
             $this->commit(Arr::flatten($compilers));
             $this->commit([$dayCss, $nightCss]);
         }
