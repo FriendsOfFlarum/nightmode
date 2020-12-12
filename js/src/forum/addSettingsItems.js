@@ -31,66 +31,72 @@ export default function () {
 
         items.add(
             'fof-nightmode',
-            FieldSet.component({
-                label: trans('heading'),
-                className: 'Settings-theme',
-            }, [
-                <p className="description">{trans('description')}</p>,
-                <p className="description">{trans('description2')}</p>,
-                Switch.component({
-                    className: 'Settings-theme--per_device_cb',
-                    state: PerDevice,
-                    onchange: (checked) => {
-                        if (checked) {
-                            // save current theme as this device's default
-                            perDevice.set(currentTheme);
-                        } else {
-                            perDevice.remove();
-                        }
+            FieldSet.component(
+                {
+                    label: trans('heading'),
+                    className: 'Settings-theme',
+                },
+                [
+                    <p className="description">{trans('description')}</p>,
+                    <p className="description">{trans('description2')}</p>,
+                    Switch.component(
+                        {
+                            className: 'Settings-theme--per_device_cb',
+                            state: PerDevice,
+                            onchange: (checked) => {
+                                if (checked) {
+                                    // save current theme as this device's default
+                                    perDevice.set(currentTheme);
+                                } else {
+                                    perDevice.remove();
+                                }
 
-                        user.savePreferences({
-                            fofNightMode_perDevice: checked,
-                        }).then(() => {
-                            // need to force-update selected theme (as it's only set
-                            // on a page load and redraw doesn't count as a page load)
-                            setTheme();
-                        });
-                    },
-                }, trans('device_specific_setting_checkbox')),
-                Select.component({
-                    value: currentTheme,
-                    className: 'Settings-theme--input',
-                    onchange: (e) => {
-                        if (PerDevice) {
-                            perDevice.set(e);
+                                user.savePreferences({
+                                    fofNightMode_perDevice: checked,
+                                }).then(() => {
+                                    // need to force-update selected theme (as it's only set
+                                    // on a page load and redraw doesn't count as a page load)
+                                    setTheme();
+                                });
+                            },
+                        },
+                        trans('device_specific_setting_checkbox')
+                    ),
+                    Select.component({
+                        value: currentTheme,
+                        className: 'Settings-theme--input',
+                        onchange: (e) => {
+                            if (PerDevice) {
+                                perDevice.set(e);
 
-                            setTheme();
-                            return;
-                        }
+                                setTheme();
+                                return;
+                            }
 
-                        user.savePreferences({
-                            fofNightMode: Number.parseInt(e),
-                        }).then(() => {
-                            m.redraw();
+                            user.savePreferences({
+                                fofNightMode: Number.parseInt(e),
+                            }).then(() => {
+                                m.redraw();
 
-                            // need to force-update selected theme (as it's only set
-                            // on a page load and redraw doesn't count as a apge load)
-                            setTheme();
-                        });
-                    },
-                    options: [trans('options.auto'), trans('options.day'), trans('options.night')],
-                }),
-                <p className="Settings-theme--selection_description">
-                    {currentTheme === Themes.AUTO
-                        ? trans('option_descriptions.auto')
-                        : currentTheme === Themes.LIGHT
+                                // need to force-update selected theme (as it's only set
+                                // on a page load and redraw doesn't count as a apge load)
+                                setTheme();
+                            });
+                        },
+                        options: [trans('options.auto'), trans('options.day'), trans('options.night')],
+                    }),
+                    <p className="Settings-theme--selection_description">
+                        {currentTheme === Themes.AUTO
+                            ? trans('option_descriptions.auto')
+                            : currentTheme === Themes.LIGHT
                             ? trans('option_descriptions.day')
                             : currentTheme === Themes.DARK
-                                ? trans('option_descriptions.night')
-                                : // prevents nasty paragraph switching
-                                LoadingIndicator.component()}
-                </p>,
-            ])
+                            ? trans('option_descriptions.night')
+                            : // prevents nasty paragraph switching
+                              LoadingIndicator.component()}
+                    </p>,
+                ]
+            )
         );
     });
 
@@ -104,26 +110,29 @@ export default function () {
         // Add night mode link to session dropdown
         items.add(
             isLight ? 'nightmode' : 'daymode',
-            Button.component({
-                icon: `far fa-${isLight ? 'moon' : 'sun'}`,
-                onclick: () => {
-                    const val = isLight ? Themes.DARK : Themes.LIGHT;
+            Button.component(
+                {
+                    icon: `far fa-${isLight ? 'moon' : 'sun'}`,
+                    onclick: () => {
+                        const val = isLight ? Themes.DARK : Themes.LIGHT;
 
-                    if (!!user.preferences().fofNightMode_perDevice) {
-                        perDevice.set(val);
-                        setTheme();
-                        return;
-                    }
+                        if (!!user.preferences().fofNightMode_perDevice) {
+                            perDevice.set(val);
+                            setTheme();
+                            return;
+                        }
 
-                    user.savePreferences({
-                        fofNightMode: val,
-                    }).then(() => {
-                        // need to force-update selected theme (as it's only set
-                        // on a page load and redraw doesn't count as a apge load)
-                        setTheme();
-                    });
+                        user.savePreferences({
+                            fofNightMode: val,
+                        }).then(() => {
+                            // need to force-update selected theme (as it's only set
+                            // on a page load and redraw doesn't count as a apge load)
+                            setTheme();
+                        });
+                    },
                 },
-            }, app.translator.trans(`fof-nightmode.forum.${isLight ? 'night' : 'day'}`)),
+                app.translator.trans(`fof-nightmode.forum.${isLight ? 'night' : 'day'}`)
+            ),
             -1
         );
     });
