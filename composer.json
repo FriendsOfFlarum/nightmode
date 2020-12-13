@@ -14,21 +14,25 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Shahiem Seymor"
-        },
-        {
             "name": "Christian Lopez",
             "email": "Lopez.T.Christian@gmail.com"
         }
     ],
     "support": {
         "issues": "https://github.com/FriendsOfFlarum/nightmode/issues",
-        "source": "https://github.com/FriendsOfFlarum/nightmode"
+        "source": "https://github.com/FriendsOfFlarum/nightmode",
+        "forum": "https://discuss.flarum.org/d/21492"
     },
+    "homepage": "https://friendsofflarum.org",
+    "funding": [
+        {
+            "type": "website",
+            "url": "https://opencollective.com/fof/donate"
+        }
+    ],
     "require": {
-        "flarum/core": "^0.1.0-beta.14",
-        "fof/components": ">=0.2.0",
-        "fof/extend": ">=0.3.0"
+        "flarum/core": "^0.1.0-beta.15",
+        "fof/extend": ">=0.3.1"
     },
     "replace": {
         "reflar/nightmode": "*"
@@ -36,6 +40,7 @@
     "extra": {
         "flarum-extension": {
             "title": "FoF Night Mode",
+            "category": "feature",
             "icon": {
                 "name": "far fa-moon",
                 "backgroundColor": "#e74c3c",
