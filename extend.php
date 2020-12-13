@@ -18,13 +18,13 @@ use FoF\Extend\Extend as FoFExtend;
 
 return [
     (new Extend\Frontend('forum'))
-        ->js(__DIR__.'/js/dist/forum.js')
+        ->js(__DIR__ . '/js/dist/forum.js')
         ->content(Content\HideBody::class),
     (new Extend\Frontend('admin'))
-        ->js(__DIR__.'/js/dist/admin.js')
+        ->js(__DIR__ . '/js/dist/admin.js')
         ->content(Content\HideBody::class),
 
-    new Extend\Locales(__DIR__.'/resources/locale'),
+    new Extend\Locales(__DIR__ . '/resources/locale'),
 
     (new FoFExtend\ExtensionSettings())
         ->addKey('fof-nightmode.default_theme'),
@@ -34,8 +34,8 @@ return [
     },
 
     (new Extend\User())
-        ->registerPreference('fofNightMode', function ($value) {
+        ->registerPreference('fofNightMode', null, function ($value) {
             return (int) app(SettingsRepositoryInterface::class)->get('fof-nightmode.default_theme', 0);
-        }, false)
+        })
         ->registerPreference('fofNightMode_perDevice', null, false),
 ];
