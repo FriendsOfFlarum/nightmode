@@ -35,7 +35,10 @@ return [
 
     (new Extend\User())
         ->registerPreference('fofNightMode', null, function ($value) {
-            return (int) app(SettingsRepositoryInterface::class)->get('fof-nightmode.default_theme', 0);
+            if ($value === '' || $value === null) {
+                $value = app(SettingsRepositoryInterface::class)->get('fof-nightmode.default_theme', 0);
+            }
+            return (int) $value;
         })
         ->registerPreference('fofNightMode_perDevice', null, false),
 ];

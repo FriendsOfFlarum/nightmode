@@ -90,10 +90,10 @@ class Assets extends \Flarum\Frontend\Content\Assets
         $default = (int) app('flarum.settings')->get('fof-nightmode.default_theme');
 
         if ($actor->getPreference('fofNightMode_perDevice')) {
-            return (int) Arr::get($request->getCookieParams(), 'flarum_nightmode', $default);
+            return Arr::get($request->getCookieParams(), 'flarum_nightmode', $default);
         }
 
-        return (int) $actor->getPreference('fofNightMode', $default);
+        return $actor->getPreference('fofNightMode', $default);
     }
 
     // --- original ---
