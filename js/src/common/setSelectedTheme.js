@@ -55,13 +55,30 @@ export function setStyle(type) {
     if (light && dark) {
         if (getTheme() === Themes.AUTO) return;
 
-        const el = type === 'day' ? dark : light;
-        const current = type === 'day' ? light : dark;
+        let newLink = document.createElement('link');
 
-        el.remove();
+        // onload on link tags not supported in all browsers
+        // so we should check it is present in the user's
+        // current browser
+        if ('onload' in newLink) {
+            // if it is, only remove the old link tags after the new
+            // one has finished loading (prevents flash of unstyled
+            // content)
+            newLink.onload = function () {
+                light.remove();
+                dark.remove();
+            };
+        } else {
+            // if it isn't, just remove the old link tags immediately
+            light.remove();
+            dark.remove();
+        }
 
-        current.setAttribute('media', '');
-        current.className = 'nightmode';
+        newLink.rel = 'stylesheet';
+        newLink.className = 'nightmode';
+        newLink.href = getUrls()[type];
+
+        document.head.append(newLink);
     } else {
         const el = light || dark || document.querySelector('link.nightmode[rel=stylesheet]');
 
