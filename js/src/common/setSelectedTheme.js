@@ -53,7 +53,7 @@ export function setStyle(type) {
     const dark = document.querySelector('link.nightmode-dark[rel=stylesheet]');
 
     if (light && dark) {
-        if (getTheme() === 0) return;
+        if (getTheme() === Themes.AUTO) return;
 
         const el = type === 'day' ? dark : light;
         const current = type === 'day' ? light : dark;
