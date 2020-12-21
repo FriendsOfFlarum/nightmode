@@ -15,17 +15,18 @@ function populateThemes() {
 }
 
 app.initializers.add('fof-nightmode', () => {
-    app.extensionData.for('fof-nightmode')
-    .registerSetting({
-        label: app.translator.trans('fof-nightmode.admin.settings.modal.default_theme'),
-        setting: 'fof-nightmode.default_theme',
-        type: 'select',
-        options: populateThemes()
-    })
-    .registerSetting({
-        label: app.translator.trans('fof-nightmode.admin.settings.modal.default_theme_helper'),
-        type: 'hidden',
-    });
-    
+    app.extensionData
+        .for('fof-nightmode')
+        .registerSetting({
+            label: app.translator.trans('fof-nightmode.admin.settings.modal.default_theme'),
+            setting: 'fof-nightmode.default_theme',
+            type: 'select',
+            options: populateThemes(),
+        })
+        .registerSetting({
+            label: app.translator.trans('fof-nightmode.admin.settings.modal.default_theme_helper'),
+            type: 'hidden',
+        });
+
     setSelectedTheme();
 });
