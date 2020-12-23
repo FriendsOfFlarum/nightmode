@@ -1,6 +1,6 @@
 <?php
 
-namespace Flarum\NightMode;
+namespace FoF\NightMode;
 
 use Flarum\Extend;
 use Flarum\Foundation\Application;
@@ -18,7 +18,7 @@ return [
         ->css(__DIR__ . '/resources/less/admin.less')
         ->content(Content\HideBody::class),
 
-    new Extend\Locales(__DIR__ . '/locale'),
+    new Extend\Locales(__DIR__ . '/resources/locale'),
 
     (new FlarumExtend\ExtensionSettings())
         ->addKey('fof-nightmode.default_theme'),
