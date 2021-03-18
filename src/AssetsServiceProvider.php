@@ -19,12 +19,12 @@ class AssetsServiceProvider extends AbstractServiceProvider
 {
     public function register()
     {
-        $this->app->extend(AssetsContent::class, function (AssetsContent $original) {
-            return app(Content\Assets::class);
+        $this->container->extend(AssetsContent::class, function (AssetsContent $original) {
+            return resolve(Content\Assets::class);
         });
 
-        $this->app->extend(Recompile::class, function (Recompile $original) {
-            return app(Frontend\RecompileFrontendAssets::class);
+        $this->container->extend(Recompile::class, function (Recompile $original) {
+            return resolve(Frontend\RecompileFrontendAssets::class);
         });
     }
 }

@@ -1,5 +1,5 @@
-import { extend } from 'flarum/extend';
-import Page from 'flarum/components/Page';
+import { extend } from 'flarum/common/extend';
+import Page from 'flarum/common/components/Page';
 
 import Themes from './Themes';
 import fixInvalidThemeSetting from '../forum/fixInvalidThemeSetting';

@@ -37,7 +37,7 @@ class Assets extends \Flarum\Frontend\Content\Assets
             'css' => [$this->assets->makeLocaleCss($locale)],
         ];
 
-        if (app(Application::class)->inDebugMode()) {
+        if (resolve(Application::class)->inDebugMode()) {
             $this->commit(Arr::flatten($compilers));
             $this->commit([$dayCss, $nightCss]);
         }
@@ -87,7 +87,7 @@ class Assets extends \Flarum\Frontend\Content\Assets
          * @var User $actor
          */
         $actor = $request->getAttribute('actor');
-        $default = (int) app('flarum.settings')->get('fof-nightmode.default_theme');
+        $default = (int) resolve('flarum.settings')->get('fof-nightmode.default_theme');
 
         if ($actor->getPreference('fofNightMode_perDevice')) {
             return (int) Arr::get($request->getCookieParams(), 'flarum_nightmode', $default);

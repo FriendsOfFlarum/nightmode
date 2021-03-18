@@ -1,12 +1,12 @@
-import { extend } from 'flarum/extend';
+import { extend } from 'flarum/common/extend';
 
-import SettingsPage from 'flarum/components/SettingsPage';
-import Button from 'flarum/components/Button';
-import SessionDropdown from 'flarum/components/SessionDropdown';
-import LoadingIndicator from 'flarum/components/LoadingIndicator';
-import Select from 'flarum/components/Select';
-import FieldSet from 'flarum/components/FieldSet';
-import Switch from 'flarum/components/Switch';
+import SettingsPage from 'flarum/common/components/SettingsPage';
+import Button from 'flarum/common/components/Button';
+import SessionDropdown from 'flarum/common/components/SessionDropdown';
+import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
+import Select from 'flarum/common/components/Select';
+import FieldSet from 'flarum/common/components/FieldSet';
+import Switch from 'flarum/common/components/Switch';
 
 import { setTheme } from '../common/setSelectedTheme';
 import fixInvalidThemeSetting from './fixInvalidThemeSetting';
