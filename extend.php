@@ -12,7 +12,6 @@
 namespace FoF\NightMode;
 
 use Flarum\Extend;
-use Flarum\Foundation\Application;
 use Flarum\Settings\SettingsRepositoryInterface;
 use FoF\Extend\Extend as FoFExtend;
 
@@ -29,9 +28,8 @@ return [
     (new FoFExtend\ExtensionSettings())
         ->addKey('fof-nightmode.default_theme'),
 
-    function (Application $app) {
-        $app->register(AssetsServiceProvider::class);
-    },
+    (new Extend\ServiceProvider())
+        ->register(AssetsServiceProvider::class),
 
     (new Extend\User())
         ->registerPreference('fofNightMode', function ($value) {
