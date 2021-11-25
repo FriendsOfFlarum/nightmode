@@ -1,12 +1,10 @@
 <?php
 
 /*
- * This file is part of fof/nightmode.
+ * This file is part of Flarum.
  *
- * Copyright (c) FriendsOfFlarum.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * For detailed copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
  */
 
 namespace Flarum\Frontend;
@@ -17,16 +15,21 @@ use Flarum\Frontend\Compiler\LessCompiler;
 use Flarum\Frontend\Compiler\Source\SourceCollector;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
+/**
+ * A factory class for creating frontend asset compilers.
+ *
+ * @internal
+ */
 class Assets
 {
     /**
      * @var array
      */
     public $sources = [
-        'js'        => [],
-        'css'       => [],
-        'localeJs'  => [],
-        'localeCss' => [],
+        'js' => [],
+        'css' => [],
+        'localeJs' => [],
+        'localeCss' => []
     ];
 
     /**
@@ -50,13 +53,15 @@ class Assets
     protected $lessImportDirs;
 
     /**
-     * Assets constructor.
-     *
-     * @param string      $name
-     * @param Filesystem  $assetsDir
-     * @param string|null $cacheDir
-     * @param array|null  $lessImportDirs
+     * @var array
      */
+    protected $lessImportOverrides = [];
+
+    /**
+     * @var array
+     */
+    protected $fileSourceOverrides = [];
+
     public function __construct(string $name, Filesystem $assetsDir, string $cacheDir = null, array $lessImportDirs = null)
     {
         $this->name = $name;
@@ -65,11 +70,6 @@ class Assets
         $this->lessImportDirs = $lessImportDirs;
     }
 
-    /**
-     * @param $sources
-     *
-     * @return $this
-     */
     public function js($sources)
     {
         $this->addSources('js', $sources);
@@ -77,11 +77,6 @@ class Assets
         return $this;
     }
 
-    /**
-     * @param $callback
-     *
-     * @return $this
-     */
     public function css($callback)
     {
         $this->addSources('css', $callback);
@@ -89,11 +84,6 @@ class Assets
         return $this;
     }
 
-    /**
-     * @param $callback
-     *
-     * @return $this
-     */
     public function localeJs($callback)
     {
         $this->addSources('localeJs', $callback);
@@ -101,11 +91,6 @@ class Assets
         return $this;
     }
 
-    /**
-     * @param $callback
-     *
-     * @return $this
-     */
     public function localeCss($callback)
     {
         $this->addSources('localeCss', $callback);
@@ -113,45 +98,29 @@ class Assets
         return $this;
     }
 
-    /**
-     * @param $type
-     * @param $callback
-     */
     private function addSources($type, $callback)
     {
         $this->sources[$type][] = $callback;
     }
 
-    /**
-     * @param CompilerInterface $compiler
-     * @param string            $type
-     * @param string|null       $locale
-     * @param mixed             ...$additionalSource
-     */
-    private function populate(CompilerInterface $compiler, string $type, string $locale = null, ...$additionalSources)
+    private function populate(CompilerInterface $compiler, string $type, string $locale = null)
     {
-        $compiler->addSources(function (SourceCollector $sources) use ($type, $locale, $additionalSources) {
-            foreach (array_merge($this->sources[$type], $additionalSources) as $callback) {
+        $compiler->addSources(function (SourceCollector $sources) use ($type, $locale) {
+            foreach ($this->sources[$type] as $callback) {
                 $callback($sources, $locale);
             }
         });
     }
 
-    /**
-     * @return JsCompiler
-     */
     public function makeJs(): JsCompiler
     {
-        $compiler = new JsCompiler($this->assetsDir, $this->name.'.js');
+        $compiler = $this->makeJsCompiler($this->name.'.js');
 
         $this->populate($compiler, 'js');
 
         return $compiler;
     }
 
-    /**
-     * @return LessCompiler
-     */
     public function makeCss(): LessCompiler
     {
         $compiler = $this->makeLessCompiler($this->name.'.css');
@@ -162,10 +131,6 @@ class Assets
     }
 
     // ++++++
-
-    /**
-     * @return LessCompiler
-     */
     public function makeDarkCss(): LessCompiler
     {
         $compiler = $this->makeLessCompiler($this->name.'-dark.css');
@@ -179,25 +144,15 @@ class Assets
         return $compiler;
     }
 
-    /**
-     * @param string $locale
-     *
-     * @return JsCompiler
-     */
     public function makeLocaleJs(string $locale): JsCompiler
     {
-        $compiler = new JsCompiler($this->assetsDir, $this->name.'-'.$locale.'.js');
+        $compiler = $this->makeJsCompiler($this->name.'-'.$locale.'.js');
 
         $this->populate($compiler, 'localeJs', $locale);
 
         return $compiler;
     }
 
-    /**
-     * @param string $locale
-     *
-     * @return LessCompiler
-     */
     public function makeLocaleCss(string $locale): LessCompiler
     {
         $compiler = $this->makeLessCompiler($this->name.'-'.$locale.'.css');
@@ -207,11 +162,11 @@ class Assets
         return $compiler;
     }
 
-    /**
-     * @param string $filename
-     *
-     * @return LessCompiler
-     */
+    protected function makeJsCompiler(string $filename)
+    {
+        return new JsCompiler($this->assetsDir, $filename);
+    }
+
     protected function makeLessCompiler(string $filename): LessCompiler
     {
         $compiler = new LessCompiler($this->assetsDir, $filename);
@@ -224,70 +179,64 @@ class Assets
             $compiler->setImportDirs($this->lessImportDirs);
         }
 
+        if ($this->lessImportOverrides) {
+            $compiler->setLessImportOverrides($this->lessImportOverrides);
+        }
+
+        if ($this->fileSourceOverrides) {
+            $compiler->setFileSourceOverrides($this->fileSourceOverrides);
+        }
+
         return $compiler;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     */
     public function setName(string $name)
     {
         $this->name = $name;
     }
 
-    /**
-     * @return Filesystem
-     */
     public function getAssetsDir(): Filesystem
     {
         return $this->assetsDir;
     }
 
-    /**
-     * @param Filesystem $assetsDir
-     */
     public function setAssetsDir(Filesystem $assetsDir)
     {
         $this->assetsDir = $assetsDir;
     }
 
-    /**
-     * @return string|null
-     */
     public function getCacheDir(): ?string
     {
         return $this->cacheDir;
     }
 
-    /**
-     * @param string|null $cacheDir
-     */
     public function setCacheDir(?string $cacheDir)
     {
         $this->cacheDir = $cacheDir;
     }
 
-    /**
-     * @return array
-     */
     public function getLessImportDirs(): array
     {
         return $this->lessImportDirs;
     }
 
-    /**
-     * @param array $lessImportDirs
-     */
     public function setLessImportDirs(array $lessImportDirs)
     {
         $this->lessImportDirs = $lessImportDirs;
+    }
+
+    public function addLessImportOverrides(array $lessImportOverrides)
+    {
+        $this->lessImportOverrides = array_merge($this->lessImportOverrides, $lessImportOverrides);
+    }
+
+    public function addFileSourceOverrides(array $fileSourceOverrides)
+    {
+        $this->fileSourceOverrides = array_merge($this->fileSourceOverrides, $fileSourceOverrides);
     }
 }
