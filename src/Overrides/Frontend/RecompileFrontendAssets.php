@@ -1,12 +1,10 @@
 <?php
 
 /*
- * This file is part of fof/nightmode.
+ * This file is part of Flarum.
  *
- * Copyright (c) FriendsOfFlarum.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * For detailed copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
  */
 
 namespace Flarum\Frontend;
@@ -14,6 +12,9 @@ namespace Flarum\Frontend;
 use Flarum\Locale\LocaleManager;
 use Flarum\Settings\Event\Saved;
 
+/**
+ * @internal
+ */
 class RecompileFrontendAssets
 {
     /**
@@ -27,7 +28,7 @@ class RecompileFrontendAssets
     protected $locales;
 
     /**
-     * @param Assets        $assets
+     * @param Assets $assets
      * @param LocaleManager $locales
      */
     public function __construct(Assets $assets, LocaleManager $locales)
@@ -36,9 +37,6 @@ class RecompileFrontendAssets
         $this->locales = $locales;
     }
 
-    /**
-     * @param Saved $event
-     */
     public function whenSettingsSaved(Saved $event)
     {
         if (preg_grep('/^theme_/i', array_keys($event->settings))) {
