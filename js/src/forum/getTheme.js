@@ -1,4 +1,3 @@
-import app from 'flarum/forum/app';
 import Themes from '../common/Themes';
 import { get } from './helpers/perDeviceSetting';
 
