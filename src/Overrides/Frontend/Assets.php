@@ -1,10 +1,12 @@
 <?php
 
 /*
- * This file is part of Flarum.
+ * This file is part of fof/nightmode.
  *
- * For detailed copyright and license information, please view the
- * LICENSE file that was distributed with this source code.
+ * Copyright (c) FriendsOfFlarum.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Flarum\Frontend;
@@ -26,10 +28,10 @@ class Assets
      * @var array
      */
     public $sources = [
-        'js' => [],
-        'css' => [],
-        'localeJs' => [],
-        'localeCss' => []
+        'js'        => [],
+        'css'       => [],
+        'localeJs'  => [],
+        'localeCss' => [],
     ];
 
     /**
@@ -103,10 +105,10 @@ class Assets
         $this->sources[$type][] = $callback;
     }
 
-    private function populate(CompilerInterface $compiler, string $type, string $locale = null)
+    private function populate(CompilerInterface $compiler, string $type, string $locale = null, ...$additionalSources)
     {
-        $compiler->addSources(function (SourceCollector $sources) use ($type, $locale) {
-            foreach ($this->sources[$type] as $callback) {
+        $compiler->addSources(function (SourceCollector $sources) use ($additionalSources, $type, $locale) {
+            foreach (array_merge($this->sources[$type], $additionalSources) as $callback) {
                 $callback($sources, $locale);
             }
         });

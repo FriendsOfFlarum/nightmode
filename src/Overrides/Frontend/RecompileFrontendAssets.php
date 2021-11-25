@@ -1,10 +1,12 @@
 <?php
 
 /*
- * This file is part of Flarum.
+ * This file is part of fof/nightmode.
  *
- * For detailed copyright and license information, please view the
- * LICENSE file that was distributed with this source code.
+ * Copyright (c) FriendsOfFlarum.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Flarum\Frontend;
@@ -28,7 +30,7 @@ class RecompileFrontendAssets
     protected $locales;
 
     /**
-     * @param Assets $assets
+     * @param Assets        $assets
      * @param LocaleManager $locales
      */
     public function __construct(Assets $assets, LocaleManager $locales)
