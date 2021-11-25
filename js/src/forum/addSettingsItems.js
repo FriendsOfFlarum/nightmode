@@ -1,3 +1,4 @@
+import app from 'flarum/forum/app';
 import { extend } from 'flarum/common/extend';
 
 import SettingsPage from 'flarum/common/components/SettingsPage';

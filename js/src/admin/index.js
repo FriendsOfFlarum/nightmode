@@ -1,3 +1,4 @@
+import app from 'flarum/admin/app';
 import setSelectedTheme from '../common/setSelectedTheme';
 import Themes from '../common/Themes';
 
