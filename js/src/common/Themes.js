@@ -7,12 +7,12 @@
 */
 
 const Themes = {
-    AUTO: 0,
-    LIGHT: 1,
-    DARK: 2,
+  AUTO: 0,
+  LIGHT: 1,
+  DARK: 2,
 
-    // adds an "ultra default" of 0 if the admins don't set a default tsk tsk tsk
-    DEFAULT: () => Number.parseInt(app.data['fof-nightmode.default_theme']) || 0,
+  // adds an "ultra default" of 0 if the admins don't set a default tsk tsk tsk
+  DEFAULT: () => Number.parseInt(app.data['fof-nightmode.default_theme']) || 0,
 };
 
 export default Themes;

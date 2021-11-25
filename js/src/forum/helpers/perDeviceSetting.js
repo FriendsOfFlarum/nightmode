@@ -4,19 +4,19 @@ import Themes from '../../common/Themes';
 export const KEY = 'flarum_nightmode';
 
 export const get = () => {
-    const value = Cookies.get(KEY);
+  const value = Cookies.get(KEY);
 
-    if (!value && value !== '0') {
-        return Themes.DEFAULT();
-    }
+  if (!value && value !== '0') {
+    return Themes.DEFAULT();
+  }
 
-    return Number(value);
+  return Number(value);
 };
 
 export const set = (val) =>
-    Cookies.set(KEY, val, {
-        sameSite: 'lax',
-        secure: location.protocol === 'https:',
-    });
+  Cookies.set(KEY, val, {
+    sameSite: 'lax',
+    secure: location.protocol === 'https:',
+  });
 
 export const remove = () => Cookies.remove(KEY);
