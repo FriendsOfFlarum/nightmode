@@ -11,21 +11,21 @@ import Themes from '../common/Themes';
 import { get, set } from './helpers/perDeviceSetting';
 
 export default function fixInvalidThemeSetting() {
-    // get array of valid values without duplicate entries
-    let validValues = Array.from(new Set(Object.values(Themes)));
+  // get array of valid values without duplicate entries
+  let validValues = Array.from(new Set(Object.values(Themes)));
 
-    const Theme = get();
+  const Theme = get();
 
-    if (isNaN(Theme)) {
-        resetTheme('Theme is not a valid integer! Resetting...');
-    } else if (!validValues.includes(Theme)) {
-        // theme out of bounds
-        resetTheme(`Theme is out of bounds! Resetting...`);
-    }
+  if (isNaN(Theme)) {
+    resetTheme('Theme is not a valid integer! Resetting...');
+  } else if (!validValues.includes(Theme)) {
+    // theme out of bounds
+    resetTheme(`Theme is out of bounds! Resetting...`);
+  }
 }
 
 function resetTheme(reason) {
-    console.warn(reason);
+  console.warn(reason);
 
-    set(Themes.DEFAULT());
+  set(Themes.DEFAULT());
 }
