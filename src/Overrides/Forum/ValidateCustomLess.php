@@ -1,12 +1,10 @@
 <?php
 
 /*
- * This file is part of fof/nightmode.
+ * This file is part of Flarum.
  *
- * Copyright (c) FriendsOfFlarum.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * For detailed copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
  */
 
 namespace Flarum\Forum;
@@ -24,6 +22,9 @@ use League\Flysystem\Adapter\NullAdapter;
 use League\Flysystem\Filesystem;
 use Less_Exception_Parser;
 
+/**
+ * @internal
+ */
 class ValidateCustomLess
 {
     /**
@@ -42,9 +43,9 @@ class ValidateCustomLess
     protected $container;
 
     /**
-     * @param Assets        $assets
+     * @param Assets $assets
      * @param LocaleManager $locales
-     * @param Container     $container
+     * @param Container $container
      */
     public function __construct(Assets $assets, LocaleManager $locales, Container $container)
     {
@@ -53,14 +54,9 @@ class ValidateCustomLess
         $this->container = $container;
     }
 
-    /**
-     * @param Saving $event
-     *
-     * @throws ValidationException
-     */
     public function whenSettingsSaving(Saving $event)
     {
-        if (!isset($event->settings['custom_less'])) {
+        if (! isset($event->settings['custom_less'])) {
             return;
         }
 
@@ -81,13 +77,10 @@ class ValidateCustomLess
         );
 
         $assetsDir = $this->assets->getAssetsDir();
-        $this->assets->setAssetsDir(new FilesystemAdapter(new Filesystem(new NullAdapter())));
+        $this->assets->setAssetsDir(new FilesystemAdapter(new Filesystem(new NullAdapter)));
 
         try {
             $this->assets->makeCss()->commit();
-
-            // ++++++
-            $this->assets->makeDarkCss()->commit();
 
             foreach ($this->locales->getLocales() as $locale => $name) {
                 $this->assets->makeLocaleCss($locale)->commit();
@@ -100,12 +93,9 @@ class ValidateCustomLess
         $this->container->instance(SettingsRepositoryInterface::class, $settings);
     }
 
-    /**
-     * @param Saved $event
-     */
     public function whenSettingsSaved(Saved $event)
     {
-        if (!isset($event->settings['custom_less'])) {
+        if (! isset($event->settings['custom_less'])) {
             return;
         }
 
