@@ -103,10 +103,10 @@ class Assets
         $this->sources[$type][] = $callback;
     }
 
-    private function populate(CompilerInterface $compiler, string $type, string $locale = null)
+    private function populate(CompilerInterface $compiler, string $type, string $locale = null, ...$additionalSources)
     {
-        $compiler->addSources(function (SourceCollector $sources) use ($type, $locale) {
-            foreach ($this->sources[$type] as $callback) {
+        $compiler->addSources(function (SourceCollector $sources) use ($additionalSources, $type, $locale) {
+            foreach (array_merge($this->sources[$type], $additionalSources) as $callback) {
                 $callback($sources, $locale);
             }
         });

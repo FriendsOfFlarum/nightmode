@@ -93,7 +93,7 @@ class Assets extends \Flarum\Frontend\Content\Assets
             return (int) Arr::get($request->getCookieParams(), 'flarum_nightmode', $default);
         }
 
-        return (int) $actor->getPreference('fofNightMode', $default);
+        return (int) ($actor->getPreference('fofNightMode') ?? $default);
     }
 
     // --- original ---
