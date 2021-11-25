@@ -11,10 +11,10 @@ A [Flarum](http://flarum.org) extension. Add a Night Mode 🌙 for your users to
 ![Day Mode Option](https://i.imgur.com/ZJcDGQB.png)
 ### Installation
 
-Use [Bazaar](https://discuss.flarum.org/d/5151-flagrow-bazaar-the-extension-marketplace) or install manually with composer:
+Install manually with composer:
 
 ```sh
-composer require fof/nightmode
+composer require fof/nightmode:"*"
 ```
 
 ### Updating
