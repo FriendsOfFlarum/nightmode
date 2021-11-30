@@ -70,7 +70,7 @@ class Assets extends \Flarum\Frontend\Content\Assets
     {
         return sprintf(
             '<link rel="stylesheet" media="%s" class="nightmode-%s" href="%s" />',
-            $auto && $type === 'dark' ? '(prefers-color-scheme: dark)' : '',
+            $auto && $type === 'dark' ? '(prefers-color-scheme: dark)' : '(prefers-color-scheme: light), (prefers-color-scheme: no-preference)',
             $type,
             $url
         );
