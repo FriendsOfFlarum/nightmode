@@ -23,6 +23,7 @@ fof-nightmode:
                 description2: This theme will be linked to your account and applies to all your devices unless you toggle on the switch below for per device settings.
                 device_specific_setting_checkbox: Use per device settings
                 device_specific_setting_checkbox_tooltip: Your theme choice will be saved individually for each of your devices.
+                auto_unsupported: Your browser does not support auto dark mode.
                 options:
                     auto: => fof-nightmode.ref.auto
                     day: => fof-nightmode.ref.light
