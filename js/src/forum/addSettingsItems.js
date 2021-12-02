@@ -28,7 +28,19 @@ export default function () {
       fixInvalidThemeSetting();
     }
 
-    const currentTheme = getTheme();
+    const doesNotSupportAuto = !window.matchMedia('not all and (prefers-color-scheme), (prefers-color-scheme)').matches;
+
+    let currentTheme = getTheme();
+
+    const options = { 0: trans('options.auto'), 1: trans('options.day'), 2: trans('options.night') };
+
+    if (doesNotSupportAuto) {
+      delete options['0'];
+
+      if (currentTheme === Themes.AUTO) {
+        currentTheme = app.forum.attribute('fofNightMode_autoUnsupportedFallback');
+      }
+    }
 
     items.add(
       'fof-nightmode',
@@ -40,6 +52,7 @@ export default function () {
         [
           <p className="description">{trans('description')}</p>,
           <p className="description">{trans('description2')}</p>,
+          doesNotSupportAuto ? <p class="description NightMode-autoUnsupported">{trans('auto_unsupported')}</p> : null,
           Switch.component(
             {
               className: 'Settings-theme--per_device_cb',
@@ -78,7 +91,7 @@ export default function () {
 
               user
                 .savePreferences({
-                  fofNightMode: Number.parseInt(e),
+                  fofNightMode: e,
                 })
                 .then(() => {
                   m.redraw();
@@ -88,7 +101,7 @@ export default function () {
                   setTheme();
                 });
             },
-            options: [trans('options.auto'), trans('options.day'), trans('options.night')],
+            options,
           }),
           <p className="Settings-theme--selection_description">
             {currentTheme === Themes.AUTO
