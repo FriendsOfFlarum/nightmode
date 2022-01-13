@@ -4,7 +4,7 @@ import { get } from './helpers/perDeviceSetting';
 export default function getTheme() {
   const user = app.session.user;
 
-  const IsUsingPerDeviceSettings = user && !!user.preferences().fofNightMode_perDevice;
+  const IsUsingPerDeviceSettings = !user || !!user.preferences().fofNightMode_perDevice;
   const SelectedTheme = user && user.preferences().fofNightMode;
 
   let value;

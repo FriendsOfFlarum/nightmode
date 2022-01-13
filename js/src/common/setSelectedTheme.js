@@ -1,3 +1,5 @@
+import app from 'flarum/common/app';
+
 import { extend } from 'flarum/common/extend';
 import Page from 'flarum/common/components/Page';
 
@@ -12,13 +14,11 @@ export default () => {
 export function setTheme() {
   const { user } = app.session;
 
-  if (!user) {
-    // Default to automatic theme when visiting as guest
-    setThemeFromID(Themes.DEFAULT());
-    return;
-  }
+  const PerDevice = app.session.user?.preferences().fofNightMode_perDevice;
 
-  const PerDevice = user.preferences().fofNightMode_perDevice;
+  if (!user || PerDevice) {
+    fixInvalidThemeSetting();
+  }
 
   if (PerDevice) {
     fixInvalidThemeSetting();

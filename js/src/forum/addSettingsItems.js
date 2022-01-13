@@ -1,13 +1,15 @@
 import app from 'flarum/forum/app';
 import { extend } from 'flarum/common/extend';
 
-import SettingsPage from 'flarum/common/components/SettingsPage';
+import SettingsPage from 'flarum/forum/components/SettingsPage';
+import SessionDropdown from 'flarum/forum/components/SessionDropdown';
+import HeaderSecondary from 'flarum/forum/components/HeaderSecondary';
 import Button from 'flarum/common/components/Button';
-import SessionDropdown from 'flarum/common/components/SessionDropdown';
 import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
 import Select from 'flarum/common/components/Select';
 import FieldSet from 'flarum/common/components/FieldSet';
 import Switch from 'flarum/common/components/Switch';
+import icon from 'flarum/common/helpers/icon';
 
 import { setTheme } from '../common/setSelectedTheme';
 import fixInvalidThemeSetting from './fixInvalidThemeSetting';
@@ -17,6 +19,20 @@ import Themes from '../common/Themes';
 
 // custom function for translations makes it a lot cleaner
 const trans = (key) => app.translator.trans(`fof-nightmode.forum.user.settings.${key}`);
+
+const getIsLight = (theme) => theme === Themes.LIGHT || (theme === Themes.AUTO && !window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+const toggleThrough = (current) => {
+  if (current === Themes.AUTO) {
+    return Themes.LIGHT;
+  }
+
+  if (current === Themes.LIGHT) {
+    return Themes.DARK;
+  }
+
+  return Themes.AUTO;
+};
 
 export default function () {
   extend(SettingsPage.prototype, 'settingsItems', function (items) {
@@ -118,12 +134,35 @@ export default function () {
     );
   });
 
+  extend(HeaderSecondary.prototype, 'items', function (items) {
+    if (app.session.user) return;
+
+    const theme = getTheme();
+    const isLight = getIsLight(theme);
+
+    items.add(
+      'nightmode',
+      <Button
+        className="Button Button--flat"
+        onclick={() => {
+          const newTheme = toggleThrough(theme);
+
+          perDevice.set(newTheme);
+          setTheme();
+        }}
+        icon={theme === Themes.AUTO ? 'fas fa-adjust' : `far fa-${isLight ? 'sun' : 'moon'}`}
+      >
+        {app.translator.trans('fof-nightmode.forum.header.nightmode_button')}
+      </Button>,
+      15
+    );
+  });
+
   extend(SessionDropdown.prototype, 'items', function (items) {
     if (!app.session.user) return;
 
     const user = app.session.user;
-    const theme = getTheme();
-    const isLight = theme === Themes.LIGHT || (theme === Themes.AUTO && !window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const isLight = getIsLight(getTheme());
 
     // Add night mode link to session dropdown
     items.add(

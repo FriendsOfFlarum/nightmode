@@ -16,6 +16,9 @@ fof-nightmode:
         day: => fof-nightmode.ref.light
         night: => fof-nightmode.ref.dark
 
+        header:
+            nightmode_button: Toggle forum theme
+
         user:
             settings:
                 heading: Theme
