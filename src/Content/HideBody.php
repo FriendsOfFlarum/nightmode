@@ -12,7 +12,6 @@
 namespace FoF\NightMode\Content;
 
 use Flarum\Frontend\Document;
-use Illuminate\Support\Arr;
 
 class HideBody
 {
