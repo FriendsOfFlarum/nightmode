@@ -28,10 +28,10 @@ class Assets
      * @var array
      */
     public $sources = [
-        'js'        => [],
-        'css'       => [],
-        'localeJs'  => [],
-        'localeCss' => [],
+        'js' => [],
+        'css' => [],
+        'localeJs' => [],
+        'localeCss' => []
     ];
 
     /**
@@ -64,12 +64,18 @@ class Assets
      */
     protected $fileSourceOverrides = [];
 
-    public function __construct(string $name, Filesystem $assetsDir, string $cacheDir = null, array $lessImportDirs = null)
+    /**
+     * @var array
+     */
+    protected $customFunctions = [];
+
+    public function __construct(string $name, Filesystem $assetsDir, string $cacheDir = null, array $lessImportDirs = null, array $customFunctions = [])
     {
         $this->name = $name;
         $this->assetsDir = $assetsDir;
         $this->cacheDir = $cacheDir;
         $this->lessImportDirs = $lessImportDirs;
+        $this->customFunctions = $customFunctions;
     }
 
     public function js($sources)
@@ -188,6 +194,8 @@ class Assets
         if ($this->fileSourceOverrides) {
             $compiler->setFileSourceOverrides($this->fileSourceOverrides);
         }
+
+        $compiler->setCustomFunctions($this->customFunctions);
 
         return $compiler;
     }

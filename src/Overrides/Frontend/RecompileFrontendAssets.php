@@ -30,7 +30,7 @@ class RecompileFrontendAssets
     protected $locales;
 
     /**
-     * @param Assets        $assets
+     * @param Assets $assets
      * @param LocaleManager $locales
      */
     public function __construct(Assets $assets, LocaleManager $locales)
@@ -41,6 +41,7 @@ class RecompileFrontendAssets
 
     public function whenSettingsSaved(Saved $event)
     {
+        // @deprecated 'theme_' check, to be removed in 2.0
         if (preg_grep('/^theme_/i', array_keys($event->settings))) {
             $this->flushCss();
         }
