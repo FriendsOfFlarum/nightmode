@@ -59,7 +59,7 @@ class ValidateCustomLess
 
     public function whenSettingsSaving(Saving $event)
     {
-        if (! isset($event->settings['custom_less']) && ! $this->hasDirtyCustomLessSettings($event)) {
+        if (!isset($event->settings['custom_less']) && !$this->hasDirtyCustomLessSettings($event)) {
             return;
         }
 
@@ -80,7 +80,7 @@ class ValidateCustomLess
         );
 
         $assetsDir = $this->assets->getAssetsDir();
-        $this->assets->setAssetsDir(new FilesystemAdapter(new Filesystem(new NullAdapter)));
+        $this->assets->setAssetsDir(new FilesystemAdapter(new Filesystem(new NullAdapter())));
 
         try {
             $this->assets->makeCss()->commit();
@@ -98,7 +98,7 @@ class ValidateCustomLess
 
     public function whenSettingsSaved(Saved $event)
     {
-        if (! isset($event->settings['custom_less']) && ! $this->hasDirtyCustomLessSettings($event)) {
+        if (!isset($event->settings['custom_less']) && !$this->hasDirtyCustomLessSettings($event)) {
             return;
         }
 
@@ -114,6 +114,7 @@ class ValidateCustomLess
 
     /**
      * @param Saved|Saving $event
+     *
      * @return bool
      */
     protected function hasDirtyCustomLessSettings($event): bool
@@ -129,6 +130,6 @@ class ValidateCustomLess
             }, $this->customLessSettings)
         );
 
-        return ! empty($dirtySettings);
+        return !empty($dirtySettings);
     }
 }

@@ -28,10 +28,10 @@ class Assets
      * @var array
      */
     public $sources = [
-        'js' => [],
-        'css' => [],
-        'localeJs' => [],
-        'localeCss' => []
+        'js'        => [],
+        'css'       => [],
+        'localeJs'  => [],
+        'localeCss' => [],
     ];
 
     /**

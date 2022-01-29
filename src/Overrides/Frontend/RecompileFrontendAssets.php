@@ -30,7 +30,7 @@ class RecompileFrontendAssets
     protected $locales;
 
     /**
-     * @param Assets $assets
+     * @param Assets        $assets
      * @param LocaleManager $locales
      */
     public function __construct(Assets $assets, LocaleManager $locales)
