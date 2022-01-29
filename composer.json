@@ -16,6 +16,11 @@
         {
             "name": "Christian Lopez",
             "email": "Lopez.T.Christian@gmail.com"
+        },
+        {
+            "name": "David Sevilla Martin",
+            "homepage": "https://discuss.flarum.org/u/datitisev",
+            "role": "Developer"
         }
     ],
     "support": {
@@ -31,7 +36,7 @@
         }
     ],
     "require": {
-        "flarum/core": "^1.1.0",
+        "flarum/core": "^1.2.0",
         "fof/extend": "^1.0.0"
     },
     "replace": {
