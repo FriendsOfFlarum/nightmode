@@ -26,6 +26,23 @@ class Assets extends \Flarum\Frontend\Content\Assets
      */
     public function __invoke(Document $document, Request $request)
     {
+        $frontend = $this->assets->getName();
+
+        // Only apply nightmode to forum & admin frontend CSS
+        if ($frontend !== 'forum' && $frontend !== 'admin') {
+            parent::__invoke($document, $request);
+
+            // Add CSS of other frontends to $document->head instead of CSS
+            // so it loads after the main forum CSS.
+            // E.g. fixes flarum/embed styles looking funny with nightmode installed.
+            foreach ($document->css as $css) {
+                $document->head[] = sprintf('<link rel="stylesheet" href="%s" />', $css);
+            }
+            $document->css = [];
+
+            return;
+        }
+
         $locale = $request->getAttribute('locale');
         $nightCss = $this->assets->makeDarkCss();
         $dayCss = $this->assets->makeCss();
