@@ -45,20 +45,21 @@ class ValidateCustomLess
     protected $container;
 
     /**
-     * @param Assets        $assets
-     * @param LocaleManager $locales
-     * @param Container     $container
+     * @var array
      */
-    public function __construct(Assets $assets, LocaleManager $locales, Container $container)
+    protected $customLessSettings;
+
+    public function __construct(Assets $assets, LocaleManager $locales, Container $container, array $customLessSettings = [])
     {
         $this->assets = $assets;
         $this->locales = $locales;
         $this->container = $container;
+        $this->customLessSettings = $customLessSettings;
     }
 
     public function whenSettingsSaving(Saving $event)
     {
-        if (!isset($event->settings['custom_less'])) {
+        if (!isset($event->settings['custom_less']) && !$this->hasDirtyCustomLessSettings($event)) {
             return;
         }
 
@@ -97,7 +98,7 @@ class ValidateCustomLess
 
     public function whenSettingsSaved(Saved $event)
     {
-        if (!isset($event->settings['custom_less'])) {
+        if (!isset($event->settings['custom_less']) && !$this->hasDirtyCustomLessSettings($event)) {
             return;
         }
 
@@ -109,5 +110,26 @@ class ValidateCustomLess
         foreach ($this->locales->getLocales() as $locale => $name) {
             $this->assets->makeLocaleCss($locale)->flush();
         }
+    }
+
+    /**
+     * @param Saved|Saving $event
+     *
+     * @return bool
+     */
+    protected function hasDirtyCustomLessSettings($event): bool
+    {
+        if (empty($this->customLessSettings)) {
+            return false;
+        }
+
+        $dirtySettings = array_intersect(
+            array_keys($event->settings),
+            array_map(function ($setting) {
+                return $setting['key'];
+            }, $this->customLessSettings)
+        );
+
+        return !empty($dirtySettings);
     }
 }
