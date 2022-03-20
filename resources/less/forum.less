@@ -1,3 +1,13 @@
+:root {
+    & when (@config-dark-mode = true) {
+        color-scheme: dark;
+    }
+
+    & when (@config-dark-mode = false) {
+        color-scheme: light;
+    }
+}
+
 .NightMode-autoUnsupported {
     @warning-color: #d98a14;
 
