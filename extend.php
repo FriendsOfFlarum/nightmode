@@ -55,5 +55,7 @@ return [
             }
 
             return 1;
-        }, false),
+        }, false)
+        ->default('fof-nightmode.default_theme', '0'),
+
 ];

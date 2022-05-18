@@ -9,8 +9,15 @@
  * file that was distributed with this source code.
  */
 
-use Flarum\Database\Migration;
+use Illuminate\Database\Schema\Builder;
 
-return Migration::addSettings([
-    'fof-nightmode.default_theme' => '0',
-]);
+// Migration no longer required, default setting is now set via extend.php
+// However, this migration is still required in case of migration run down.
+return [
+    'up' => function (Builder $schema) {
+        //
+    },
+    'down' => function (Builder $schema) {
+        //
+    },
+];
