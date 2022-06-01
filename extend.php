@@ -17,17 +17,17 @@ use FoF\Extend\Extend as FoFExtend;
 
 return [
     (new Extend\Frontend('forum'))
-        ->js(__DIR__ . '/js/dist/forum.js')
+        ->js(__DIR__.'/js/dist/forum.js')
         ->content(Content\HideBody::class)
         ->content(Content\PatchUnsupportedAutoNightmode::class)
-        ->css(__DIR__ . '/resources/less/forum.less'),
+        ->css(__DIR__.'/resources/less/forum.less'),
 
     (new Extend\Frontend('admin'))
-        ->js(__DIR__ . '/js/dist/admin.js')
+        ->js(__DIR__.'/js/dist/admin.js')
         ->content(Content\HideBody::class)
         ->content(Content\PatchUnsupportedAutoNightmode::class),
 
-    new Extend\Locales(__DIR__ . '/resources/locale'),
+    new Extend\Locales(__DIR__.'/resources/locale'),
 
     (new FoFExtend\ExtensionSettings())
         ->addKey('fof-nightmode.default_theme'),
