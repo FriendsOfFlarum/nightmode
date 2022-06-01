@@ -13,7 +13,6 @@ namespace FoF\NightMode;
 
 use Flarum\Extend;
 use Flarum\Settings\SettingsRepositoryInterface;
-use FoF\Extend\Extend as FoFExtend;
 
 return [
     (new Extend\Frontend('forum'))
@@ -28,9 +27,6 @@ return [
         ->content(Content\PatchUnsupportedAutoNightmode::class),
 
     new Extend\Locales(__DIR__.'/resources/locale'),
-
-    (new FoFExtend\ExtensionSettings())
-        ->addKey('fof-nightmode.default_theme'),
 
     (new Extend\ServiceProvider())
         ->register(AssetsServiceProvider::class),
@@ -57,6 +53,5 @@ return [
             return 1;
         }, false)
         ->serializeToForum('fofNightMode.showThemeToggleOnHeaderAlways', 'fofNightMode.show_theme_toggle_on_header_always', 'boolval', false)
-        ->default('fof-nightmode.default_theme', '0'),
-
+        ->serializeToForum('fof-nightmode.default_theme', 'fof-nightmode.default_theme', 'intval', 0),
 ];
