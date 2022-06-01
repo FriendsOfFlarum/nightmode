@@ -19,6 +19,11 @@ app.initializers.add('fof-nightmode', () => {
   app.extensionData
     .for('fof-nightmode')
     .registerSetting({
+      label: app.translator.trans('fof-nightmode.admin.settings.modal.always_show_theme_toggle_on_header'),
+      setting: 'fofNightMode.show_theme_toggle_on_header_always',
+      type: 'switch',
+    })
+    .registerSetting({
       label: app.translator.trans('fof-nightmode.admin.settings.modal.default_theme'),
       setting: 'fof-nightmode.default_theme',
       type: 'select',

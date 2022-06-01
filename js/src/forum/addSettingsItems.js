@@ -9,30 +9,16 @@ import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
 import Select from 'flarum/common/components/Select';
 import FieldSet from 'flarum/common/components/FieldSet';
 import Switch from 'flarum/common/components/Switch';
-import icon from 'flarum/common/helpers/icon';
 
 import { setTheme } from '../common/setSelectedTheme';
 import fixInvalidThemeSetting from './fixInvalidThemeSetting';
 import * as perDevice from './helpers/perDeviceSetting';
 import getTheme from './getTheme';
 import Themes from '../common/Themes';
+import { switchTheme, getIsLight } from './helpers/switchTheme';
 
 // custom function for translations makes it a lot cleaner
 const trans = (key) => app.translator.trans(`fof-nightmode.forum.user.settings.${key}`);
-
-const getIsLight = (theme) => theme === Themes.LIGHT || (theme === Themes.AUTO && !window.matchMedia('(prefers-color-scheme: dark)').matches);
-
-const toggleThrough = (current) => {
-  if (current === Themes.AUTO) {
-    return Themes.LIGHT;
-  }
-
-  if (current === Themes.LIGHT) {
-    return Themes.DARK;
-  }
-
-  return Themes.AUTO;
-};
 
 export default function () {
   extend(SettingsPage.prototype, 'settingsItems', function (items) {
@@ -135,7 +121,7 @@ export default function () {
   });
 
   extend(HeaderSecondary.prototype, 'items', function (items) {
-    if (app.session.user) return;
+    if (app.session.user && !app.forum.attribute('fofNightMode.showThemeToggleOnHeaderAlways')) return;
 
     const theme = getTheme();
     const isLight = getIsLight(theme);
@@ -145,10 +131,11 @@ export default function () {
       <Button
         className="Button Button--flat"
         onclick={() => {
-          const newTheme = toggleThrough(theme);
+          // const newTheme = toggleThrough(theme);
 
-          perDevice.set(newTheme);
-          setTheme();
+          // perDevice.set(newTheme);
+          // setTheme();
+          switchTheme();
         }}
         icon={theme === Themes.AUTO ? 'fas fa-adjust' : `far fa-${isLight ? 'sun' : 'moon'}`}
       >
@@ -161,7 +148,6 @@ export default function () {
   extend(SessionDropdown.prototype, 'items', function (items) {
     if (!app.session.user) return;
 
-    const user = app.session.user;
     const isLight = getIsLight(getTheme());
 
     // Add night mode link to session dropdown
@@ -171,23 +157,24 @@ export default function () {
         {
           icon: `far fa-${isLight ? 'moon' : 'sun'}`,
           onclick: () => {
-            const val = isLight ? Themes.DARK : Themes.LIGHT;
+            switchTheme();
+            // const val = isLight ? Themes.DARK : Themes.LIGHT;
 
-            if (!!user.preferences().fofNightMode_perDevice) {
-              perDevice.set(val);
-              setTheme();
-              return;
-            }
+            // if (!!user.preferences().fofNightMode_perDevice) {
+            //   perDevice.set(val);
+            //   setTheme();
+            //   return;
+            // }
 
-            user
-              .savePreferences({
-                fofNightMode: val,
-              })
-              .then(() => {
-                // need to force-update selected theme (as it's only set
-                // on a page load and redraw doesn't count as a apge load)
-                setTheme();
-              });
+            // user
+            //   .savePreferences({
+            //     fofNightMode: val,
+            //   })
+            //   .then(() => {
+            //     // need to force-update selected theme (as it's only set
+            //     // on a page load and redraw doesn't count as a apge load)
+            //     setTheme();
+            //   });
           },
         },
         app.translator.trans(`fof-nightmode.forum.${isLight ? 'night' : 'day'}`)
