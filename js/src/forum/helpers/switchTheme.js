@@ -2,6 +2,7 @@ import app from 'flarum/forum/app';
 import Themes from '../../common/Themes';
 import { setTheme } from '../../common/setSelectedTheme';
 import getTheme from '../getTheme';
+import * as perDevice from '../helpers/perDeviceSetting';
 
 export function getIsLight(theme) {
   return theme === Themes.LIGHT || (theme === Themes.AUTO && !window.matchMedia('(prefers-color-scheme: dark)').matches);
@@ -39,7 +40,7 @@ export function switchTheme() {
       })
       .then(() => {
         // need to force-update selected theme (as it's only set
-        // on a page load and redraw doesn't count as a apge load)
+        // on a page load and redraw doesn't count as a page load)
         setTheme();
       });
   } else {
