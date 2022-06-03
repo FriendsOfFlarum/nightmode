@@ -11,7 +11,6 @@
 
 namespace FoF\NightMode\Content;
 
-use Flarum\Foundation\Application;
 use Flarum\Frontend\Compiler\CompilerInterface;
 use Flarum\Frontend\Document;
 use Flarum\User\User;
@@ -47,16 +46,16 @@ class Assets extends \Flarum\Frontend\Content\Assets
         $nightCss = $this->assets->makeDarkCss();
         $dayCss = $this->assets->makeCss();
 
-        $preference = $this->getPreference($request);
+        $preference = $this->getThemePreference($request);
 
         $compilers = [
             'js'  => [$this->assets->makeJs(), $this->assets->makeLocaleJs($locale)],
             'css' => [$this->assets->makeLocaleCss($locale)],
         ];
 
-        if (resolve(Application::class)->inDebugMode()) {
-            $this->commit(Arr::flatten($compilers));
-            $this->commit([$dayCss, $nightCss]);
+        if ($this->config->inDebugMode()) {
+            $this->forceCommit(Arr::flatten($compilers));
+            $this->forceCommit([$dayCss, $nightCss]);
         }
 
         $isAuto = $preference === 0;
@@ -98,7 +97,7 @@ class Assets extends \Flarum\Frontend\Content\Assets
      *
      * @return int
      */
-    protected function getPreference(Request $request)
+    protected function getThemePreference(Request $request)
     {
         /**
          * @var User $actor
@@ -114,14 +113,18 @@ class Assets extends \Flarum\Frontend\Content\Assets
     }
 
     // --- original ---
+    // these are private methods so we have to redefine them :(
 
     /**
+     * Force compilation of assets when in debug mode.
+     *
      * @param array $compilers
      */
-    private function commit(array $compilers)
+    private function forceCommit(array $compilers)
     {
+        /** @var CompilerInterface $compiler */
         foreach ($compilers as $compiler) {
-            $compiler->commit();
+            $compiler->commit(true);
         }
     }
 
