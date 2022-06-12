@@ -12,7 +12,9 @@
 namespace FoF\NightMode;
 
 use Flarum\Extend;
+use Flarum\Extension\ExtensionManager;
 use Flarum\Settings\SettingsRepositoryInterface;
+use FoF\DefaultUserPreferences\Extend\RegisterUserPreferenceDefault;
 
 return [
     (new Extend\Frontend('forum'))
@@ -54,4 +56,8 @@ return [
         }, false)
         ->serializeToForum('fofNightMode.showThemeToggleOnHeaderAlways', 'fofNightMode.show_theme_toggle_on_header_always', 'boolval', false)
         ->serializeToForum('fof-nightmode.default_theme', 'fof-nightmode.default_theme', 'intval', 0),
+
+    class_exists(RegisterUserPreferenceDefault::class) && resolve(ExtensionManager::class)->isEnabled('fof-default-user-preferences') ? (new RegisterUserPreferenceDefault())
+        ->default('fofNightMode', 0, 'number')    
+        ->default('fofNightMode_perDevice', false, 'bool') : [],
 ];
