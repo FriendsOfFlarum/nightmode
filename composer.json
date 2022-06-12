@@ -54,7 +54,10 @@
         },
         "flagrow": {
             "discuss": "https://discuss.flarum.org/d/21492"
-        }
+        },
+        "optional-dependencies": [
+            "fof/default-user-preferences"
+        ]
     },
     "autoload": {
         "psr-4": {
