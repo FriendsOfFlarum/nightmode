@@ -58,6 +58,6 @@ return [
         ->serializeToForum('fof-nightmode.default_theme', 'fof-nightmode.default_theme', 'intval', 0),
 
     class_exists(RegisterUserPreferenceDefault::class) && resolve(ExtensionManager::class)->isEnabled('fof-default-user-preferences') ? (new RegisterUserPreferenceDefault())
-        ->default('fofNightMode', 0, 'number')    
+        ->default('fofNightMode', 0, 'number')
         ->default('fofNightMode_perDevice', false, 'bool') : [],
 ];
