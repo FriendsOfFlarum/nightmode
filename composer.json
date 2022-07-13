@@ -36,7 +36,7 @@
         }
     ],
     "require": {
-        "flarum/core": "^1.2.0",
+        "flarum/core": "^1.4.0",
         "fof/extend": "^1.0.0"
     },
     "replace": {
