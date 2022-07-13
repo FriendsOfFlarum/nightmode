@@ -49,6 +49,10 @@ class Assets extends \Flarum\Frontend\Content\Assets
         $nightCss = $this->assets->makeDarkCss();
         $dayCss = $this->assets->makeCss();
 
+        if ($this->config->inDebugMode()) {
+            $this->forceCommit([$dayCss, $nightCss]);
+        }
+
         $preference = $this->getThemePreference($request);
 
         $isAuto = $preference === 0;
@@ -66,11 +70,10 @@ class Assets extends \Flarum\Frontend\Content\Assets
 
     protected function assembleCompilers(?string $locale): array
     {
-        $compilers = parent::assembleCompilers($locale);
-
-        $compilers['css'][] = $this->assets->makeDarkCss();
-
-        return $compilers;
+        return [
+            'js' => [$this->assets->makeJs(), $this->assets->makeLocaleJs($locale)],
+            'css' => [$this->assets->makeLocaleCss($locale)]
+        ];
     }
 
     /**
