@@ -71,8 +71,8 @@ class Assets extends \Flarum\Frontend\Content\Assets
     protected function assembleCompilers(?string $locale): array
     {
         return [
-            'js' => [$this->assets->makeJs(), $this->assets->makeLocaleJs($locale)],
-            'css' => [$this->assets->makeLocaleCss($locale)]
+            'js'  => [$this->assets->makeJs(), $this->assets->makeLocaleJs($locale)],
+            'css' => [$this->assets->makeLocaleCss($locale)],
         ];
     }
 
