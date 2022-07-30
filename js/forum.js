@@ -7,4 +7,5 @@
  * file that was distributed with this source code.
  */
 
+export * from './src/common';
 export * from './src/forum';
