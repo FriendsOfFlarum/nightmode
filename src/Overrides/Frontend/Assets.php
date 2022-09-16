@@ -174,7 +174,7 @@ class Assets
     {
         return resolve(JsCompiler::class, [
             'assetsDir' => $this->assetsDir,
-            'filename' => $filename
+            'filename'  => $filename,
         ]);
     }
 
@@ -182,7 +182,7 @@ class Assets
     {
         $compiler = resolve(LessCompiler::class, [
             'assetsDir' => $this->assetsDir,
-            'filename' => $filename
+            'filename'  => $filename,
         ]);
 
         if ($this->cacheDir) {
