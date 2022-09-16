@@ -15,7 +15,7 @@ use Flarum\Frontend\Compiler\CompilerInterface;
 use Flarum\Frontend\Compiler\JsCompiler;
 use Flarum\Frontend\Compiler\LessCompiler;
 use Flarum\Frontend\Compiler\Source\SourceCollector;
-use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Contracts\Filesystem\Cloud;
 
 /**
  * A factory class for creating frontend asset compilers.
@@ -40,7 +40,7 @@ class Assets
     protected $name;
 
     /**
-     * @var Filesystem
+     * @var Cloud
      */
     protected $assetsDir;
 
@@ -69,7 +69,7 @@ class Assets
      */
     protected $customFunctions = [];
 
-    public function __construct(string $name, Filesystem $assetsDir, string $cacheDir = null, array $lessImportDirs = null, array $customFunctions = [])
+    public function __construct(string $name, Cloud $assetsDir, string $cacheDir = null, array $lessImportDirs = null, array $customFunctions = [])
     {
         $this->name = $name;
         $this->assetsDir = $assetsDir;
@@ -172,12 +172,18 @@ class Assets
 
     protected function makeJsCompiler(string $filename)
     {
-        return new JsCompiler($this->assetsDir, $filename);
+        return resolve(JsCompiler::class, [
+            'assetsDir' => $this->assetsDir,
+            'filename' => $filename
+        ]);
     }
 
     protected function makeLessCompiler(string $filename): LessCompiler
     {
-        $compiler = new LessCompiler($this->assetsDir, $filename);
+        $compiler = resolve(LessCompiler::class, [
+            'assetsDir' => $this->assetsDir,
+            'filename' => $filename
+        ]);
 
         if ($this->cacheDir) {
             $compiler->setCacheDir($this->cacheDir.'/less');
@@ -210,12 +216,12 @@ class Assets
         $this->name = $name;
     }
 
-    public function getAssetsDir(): Filesystem
+    public function getAssetsDir(): Cloud
     {
         return $this->assetsDir;
     }
 
-    public function setAssetsDir(Filesystem $assetsDir)
+    public function setAssetsDir(Cloud $assetsDir)
     {
         $this->assetsDir = $assetsDir;
     }
