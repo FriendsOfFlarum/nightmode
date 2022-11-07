@@ -44,6 +44,7 @@ return [
         ->registerPreference('fofNightMode_perDevice', null, false),
 
     (new Extend\Settings())
+        ->default('fof-nightmode.default_theme', 0)
         ->serializeToForum('fofNightMode_autoUnsupportedFallback', 'theme_dark_mode', function ($val) {
             $val = (bool) $val;
 
@@ -55,7 +56,7 @@ return [
             return 1;
         }, false)
         ->serializeToForum('fofNightMode.showThemeToggleOnHeaderAlways', 'fofNightMode.show_theme_toggle_on_header_always', 'boolval', false)
-        ->serializeToForum('fof-nightmode.default_theme', 'fof-nightmode.default_theme', 'intval', 0),
+        ->serializeToForum('fof-nightmode.default_theme', 'fof-nightmode.default_theme', 'intval'),
 
     class_exists(RegisterUserPreferenceDefault::class) && resolve(ExtensionManager::class)->isEnabled('fof-default-user-preferences') ? (new RegisterUserPreferenceDefault())
         ->default('fofNightMode', 0, 'number')
