@@ -31,7 +31,6 @@ class Assets extends \Flarum\Frontend\Content\Assets
 
         // Only apply nightmode to forum & admin frontends
         if ($frontend !== 'forum' && $frontend !== 'admin') {
-
             // Add CSS of other frontends directly to $document->head instead of the document
             // itself adding the links so it loads after the main forum CSS.
             //
