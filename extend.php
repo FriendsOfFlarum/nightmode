@@ -15,6 +15,7 @@ use Flarum\Extend;
 use Flarum\Extension\ExtensionManager;
 use Flarum\Settings\SettingsRepositoryInterface;
 use FoF\DefaultUserPreferences\Extend\RegisterUserPreferenceDefault;
+use s9e\TextFormatter\Configurator;
 
 return [
     (new Extend\Frontend('forum'))
@@ -57,6 +58,13 @@ return [
         }, false)
         ->serializeToForum('fofNightMode.showThemeToggleOnHeaderAlways', 'fofNightMode.show_theme_toggle_on_header_always', 'boolval', false)
         ->serializeToForum('fof-nightmode.default_theme', 'fof-nightmode.default_theme', 'intval'),
+
+    (new Extend\Formatter())
+        ->configure(function (Configurator $configurator) {
+            if ((int) resolve('flarum.settings')->get('fof-nightmode.default_theme') === 2) {
+                $configurator->rendering->parameters['MEDIAEMBED_THEME'] = 'dark';
+            }
+        }),
 
     class_exists(RegisterUserPreferenceDefault::class) && resolve(ExtensionManager::class)->isEnabled('fof-default-user-preferences') ? (new RegisterUserPreferenceDefault())
         ->default('fofNightMode', 0, 'number')
