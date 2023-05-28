@@ -9,6 +9,9 @@ import getTheme from '../forum/getTheme';
 
 export default () => {
   extend(Page.prototype, 'oninit', setTheme);
+
+  const darkModePreference = window.matchMedia("(prefers-color-scheme: dark)");
+  darkModePreference.addEventListener("change", setTheme);
 };
 
 export function setTheme() {
@@ -51,6 +54,9 @@ export function setThemeFromID(theme) {
 export function setStyle(type) {
   const light = document.querySelector('link.nightmode-light[rel=stylesheet]');
   const dark = document.querySelector('link.nightmode-dark[rel=stylesheet]');
+
+  const event = new CustomEvent("fofnightmodechange", { detail: type });
+  document.dispatchEvent(event);
 
   if (light && dark) {
     if (getTheme() === Themes.AUTO) return;
