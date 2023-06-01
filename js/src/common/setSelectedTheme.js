@@ -10,8 +10,11 @@ import getTheme from '../forum/getTheme';
 export default () => {
   extend(Page.prototype, 'oninit', setTheme);
 
-  const darkModePreference = window.matchMedia("(prefers-color-scheme: dark)");
-  darkModePreference.addEventListener("change", setTheme);
+  // Register setTheme() as the handler for 'prefers-color-scheme' media property
+  // change. This allows to make sure the 'fofnightmodechange' event is dispatched
+  // when this property changes, and that the correct stylesheets are loaded.
+  const prefersColorSchemeDark = window.matchMedia("(prefers-color-scheme: dark)");
+  prefersColorSchemeDark.addEventListener("change", setTheme);
 };
 
 export function setTheme() {
@@ -55,11 +58,8 @@ export function setStyle(type) {
   const light = document.querySelector('link.nightmode-light[rel=stylesheet]');
   const dark = document.querySelector('link.nightmode-dark[rel=stylesheet]');
 
-  const event = new CustomEvent("fofnightmodechange", { detail: type });
-  document.dispatchEvent(event);
-
-  if (light && dark) {
-    if (getTheme() === Themes.AUTO) return;
+  bothStyleSheets: if (light && dark) {
+    if (getTheme() === Themes.AUTO) break bothStyleSheets;
 
     let newLink = document.createElement('link');
 
@@ -95,4 +95,9 @@ export function setStyle(type) {
       el.className = 'nightmode';
     }
   }
+
+  // Dispatch a 'fofnightmodechange' event with 'day' or 'night' as detail.
+  // This allows other extensions to integrate with this one..
+  const event = new CustomEvent("fofnightmodechange", { detail: type });
+  document.dispatchEvent(event);
 }
