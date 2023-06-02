@@ -25,7 +25,7 @@ composer update fof/nightmode
 
 ### Integrating with `fof/nightmode` from another extension
 
-Each time the mode is switched from `day` to `night`, a `fofnightmodechange` event is dispatched. An extension can then listen to this event like so to react to this change:
+Each time the mode is switched from `day` to `night` (and vice versa), a `fofnightmodechange` event is dispatched. An extension can then listen to this event to react to this change, like so:
 
 ```js
 if (flarum.extensions['fof-nightmode']) {

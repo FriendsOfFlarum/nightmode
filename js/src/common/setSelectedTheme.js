@@ -13,8 +13,8 @@ export default () => {
   // Register setTheme() as the handler for 'prefers-color-scheme' media property
   // change. This allows to make sure the 'fofnightmodechange' event is dispatched
   // when this property changes, and that the correct stylesheets are loaded.
-  const prefersColorSchemeDark = window.matchMedia("(prefers-color-scheme: dark)");
-  prefersColorSchemeDark.addEventListener("change", setTheme);
+  const prefersColorSchemeDark = window.matchMedia('(prefers-color-scheme: dark)');
+  prefersColorSchemeDark.addEventListener('change', setTheme);
 };
 
 export function setTheme() {
@@ -97,7 +97,7 @@ export function setStyle(type) {
   }
 
   // Dispatch a 'fofnightmodechange' event with 'day' or 'night' as detail.
-  // This allows other extensions to integrate with this one..
-  const event = new CustomEvent("fofnightmodechange", { detail: type });
+  // This allows other extensions to integrate with this one.
+  const event = new CustomEvent('fofnightmodechange', { detail: type });
   document.dispatchEvent(event);
 }
