@@ -23,6 +23,22 @@ composer require fof/nightmode:"*"
 composer update fof/nightmode
 ```
 
+### Integrating with `fof/nightmode` from another extension
+
+Each time the mode is switched from `day` to `night` (and vice versa), a `fofnightmodechange` event is dispatched. An extension can then listen to this event to react to this change, like so:
+
+```js
+if (flarum.extensions['fof-nightmode']) {
+  document.addEventListener('fofnightmodechange', (event) => {
+    if (event.detail == 'day') {
+      console.log('day mode');
+    } else {
+      console.log('night mode');
+    }
+  });
+}
+```
+
 ### Links
 
 [<img src="https://opencollective.com/fof/donate/button@2x.png?color=blue" height="25" />](https://opencollective.com/fof/donate)
