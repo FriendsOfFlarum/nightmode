@@ -96,6 +96,12 @@ export function setStyle(type) {
     }
   }
 
+  const colorScheme = document.querySelector('meta[name="color-scheme"]');
+
+  if (colorScheme) {
+    colorScheme.content = type === 'night' ? 'dark' : 'light';
+  }
+
   // Dispatch a 'fofnightmodechange' event with 'day' or 'night' as detail.
   // This allows other extensions to integrate with this one.
   const event = new CustomEvent('fofnightmodechange', { detail: type });
