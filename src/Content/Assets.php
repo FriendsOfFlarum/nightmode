@@ -78,11 +78,11 @@ class Assets extends \Flarum\Frontend\Content\Assets
     /**
      * @param string|null $url
      * @param string      $type
-     * @param string      $auto
+     * @param bool        $auto
      *
      * @return string
      */
-    protected function generateTag(?string $url, string $type, string $auto): string
+    protected function generateTag(?string $url, string $type, bool $auto): string
     {
         return sprintf(
             '<link rel="stylesheet" media="%s" class="nightmode-%s" href="%s" />',
