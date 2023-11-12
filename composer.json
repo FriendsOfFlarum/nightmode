@@ -57,7 +57,12 @@
         },
         "optional-dependencies": [
             "fof/default-user-preferences"
-        ]
+        ],
+        "flarum-cli": {
+            "modules": {
+                "githubActions": true
+            }
+        }
     },
     "autoload": {
         "psr-4": {
@@ -68,5 +73,15 @@
             "src/Overrides/Frontend/Assets.php",
             "src/Overrides/Frontend/RecompileFrontendAssets.php"
         ]
+    },
+    "scripts": {
+        "analyse:phpstan": "phpstan analyse",
+        "clear-cache:phpstan": "phpstan clear-result-cache"
+    },
+    "scripts-descriptions": {
+        "analyse:phpstan": "Run static analysis"
+    },
+    "require-dev": {
+        "flarum/phpstan": "*"
     }
 }
