@@ -56,6 +56,7 @@ return [
             return 1;
         }, false)
         ->serializeToForum('fofNightMode.showThemeToggleOnHeaderAlways', 'fofNightMode.show_theme_toggle_on_header_always', 'boolval', false)
+        ->serializeToForum('fofNightMode.show_theme_toggle_in_solid', 'fofNightMode.show_theme_toggle_in_solid', 'boolval', false)
         ->serializeToForum('fof-nightmode.default_theme', 'fof-nightmode.default_theme', 'intval'),
 
     class_exists(RegisterUserPreferenceDefault::class) && resolve(ExtensionManager::class)->isEnabled('fof-default-user-preferences') ? (new RegisterUserPreferenceDefault())

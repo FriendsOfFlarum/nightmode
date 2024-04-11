@@ -8,6 +8,7 @@ fof-nightmode:
         settings:
             modal:
                 always_show_theme_toggle_on_header: Always show the theme switch button on the forum header
+                show_theme_toggle_in_solid: Show theme icon in solid icon
                 default_theme: Default forum theme
                 default_theme_helper: The default theme is automatically set for new users, guests and those who have no preference set.
                 theme_auto: => fof-nightmode.ref.auto
