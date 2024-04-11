@@ -125,7 +125,7 @@ export default function () {
 
     const theme = getTheme();
     const isLight = getIsLight(theme);
-    const icon_prefix = app.forum.attribute('fofNightMode.show_theme_toggle_in_solid') ? 'fas fa-' : 'far fa-';
+    const icon_prefix = app.forum.attribute('fofNightMode.showThemeToggleInSolid') ? 'fas fa-' : 'far fa-';
     items.add(
       'nightmode',
       <Button
@@ -149,7 +149,7 @@ export default function () {
     if (!app.session.user) return;
 
     const isLight = getIsLight(getTheme());
-    const icon_prefix = app.forum.attribute('fofNightMode.show_theme_toggle_in_solid') ? 'fas fa-' : 'far fa-';
+    const icon_prefix = app.forum.attribute('fofNightMode.showThemeToggleInSolid') ? 'fas fa-' : 'far fa-';
 
     // Add night mode link to session dropdown
     items.add(
