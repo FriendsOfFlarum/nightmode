@@ -125,7 +125,7 @@ export default function () {
 
     const theme = getTheme();
     const isLight = getIsLight(theme);
-    const icon_prefix = app.forum.attribute('fofNightMode.showThemeToggleInSolid') ? 'fas fa-' : 'far fa-';
+    const iconPrefix = app.forum.attribute('fofNightMode.showThemeToggleInSolid') ? 'fas fa-' : 'far fa-';
     items.add(
       'nightmode',
       <Button
@@ -137,7 +137,7 @@ export default function () {
           // setTheme();
           switchTheme();
         }}
-        icon={theme === Themes.AUTO ? 'fas fa-adjust' : `${isLight ? icon_prefix+'sun' : icon_prefix+'moon'}`}
+        icon={theme === Themes.AUTO ? 'fas fa-adjust' : `${isLight ? iconPrefix+'sun' : iconPrefix+'moon'}`}
       >
         {app.translator.trans('fof-nightmode.forum.header.nightmode_button')}
       </Button>,
@@ -149,14 +149,14 @@ export default function () {
     if (!app.session.user) return;
 
     const isLight = getIsLight(getTheme());
-    const icon_prefix = app.forum.attribute('fofNightMode.showThemeToggleInSolid') ? 'fas fa-' : 'far fa-';
+    const iconPrefix = app.forum.attribute('fofNightMode.showThemeToggleInSolid') ? 'fas fa-' : 'far fa-';
 
     // Add night mode link to session dropdown
     items.add(
       isLight ? 'nightmode' : 'daymode',
       Button.component(
         {
-          icon: `${isLight ? icon_prefix+'moon' : icon_prefix+'sun'}`,
+          icon: `${isLight ? iconPrefix+'moon' : iconPrefix+'sun'}`,
           onclick: () => {
             switchTheme();
             // const val = isLight ? Themes.DARK : Themes.LIGHT;
