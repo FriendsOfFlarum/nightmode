@@ -24,6 +24,11 @@ app.initializers.add('fof-nightmode', () => {
       type: 'switch',
     })
     .registerSetting({
+      label: app.translator.trans('fof-nightmode.admin.settings.modal.show_theme_toggle_in_solid'),
+      setting: 'fofNightMode.show_theme_toggle_in_solid',
+      type: 'switch',
+    })
+    .registerSetting({
       label: app.translator.trans('fof-nightmode.admin.settings.modal.default_theme'),
       setting: 'fof-nightmode.default_theme',
       type: 'select',
