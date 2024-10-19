@@ -36,8 +36,8 @@
         }
     ],
     "require": {
-        "flarum/core": "^1.5.0",
-        "fof/extend": "^1.0.0"
+        "php": "^7.4 || ^8.0",
+        "flarum/core": "^1.7.0"
     },
     "replace": {
         "reflar/nightmode": "*"
@@ -82,6 +82,7 @@
         "analyse:phpstan": "Run static analysis"
     },
     "require-dev": {
-        "flarum/phpstan": "*"
+        "flarum/phpstan": "*",
+        "fof/default-user-preferences": "*"
     }
 }

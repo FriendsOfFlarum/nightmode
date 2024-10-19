@@ -9,10 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\NightMode;
+namespace FoF\NightMode\Provider;
 
 use Flarum\Foundation\AbstractServiceProvider;
 use Flarum\Frontend\Content\Assets as AssetsContent;
+use FoF\NightMode\Content;
 
 class AssetsServiceProvider extends AbstractServiceProvider
 {
