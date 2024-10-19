@@ -1,23 +1,24 @@
 {
-    "private": true,
     "name": "@fof/nightmode",
+    "version": "0.0.0",
+    "private": true,
     "prettier": "@flarum/prettier-config",
     "dependencies": {
-        "@flarum/prettier-config": "^1.0.0",
-        "es-cookie": "^1.4.0",
-        "flarum-tsconfig": "^1.0.2",
-        "flarum-webpack-config": "^2.0.2",
-        "webpack": "^5.88.2",
-        "webpack-cli": "^5.1.4"
-    },
-    "scripts": {
-        "dev": "webpack --mode development --watch",
-        "build": "webpack --mode production",
-        "format": "prettier --write src",
-        "format-check": "prettier --check src"
+      "@flarum/prettier-config": "^1.0.0",
+      "flarum-tsconfig": "^1.0.2",
+      "flarum-webpack-config": "^2.0.2",
+      "webpack": "^5.88.1",
+      "webpack-cli": "^5.1.4",
+      "es-cookie": "^1.5.0"
     },
     "devDependencies": {
-        "prettier": "^3.0.3"
+      "prettier": "^3.0.0"
     },
-    "packageManager": "yarn@3.2.1"
-}
+    "scripts": {
+      "dev": "webpack --mode development --watch",
+      "build": "webpack --mode production",
+      "format": "prettier --write src",
+      "format-check": "prettier --check src"
+    }
+  }
+  

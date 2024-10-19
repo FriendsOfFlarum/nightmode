@@ -109,11 +109,11 @@ export default function () {
             {currentTheme === Themes.AUTO
               ? trans('option_descriptions.auto')
               : currentTheme === Themes.LIGHT
-              ? trans('option_descriptions.day')
-              : currentTheme === Themes.DARK
-              ? trans('option_descriptions.night')
-              : // prevents nasty paragraph switching
-                LoadingIndicator.component()}
+                ? trans('option_descriptions.day')
+                : currentTheme === Themes.DARK
+                  ? trans('option_descriptions.night')
+                  : // prevents nasty paragraph switching
+                    LoadingIndicator.component()}
           </p>,
         ]
       )

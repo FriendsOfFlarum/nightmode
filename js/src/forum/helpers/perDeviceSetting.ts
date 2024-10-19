@@ -16,7 +16,7 @@ export const get = () => {
 export const set = (val) =>
   Cookies.set(KEY, val, {
     sameSite: 'lax',
-    secure: location.protocol === 'https:',
+    secure: location.protocol === 'https:' ? true : undefined,
   });
 
 export const remove = () => Cookies.remove(KEY);

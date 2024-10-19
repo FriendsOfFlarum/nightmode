@@ -7,7 +7,7 @@ import Themes from './Themes';
 import fixInvalidThemeSetting from '../forum/fixInvalidThemeSetting';
 import getTheme from '../forum/getTheme';
 
-export default () => {
+export default function setSelectedTheme() {
   extend(Page.prototype, 'oninit', setTheme);
 
   // Register setTheme() as the handler for 'prefers-color-scheme' media property
@@ -15,7 +15,7 @@ export default () => {
   // when this property changes, and that the correct stylesheets are loaded.
   const prefersColorSchemeDark = window.matchMedia('(prefers-color-scheme: dark)');
   prefersColorSchemeDark.addEventListener('change', setTheme);
-};
+}
 
 export function setTheme() {
   const { user } = app.session;

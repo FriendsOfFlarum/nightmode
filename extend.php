@@ -12,7 +12,6 @@
 namespace FoF\NightMode;
 
 use Flarum\Extend;
-use Flarum\Extension\ExtensionManager;
 use Flarum\Settings\SettingsRepositoryInterface;
 use FoF\DefaultUserPreferences\Extend\RegisterUserPreferenceDefault;
 
@@ -25,13 +24,14 @@ return [
 
     (new Extend\Frontend('admin'))
         ->js(__DIR__.'/js/dist/admin.js')
+        ->css(__DIR__.'/resources/less/admin.less')
         ->content(Content\HideBody::class)
         ->content(Content\PatchUnsupportedAutoNightmode::class),
 
     new Extend\Locales(__DIR__.'/resources/locale'),
 
     (new Extend\ServiceProvider())
-        ->register(AssetsServiceProvider::class),
+        ->register(Provider\AssetsServiceProvider::class),
 
     (new Extend\User())
         ->registerPreference('fofNightMode', function ($value) {
@@ -45,6 +45,7 @@ return [
 
     (new Extend\Settings())
         ->default('fof-nightmode.default_theme', 0)
+        ->default('fofNightMode.show_theme_toggle_on_header_always', false)
         ->serializeToForum('fofNightMode_autoUnsupportedFallback', 'theme_dark_mode', function ($val) {
             $val = (bool) $val;
 
@@ -55,10 +56,13 @@ return [
 
             return 1;
         }, false)
-        ->serializeToForum('fofNightMode.showThemeToggleOnHeaderAlways', 'fofNightMode.show_theme_toggle_on_header_always', 'boolval', false)
+        ->serializeToForum('fofNightMode.showThemeToggleOnHeaderAlways', 'fofNightMode.show_theme_toggle_on_header_always', 'boolval')
         ->serializeToForum('fof-nightmode.default_theme', 'fof-nightmode.default_theme', 'intval'),
 
-    class_exists(RegisterUserPreferenceDefault::class) && resolve(ExtensionManager::class)->isEnabled('fof-default-user-preferences') ? (new RegisterUserPreferenceDefault())
-        ->default('fofNightMode', 0, 'number')
-        ->default('fofNightMode_perDevice', false, 'bool') : [],
+    (new Extend\Conditional())
+        ->whenExtensionEnabled('fof-default-user-preferences', fn () => [
+            (new RegisterUserPreferenceDefault())
+                ->default('fofNightMode', 0, 'number')
+                ->default('fofNightMode_perDevice', false, 'bool')
+        ]),
 ];

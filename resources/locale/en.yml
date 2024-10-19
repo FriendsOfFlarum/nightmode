@@ -6,6 +6,9 @@ fof-nightmode:
 
     admin:
         settings:
+            general:
+                heading: General Settings
+                help: These settings control the basic behaviour of the extension.
             modal:
                 always_show_theme_toggle_on_header: Always show the theme switch button on the forum header
                 default_theme: Default forum theme
