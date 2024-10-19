@@ -63,6 +63,6 @@ return [
         ->whenExtensionEnabled('fof-default-user-preferences', fn () => [
             (new RegisterUserPreferenceDefault())
                 ->default('fofNightMode', 0, 'number')
-                ->default('fofNightMode_perDevice', false, 'bool')
+                ->default('fofNightMode_perDevice', false, 'bool'),
         ]),
 ];
