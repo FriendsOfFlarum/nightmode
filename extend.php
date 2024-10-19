@@ -46,6 +46,7 @@ return [
     (new Extend\Settings())
         ->default('fof-nightmode.default_theme', 0)
         ->default('fofNightMode.show_theme_toggle_on_header_always', false)
+        ->default('fofNightMode.show_theme_toggle_in_solid', true)
         ->serializeToForum('fofNightMode_autoUnsupportedFallback', 'theme_dark_mode', function ($val) {
             $val = (bool) $val;
 
@@ -57,7 +58,8 @@ return [
             return 1;
         }, false)
         ->serializeToForum('fofNightMode.showThemeToggleOnHeaderAlways', 'fofNightMode.show_theme_toggle_on_header_always', 'boolval')
-        ->serializeToForum('fof-nightmode.default_theme', 'fof-nightmode.default_theme', 'intval'),
+        ->serializeToForum('fof-nightmode.default_theme', 'fof-nightmode.default_theme', 'intval')
+        ->serializeToForum('fofNightMode.showThemeToggleInSolid', 'fofNightMode.show_theme_toggle_in_solid', 'boolval'),
 
     (new Extend\Conditional())
         ->whenExtensionEnabled('fof-default-user-preferences', fn () => [
