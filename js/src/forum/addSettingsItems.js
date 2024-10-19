@@ -126,18 +126,16 @@ export default function () {
     const theme = getTheme();
     const isLight = getIsLight(theme);
 
+    const iconPrefix = app.forum.attribute('fofNightMode.showThemeToggleInSolid') ? 'fas fa-' : 'far fa-';
+
     items.add(
       'nightmode',
       <Button
         className="Button Button--flat"
         onclick={() => {
-          // const newTheme = toggleThrough(theme);
-
-          // perDevice.set(newTheme);
-          // setTheme();
           switchTheme();
         }}
-        icon={theme === Themes.AUTO ? 'fas fa-adjust' : `far fa-${isLight ? 'sun' : 'moon'}`}
+        icon={theme === Themes.AUTO ? 'fas fa-adjust' : `${isLight ? iconPrefix + 'sun' : iconPrefix + 'moon'}`}
       >
         {app.translator.trans('fof-nightmode.forum.header.nightmode_button')}
       </Button>,
@@ -150,31 +148,16 @@ export default function () {
 
     const isLight = getIsLight(getTheme());
 
+    const iconPrefix = app.forum.attribute('fofNightMode.showThemeToggleInSolid') ? 'fas fa-' : 'far fa-';
+
     // Add night mode link to session dropdown
     items.add(
       isLight ? 'nightmode' : 'daymode',
       Button.component(
         {
-          icon: `far fa-${isLight ? 'moon' : 'sun'}`,
+          icon: `${isLight ? iconPrefix + 'moon' : iconPrefix + 'sun'}`,
           onclick: () => {
             switchTheme();
-            // const val = isLight ? Themes.DARK : Themes.LIGHT;
-
-            // if (!!user.preferences().fofNightMode_perDevice) {
-            //   perDevice.set(val);
-            //   setTheme();
-            //   return;
-            // }
-
-            // user
-            //   .savePreferences({
-            //     fofNightMode: val,
-            //   })
-            //   .then(() => {
-            //     // need to force-update selected theme (as it's only set
-            //     // on a page load and redraw doesn't count as a apge load)
-            //     setTheme();
-            //   });
           },
         },
         app.translator.trans(`fof-nightmode.forum.${isLight ? 'night' : 'day'}`)

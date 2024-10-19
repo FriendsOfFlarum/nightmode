@@ -49,6 +49,15 @@ export default class NightmodeSettingsPage extends ExtensionPage {
     );
 
     items.add(
+      'icon-style',
+      this.buildSettingComponent({
+        label: app.translator.trans('fof-nightmode.admin.settings.modal.show_theme_toggle_in_solid'),
+        setting: 'fofNightMode.show_theme_toggle_in_solid',
+        type: 'switch',
+      })
+    );
+
+    items.add(
       'default-theme',
       this.buildSettingComponent({
         label: app.translator.trans('fof-nightmode.admin.settings.modal.default_theme'),
