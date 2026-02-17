@@ -25,6 +25,14 @@ export function switchTheme() {
   const isLight = getIsLight(theme);
   const user = app.session.user;
 
+  // Add classes to the body tag based on the theme
+  document.body.classList.remove('fof-DarkMode', 'fof-LightMode');
+  if (isLight) {
+      document.body.classList.add('fof-LightMode');
+  } else {
+      document.body.classList.add('fof-DarkMode');
+  }
+
   if (user) {
     const val = isLight ? Themes.DARK : Themes.LIGHT;
 
